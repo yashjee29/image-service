@@ -1,0 +1,49 @@
+{
+  "name": "image-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && node -e \"const fs = require('fs'); fs.cpSync('src/modules', 'dist/modules', { recursive: true, filter: (src) => !src.endsWith('.ts') });\"",
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "bake:shadow": "tsx scripts/bake-assets.ts",
+    "benchmark": "tsx scripts/benchmark-render.ts",
+    "compare:images": "tsx scripts/compare-images.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.11.2",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.11.2",
+  "type": "module",
+  "dependencies": {
+    "@fastify/rate-limit": "^11.2.1",
+    "@resvg/resvg-js": "^2.6.2",
+    "dotenv": "^18.0.8",
+    "fastify": "^5.12.7",
+    "fastify-plugin": "^6.0.1",
+    "pino": "^10.4.0",
+    "sharp": "^0.35.5",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/pixelmatch": "^7.1.0",
+    "@types/pngjs": "^6.0.5",
+    "pino-pretty": "^13.2.0",
+    "pixelmatch": "^8.0.0",
+    "pngjs": "^7.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}

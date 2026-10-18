@@ -170,10 +170,7 @@ image-service/
 │       └── processMetrics.ts           # PID tagging, maxRSS, and heap snapshotting
 │
 ├── scripts/
-│   ├── render-svg-card.ts              # Standalone CLI renderer & 100-workload benchmark
-│   ├── bake-assets.ts                  # Static shadow container pre-rendering
-│   ├── benchmark-render.ts             # Fastify API benchmark runner
-│   └── compare-images.ts               # Bit-for-bit mathematical comparison (PSNR/MSE)
+│   └── bake-assets.ts                  # Static shadow container & background asset baking
 │
 ├── tests/
 │   ├── unit/                           # Isolated core logic unit tests
@@ -463,22 +460,7 @@ Speedup Factor:          ~1.27x - 4.28x faster (runtime)
 ================================================================================
 ```
 
-### VPS Benchmark Suite
-
-Run the end-to-end benchmark suite on any VPS or local machine to measure hardware specs, WAN Discord CDN cold starts, warm in-memory latency, and dynamic 1-to-2 core burst concurrency:
-
-```bash
-pnpm run benchmark:vps
-# or: npm run benchmark:vps
-```
-
-The benchmark outputs:
-1. **Host Environment**: OS, kernel architecture, detected CPU model, logical cores, available RAM, and active concurrency limits.
-2. **Phase 1: Cold Start**: Concurrent WAN download of 11 live avatars from `cdn.discordapp.com` + Sharp decoding + SVG replacement + Resvg rasterization.
-3. **Phase 2: Warm Steady-State**: 30 dynamic queries with in-memory LRU cache (P50, P95, P99, min/max, req/s).
-4. **Phase 3: Concurrency Burst**: 10 simultaneous user requests measuring dynamic 1-core baseline scaling up to 2 cores under load.
-
-### Standalone CLI Render & Workload Benchmark
+### Performance Overview
 
 | Metric | Without Avatar (Default Vector) | With Discord Avatar (167px Cached) | Status |
 | :--- | :--- | :--- | :--- |
@@ -490,17 +472,6 @@ The benchmark outputs:
 | **Total Wall-Clock (100 imgs)**| **2.08 s** | **2.01 s** | ~2 seconds total |
 | **SVG String Payload** | **78.5 KB** | **79.6 KB** | Shrunk from 321.7 KB (-75%) |
 | **V8 Heap Used / Total** | **12.51 MB / 31.05 MB** | **12.74 MB / 31.00 MB** | Highly compact |
-| **PID Tagging & Process Snapshot** | Enabled on all output lines | Enabled on all output lines | Verified |
-
-### Full Fastify API Benchmark Suite
-
-```bash
-pnpm benchmark
-```
-
-Tests single render, 100-image cold cache, 100-image warm cache, and 50-image concurrent execution (5 workers):
-- **Warm Cache Throughput**: `~765 - 783 images/sec` (`~1.28 ms` average latency)
-- **Cold Cache API Throughput**: `~34 images/sec` (`~29 ms` per full HTTP pipeline request including validation, context factory, and queue)
 
 ---
 

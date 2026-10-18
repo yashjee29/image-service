@@ -9,11 +9,7 @@
     "dev": "tsx watch src/server.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "bake:shadow": "tsx scripts/bake-assets.ts",
-    "benchmark": "tsx scripts/benchmark-vps.ts",
-    "benchmark:vps": "tsx scripts/benchmark-vps.ts",
-    "benchmark:discord": "tsx scripts/benchmark-discord-cdn-leaderboard.ts",
-    "benchmark:concurrency": "tsx scripts/benchmark-concurrency.ts"
+    "bake:shadow": "tsx scripts/bake-assets.ts"
   },
   "keywords": [],
   "author": "",

@@ -178,12 +178,11 @@ describe('Input Validation Schemas', () => {
       expect(parsed.title).toBe('VOICE LEADERBOARD');
     });
 
-    it('rejects empty entries list', () => {
-      expect(() =>
-        VoiceLeaderboardInputSchema.parse({
-          entries: [],
-        })
-      ).toThrow();
+    it('accepts empty entries list (for empty state rendering)', () => {
+      const parsed = VoiceLeaderboardInputSchema.parse({
+        entries: [],
+      });
+      expect(parsed.entries).toHaveLength(0);
     });
 
     it('rejects entries with rank outside bounds', () => {

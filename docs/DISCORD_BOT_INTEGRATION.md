@@ -231,8 +231,8 @@ export async function handleLeaderboardCommand(interaction: ChatInputCommandInte
       filters: { period, metric },
       leaderboard: {
         range: {
-          startPosition: offset + 1,
-          endPosition: offset + users.length
+          startPosition: users.length > 0 ? offset + 1 : 0,
+          endPosition: users.length > 0 ? offset + users.length : 0
         },
         totalParticipants: totalCount,
         entries: users.map((u, idx) => ({

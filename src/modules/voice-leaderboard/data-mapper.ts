@@ -737,6 +737,20 @@ export function mapStudyLeaderboardData(
     }
   }
 
+  if (data.entries.length === 0) {
+    const emptyStateSvg = `  <g id="study-empty-state">
+    <rect x="448" y="380" width="640" height="260" rx="24" fill="#ffffff" stroke="#eadfd7" stroke-width="1.5" />
+    <circle cx="768" cy="455" r="36" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" />
+    <path d="M756 450 C748 450 746 458 758 462 M780 450 C788 450 790 458 778 462" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M764 470 L764 475 L758 480 L778 480 L772 475 L772 470 Z" fill="#fdba74" stroke="#ea580c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M755 446 L781 446 L779 462 Q777 470 768 470 Q759 470 757 462 Z" fill="#fb923c" stroke="#ea580c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="768" y="530" font-family="Plus Jakarta Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="800" fill="#2d2118" text-anchor="middle">No Study Records Yet</text>
+    <text x="768" y="568" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="600" fill="#7d6a5e" text-anchor="middle">No voice or study activity has been recorded for this period.</text>
+    <text x="768" y="598" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="17" font-weight="500" fill="#a8988e" text-anchor="middle">Join a voice channel or start a session to claim the #1 spot!</text>
+  </g>`;
+    output = output.replace('</svg>', `${emptyStateSvg}\n</svg>`);
+  }
+
   return output;
 }
 
@@ -1005,6 +1019,20 @@ export function mapExtendedStudyLeaderboardData(
         `<rect id="study-ext-rank-box-${slotRank}" $1${REQUESTER_HIGHLIGHT_THEME.rankBoxBg}$2${REQUESTER_HIGHLIGHT_THEME.rankBoxBorder}$3${REQUESTER_HIGHLIGHT_THEME.rankBoxStrokeWidth}$4`
       );
     }
+  }
+
+  if (data.entries.length === 0) {
+    const emptyStateSvg = `  <g id="study-ext-empty-state">
+    <rect x="448" y="380" width="640" height="260" rx="24" fill="#ffffff" stroke="#eadfd7" stroke-width="1.5" />
+    <circle cx="768" cy="455" r="36" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" />
+    <path d="M756 450 C748 450 746 458 758 462 M780 450 C788 450 790 458 778 462" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M764 470 L764 475 L758 480 L778 480 L772 475 L772 470 Z" fill="#fdba74" stroke="#ea580c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M755 446 L781 446 L779 462 Q777 470 768 470 Q759 470 757 462 Z" fill="#fb923c" stroke="#ea580c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="768" y="530" font-family="Plus Jakarta Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="800" fill="#2d2118" text-anchor="middle">No Users on this Page</text>
+    <text x="768" y="568" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="600" fill="#7d6a5e" text-anchor="middle">There are no participants in this ranking range.</text>
+    <text x="768" y="598" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="17" font-weight="500" fill="#a8988e" text-anchor="middle">Check earlier pages or invite friends to join!</text>
+  </g>`;
+    output = output.replace('</svg>', `${emptyStateSvg}\n</svg>`);
   }
 
   return output;

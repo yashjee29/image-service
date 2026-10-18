@@ -408,6 +408,54 @@ describe('VoiceLeaderboardModule', () => {
     expect(mappedSvg).not.toContain('id="study-ext-table-col-2"');
     expect(mappedSvg).not.toContain('id="study-ext-row-19"');
   });
+
+  it('validates and renders an empty leaderboard with range 0-0 without throwing', async () => {
+    const input = voiceLeaderboardModule.validate({
+      range: { startPosition: 0, endPosition: 0 },
+      leaderboard: {
+        range: { startPosition: 0, endPosition: 0 },
+        totalParticipants: 0,
+        entries: [],
+      },
+    });
+
+    expect(input.entries).toHaveLength(0);
+    expect(input.range?.startPosition).toBe(0);
+    expect(input.range?.endPosition).toBe(0);
+
+    const context = createRenderContext('study-leaderboard-2');
+    const pngBuffer = await voiceLeaderboardModule.render(input, context);
+
+    expect(Buffer.isBuffer(pngBuffer)).toBe(true);
+    expect(pngBuffer.length).toBeGreaterThan(10000);
+
+    const meta = await sharp(pngBuffer).metadata();
+    expect(meta.width).toBe(1536);
+    expect(meta.height).toBe(1024);
+  });
+
+  it('renders empty state graphic when entries array is empty for both podium and list layouts', async () => {
+    const { mapStudyLeaderboardData, mapExtendedStudyLeaderboardData } = await import('../data-mapper.js');
+    const validatedPodium = voiceLeaderboardModule.validate({
+      render: { layout: 'podium_and_list' },
+      entries: [],
+    });
+    const podiumTemplate = templateRegistry.get('study-leaderboard-2');
+    const podiumSvg = mapStudyLeaderboardData(podiumTemplate!.content, validatedPodium);
+    expect(podiumSvg).toContain('id="study-empty-state"');
+    expect(podiumSvg).toContain('No Study Records Yet');
+    expect(podiumSvg).not.toContain('id="podium-card-1"');
+
+    const validatedList = voiceLeaderboardModule.validate({
+      render: { layout: 'list' },
+      entries: [],
+    });
+    const listTemplate = templateRegistry.get('study-leaderboard');
+    const listSvg = mapExtendedStudyLeaderboardData(listTemplate!.content, validatedList);
+    expect(listSvg).toContain('id="study-ext-empty-state"');
+    expect(listSvg).toContain('No Users on this Page');
+    expect(listSvg).not.toContain('id="study-ext-table-col-1"');
+  });
 });
 
 

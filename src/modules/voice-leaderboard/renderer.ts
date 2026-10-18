@@ -28,7 +28,10 @@ export async function renderVoiceLeaderboard(
   let templateContent = context.template.content;
   let isExtended = false;
   if (isStudy) {
-    const startPos = input.range?.startPosition ?? (input.entries[0]?.rank ?? 1);
+    const startPos =
+      input.range?.startPosition !== undefined && input.range.startPosition > 0
+        ? input.range.startPosition
+        : (input.entries[0]?.rank ?? 1);
     const layoutPref = input.render?.layout;
     if (layoutPref === 'list') {
       isExtended = true;

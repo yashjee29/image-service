@@ -17,8 +17,8 @@ export const LeaderboardEntrySchema = z.object({
 });
 
 export const LeaderboardRangeSchema = z.object({
-  startPosition: z.number().int().min(1).optional(),
-  endPosition: z.number().int().min(1).optional(),
+  startPosition: z.number().int().min(0).optional(),
+  endPosition: z.number().int().min(0).optional(),
 });
 
 export const LeaderboardFiltersSchema = z.object({
@@ -42,9 +42,9 @@ const RawVoiceLeaderboardInputSchema = z.object({
   period: z.string().max(40).default(voiceLeaderboardConfig.defaults.period),
   category: z.string().max(40).optional(),
   range: LeaderboardRangeSchema.optional(),
-  startPosition: z.number().int().optional(),
-  endPosition: z.number().int().optional(),
-  totalParticipants: z.number().int().optional(),
+  startPosition: z.number().int().min(0).optional(),
+  endPosition: z.number().int().min(0).optional(),
+  totalParticipants: z.number().int().min(0).optional(),
   render: z
     .object({
       templateId: z.string().optional(),
@@ -55,7 +55,7 @@ const RawVoiceLeaderboardInputSchema = z.object({
     })
     .optional(),
   filters: LeaderboardFiltersSchema.optional(),
-  entries: z.array(LeaderboardEntrySchema).min(1).max(voiceLeaderboardConfig.maxEntries),
+  entries: z.array(LeaderboardEntrySchema).min(0).max(voiceLeaderboardConfig.maxEntries),
 });
 
 export const VoiceLeaderboardInputSchema = z.preprocess((val: any) => {

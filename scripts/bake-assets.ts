@@ -149,18 +149,7 @@ export async function bakeStudyLeaderboardAssets(): Promise<void> {
   <ellipse cx="163" cy="71" rx="16" ry="4" fill="#ffd0c7" stroke="#e85b4d" stroke-width="2" />
   <polygon points="163,78 165,84 171,85 166,89 168,96 163,92 158,96 160,89 155,85 161,84" fill="#fff5ee" />
 </g>
-<!-- 7. Podium Top Pills Shadows -->
-<rect x="298.5" y="172" width="125" height="52" rx="19" fill="#fffaf7" stroke="#f0e3dc" stroke-width="1" filter="url(#softShadow)"/>
-<rect x="704.5" y="160" width="139" height="52" rx="19" fill="#fffaf7" stroke="#f0e3dc" stroke-width="1" filter="url(#softShadow)"/>
-<rect x="1096.5" y="172" width="127" height="52" rx="19" fill="#fffaf7" stroke="#f0e3dc" stroke-width="1" filter="url(#softShadow)"/>
-<!-- 8. Row Dividers -->
-<line x1="146" y1="724" x2="736" y2="724" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
-<line x1="146" y1="806" x2="736" y2="806" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
-<line x1="146" y1="888" x2="736" y2="888" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
-<line x1="791" y1="724" x2="1382" y2="724" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
-<line x1="791" y1="806" x2="1382" y2="806" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
-<line x1="791" y1="888" x2="1382" y2="888" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
-<!-- 9. Notebook & Pencil -->
+<!-- 7. Notebook & Pencil -->
 <g id="notebook">
 <path d="M-15 847 L53 807 Q61 804 68 811 L140 1016 L-7 1018 Z" fill="#fffaf5" stroke="#d9b8a0" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M-7 866 L52 838 L120 1008 M-3 896 L63 868 M7 925 L73 897 M16 955 L84 926 M27 985 L96 955" fill="none" stroke="#e5c9b7" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
@@ -216,7 +205,6 @@ export async function bakeStudyLeaderboardAssets(): Promise<void> {
     /<g id="notebook"[\s\S]*<\/svg>/,
     '</svg>'
   );
-  podiumSvg = podiumSvg.replace(/<line x1="(146|791)" y1="(724|806|888)" x2="(736|1382)" y2="(724|806|888)"[^>]*\/>\s*/g, '');
 
   const podiumDestPath = resolve(LEADERBOARD_DIR, 'study-leaderboard-2.svg');
   writeFileSync(podiumDestPath, podiumSvg);
@@ -242,27 +230,7 @@ export async function bakeStudyLeaderboardAssets(): Promise<void> {
   <polygon points="165,78 167,84 173,85 168,89 170,96 165,92 160,96 162,89 157,85 163,84" fill="#fff5ee" />
 </g>
 
-<!-- 3. Two Large Table Background Containers -->
-<rect x="125" y="208" width="633" height="714" rx="22" fill="#fffdfa" stroke="#f0e3da" stroke-width="1.1" />
-<rect x="776" y="208" width="643" height="714" rx="22" fill="#fffdfa" stroke="#f0e3da" stroke-width="1.1" />
-<rect x="126" y="209" width="631" height="712" rx="21" fill="url(#paper)" stroke="none" stroke-width="0" opacity=".35"/>
-<rect x="777" y="209" width="641" height="712" rx="21" fill="url(#paper)" stroke="none" stroke-width="0" opacity=".35"/>
 
-<!-- 4. Table Row Divider Lines (Col 1) -->
-<path d="M 146 314 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 146 421 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 146 527 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 146 633 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 146 730 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 146 827 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-
-<!-- 4. Table Row Divider Lines (Col 2) -->
-<path d="M 797 314 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 797 421 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 797 527 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 797 633 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 797 730 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M 797 827 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 
 <!-- 5. Curved Side Edges & Paper Clip -->
 <g id="curved-side-edges" fill="none" stroke="#eadfd7" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
@@ -344,12 +312,7 @@ export async function bakeStudyLeaderboardAssets(): Promise<void> {
     /<rect x="14" y="14" width="1508" height="1000" rx="25" fill="url\(#paper\)" stroke="#eadfd7" stroke-width="1" filter="url\(#softShadow\)"\/>[\s\S]*?(?=<text x="241" y="97")/,
     `${extImageTag}\n`
   );
-  extSvg = extSvg.replace(/<rect x="125" y="208" width="633" height="714" rx="22"[^>]*\/>\s*/g, '');
-  extSvg = extSvg.replace(/<rect x="776" y="208" width="643" height="714" rx="22"[^>]*\/>\s*/g, '');
-  extSvg = extSvg.replace(/<rect x="126" y="209" width="631" height="712" rx="21"[^>]*\/>\s*/g, '');
-  extSvg = extSvg.replace(/<rect x="777" y="209" width="641" height="712" rx="21"[^>]*\/>\s*/g, '');
-  extSvg = extSvg.replace(/<path d="M (146|797) (314|421|527|633|730|827) H (737|1398)"[^>]*\/>\s*/g, '');
-  extSvg = extSvg.replace(/<(ns0:)?g [^>]*id="curved-side-edges"[\s\S]*<\/svg>/, '</svg>');
+  extSvg = extSvg.replace(/<(ns0:)?g [^>]*id="notebook"[\s\S]*<\/svg>/, '</svg>');
 
   const extDestPath = resolve(LEADERBOARD_DIR, 'study-leaderboard.svg');
   const ext2DestPath = resolve(LEADERBOARD_DIR, 'study-leaderboard-extended.svg');

@@ -46,10 +46,15 @@
   <circle cx="1283" cy="92" r="1.5" fill="#f26e5e" />
   <text x="1314" y="96" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="600" fill="#171b20" text-anchor="start" >Monthly</text>
 </g>
+<g id="study-ext-table-col-1">
 <rect x="125" y="208" width="633" height="714" rx="22" fill="#fffdfa" stroke="#f0e3da" stroke-width="1.1" />
-<rect x="776" y="208" width="643" height="714" rx="22" fill="#fffdfa" stroke="#f0e3da" stroke-width="1.1" />
 <rect x="126" y="209" width="631" height="712" rx="21" fill="url(#paper)" stroke="none" stroke-width="0" opacity=".35"/>
+</g>
+<g id="study-ext-table-col-2">
+<rect x="776" y="208" width="643" height="714" rx="22" fill="#fffdfa" stroke="#f0e3da" stroke-width="1.1" />
 <rect x="777" y="209" width="641" height="712" rx="21" fill="url(#paper)" stroke="none" stroke-width="0" opacity=".35"/>
+</g>
+<g id="study-ext-row-12">
 <rect id="study-ext-rank-box-12" x="146" y="233.0" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-12" x="173" y="270.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >12</text>
 <g id="avatar-riya">
@@ -84,7 +89,9 @@
 <text x="550.5" y="267.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Platinum</text>
 </g>
 <text id="study-ext-hours-12" x="729" y="269.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >118h</text>
-<path d="M 146 314 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-12" d="M 146 314 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-13">
 <rect id="study-ext-rank-box-13" x="146" y="339.5" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-13" x="173" y="376.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >13</text>
 <g id="avatar-aryan">
@@ -119,7 +126,9 @@
 <text x="565.5" y="373.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Gold</text>
 </g>
 <text id="study-ext-hours-13" x="729" y="375.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >115h</text>
-<path d="M 146 421 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-13" d="M 146 421 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-14">
 <rect id="study-ext-rank-box-14" x="146" y="445.5" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-14" x="173" y="482.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >14</text>
 <g id="avatar-meera">
@@ -156,7 +165,9 @@
 <text x="565.5" y="479.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Gold</text>
 </g>
 <text id="study-ext-hours-14" x="729" y="481.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >109h</text>
-<path d="M 146 526 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-14" d="M 146 526 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-15">
 <rect id="study-ext-rank-box-15" x="146" y="549.5" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-15" x="173" y="586.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >15</text>
 <g id="avatar-rohit">
@@ -190,7 +201,9 @@
 <text x="563.0" y="583.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Silver</text>
 </g>
 <text id="study-ext-hours-15" x="729" y="585.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >102h</text>
-<path d="M 146 629 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-15" d="M 146 629 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-16">
 <rect id="study-ext-rank-box-16" x="146" y="650.5" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-16" x="173" y="687.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >16</text>
 <g id="avatar-siya">
@@ -224,7 +237,9 @@
 <text x="563.0" y="684.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Silver</text>
 </g>
 <text id="study-ext-hours-16" x="729" y="686.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >96h</text>
-<path d="M 146 728 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-16" d="M 146 728 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-17">
 <rect id="study-ext-rank-box-17" x="146" y="747.0" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-17" x="173" y="784.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >17</text>
 <g id="avatar-vivaan">
@@ -258,7 +273,9 @@
 <text x="563.0" y="781.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Silver</text>
 </g>
 <text id="study-ext-hours-17" x="729" y="783.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >91h</text>
-<path d="M 146 822 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-17" d="M 146 822 H 737" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-18">
 <rect id="study-ext-rank-box-18" x="146" y="844.0" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-18" x="173" y="881.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >18</text>
 <g id="avatar-naina">
@@ -292,6 +309,8 @@
 <text x="558.5" y="878.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Bronze</text>
 </g>
 <text id="study-ext-hours-18" x="729" y="880.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >85h</text>
+</g>
+<g id="study-ext-row-19">
 <rect id="study-ext-rank-box-19" x="797" y="233.0" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-19" x="824" y="270.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >19</text>
 <g id="avatar-arjun">
@@ -328,7 +347,9 @@
 <text x="1198.5" y="267.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Bronze</text>
 </g>
 <text id="study-ext-hours-19" x="1390" y="269.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >78h</text>
-<path d="M 797 314 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-19" d="M 797 314 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-20">
 <rect id="study-ext-rank-box-20" x="797" y="339.5" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-20" x="824" y="376.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >20</text>
 <g id="avatar-kavya">
@@ -362,7 +383,9 @@
 <text x="1198.5" y="373.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Bronze</text>
 </g>
 <text id="study-ext-hours-20" x="1390" y="375.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >72h</text>
-<path d="M 797 421 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-20" d="M 797 421 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-21">
 <rect id="study-ext-rank-box-21" x="797" y="445.5" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-21" x="824" y="482.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >21</text>
 <g id="avatar-manav">
@@ -397,7 +420,9 @@
 <text x="1208.5" y="479.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Iron</text>
 </g>
 <text id="study-ext-hours-21" x="1390" y="481.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >66h</text>
-<path d="M 797 526 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-21" d="M 797 526 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-22">
 <rect id="study-ext-rank-box-22" x="797" y="549.5" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-22" x="824" y="586.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >22</text>
 <g id="avatar-zara">
@@ -434,7 +459,9 @@
 <text x="1208.5" y="583.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Iron</text>
 </g>
 <text id="study-ext-hours-22" x="1390" y="585.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >59h</text>
-<path d="M 797 629 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-22" d="M 797 629 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-23">
 <rect id="study-ext-rank-box-23" x="797" y="650.5" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-23" x="824" y="687.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >23</text>
 <g id="avatar-yash">
@@ -468,7 +495,9 @@
 <text x="1208.5" y="684.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Iron</text>
 </g>
 <text id="study-ext-hours-23" x="1390" y="686.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >53h</text>
-<path d="M 797 728 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-23" d="M 797 728 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-24">
 <rect id="study-ext-rank-box-24" x="797" y="747.0" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-24" x="824" y="784.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >24</text>
 <g id="avatar-aanya">
@@ -502,7 +531,9 @@
 <text x="1208.5" y="781.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Iron</text>
 </g>
 <text id="study-ext-hours-24" x="1390" y="783.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >48h</text>
-<path d="M 797 822 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<path id="study-ext-divider-24" d="M 797 822 H 1398" fill="none" stroke="#eee4dd" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<g id="study-ext-row-25">
 <rect id="study-ext-rank-box-25" x="797" y="844.0" width="54" height="56" rx="12" fill="#fbf5f0" stroke="#f0e3d9" stroke-width="1" />
 <text id="study-ext-rank-num-25" x="824" y="881.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="28" font-weight="500" fill="#11191f" text-anchor="middle" >25</text>
 <g id="avatar-harsh">
@@ -536,6 +567,7 @@
 <text x="1208.5" y="878.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#3c4248" text-anchor="start" >Iron</text>
 </g>
 <text id="study-ext-hours-25" x="1390" y="880.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#5ba48f" text-anchor="end" >44h</text>
+</g>
 <ns0:g xmlns:ns0="http://www.w3.org/2000/svg" id="curved-side-edges" fill="none" stroke="#eadfd7" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
   <ns0:path id="left-curved-side" d="M39 14 C25.2 14 14 25.2 14 39 V989 C14 1002.8 25.2 1014 39 1014" />
   <ns0:path id="right-curved-side" d="M1497 14 C1510.8 14 1522 25.2 1522 39 V989 C1522 1002.8 1510.8 1014 1497 1014" />

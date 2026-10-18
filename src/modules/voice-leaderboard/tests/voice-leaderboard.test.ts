@@ -308,6 +308,106 @@ describe('VoiceLeaderboardModule', () => {
     const ascendantTheme = getRankTheme('ascendant');
     expect(mappedSvg).toContain(`id="podium-hours-2" x="363" y="569" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="47" font-weight="900" fill="${ascendantTheme.darkerColor}"`);
   });
+
+  it('dynamically removes unused podium cards and empty bottom tables when entries < 3', async () => {
+    const { mapStudyLeaderboardData } = await import('../data-mapper.js');
+    const validated = voiceLeaderboardModule.validate({
+      entries: [
+        { rank: 1, username: 'Aarav', durationMinutes: 19260, rankId: 'immortal' },
+      ],
+    });
+
+    const template = templateRegistry.get('study-leaderboard-2');
+    expect(template).toBeDefined();
+
+    const mappedSvg = mapStudyLeaderboardData(template!.content, validated);
+
+    // Card 1 should exist
+    expect(mappedSvg).toContain('id="podium-card-1"');
+    expect(mappedSvg).toContain('Aarav');
+
+    // Cards 2 and 3 should be removed completely
+    expect(mappedSvg).not.toContain('id="podium-card-2"');
+    expect(mappedSvg).not.toContain('id="podium-card-3"');
+    expect(mappedSvg).not.toContain('Sakha');
+    expect(mappedSvg).not.toContain('Mira');
+
+    // Bottom tables and rows 4-11 should be removed
+    expect(mappedSvg).not.toContain('id="study-table-col-1"');
+    expect(mappedSvg).not.toContain('id="study-table-col-2"');
+    expect(mappedSvg).not.toContain('id="study-row-4"');
+    expect(mappedSvg).not.toContain('id="study-divider-4"');
+  });
+
+  it('dynamically hides right column container and adjusts height when entries < 8 on podium layout', async () => {
+    const { mapStudyLeaderboardData } = await import('../data-mapper.js');
+    const validated = voiceLeaderboardModule.validate({
+      entries: [
+        { rank: 1, username: 'Aarav', durationMinutes: 19260, rankId: 'immortal' },
+        { rank: 2, username: 'Sakha', durationMinutes: 17040, rankId: 'ascendant' },
+        { rank: 3, username: 'Mira', durationMinutes: 15060, rankId: 'diamond' },
+        { rank: 4, username: 'PixelDreams', durationMinutes: 13680, rankId: 'diamond' },
+        { rank: 5, username: 'Kabir', durationMinutes: 12420, rankId: 'diamond' },
+      ],
+    });
+
+    const template = templateRegistry.get('study-leaderboard-2');
+    const mappedSvg = mapStudyLeaderboardData(template!.content, validated);
+
+    // Cards 1, 2, 3 exist
+    expect(mappedSvg).toContain('id="podium-card-1"');
+    expect(mappedSvg).toContain('id="podium-card-2"');
+    expect(mappedSvg).toContain('id="podium-card-3"');
+
+    // Col 1 container exists and is adjusted to 2 rows (height=169)
+    expect(mappedSvg).toContain('id="study-table-col-1"');
+    expect(mappedSvg).toContain('height="169"');
+    expect(mappedSvg).toContain('id="study-row-4"');
+    expect(mappedSvg).toContain('id="study-row-5"');
+    expect(mappedSvg).toContain('id="study-divider-4"');
+
+    // Unused rows in col 1 are removed
+    expect(mappedSvg).not.toContain('id="study-row-6"');
+    expect(mappedSvg).not.toContain('id="study-row-7"');
+    expect(mappedSvg).not.toContain('id="study-divider-5"');
+
+    // Col 2 container and rows 8-11 are completely removed
+    expect(mappedSvg).not.toContain('id="study-table-col-2"');
+    expect(mappedSvg).not.toContain('id="study-row-8"');
+  });
+
+  it('dynamically hides right column container and adjusts height on list design when entries < 8', async () => {
+    const { mapExtendedStudyLeaderboardData } = await import('../data-mapper.js');
+    const validated = voiceLeaderboardModule.validate({
+      render: { layout: 'list' },
+      entries: [
+        { rank: 12, username: 'Riya', durationMinutes: 7080, rankId: 'platinum' },
+        { rank: 13, username: 'Aryan', durationMinutes: 6900, rankId: 'gold' },
+        { rank: 14, username: 'Meera', durationMinutes: 6720, rankId: 'gold' },
+        { rank: 15, username: 'Rohit', durationMinutes: 6120, rankId: 'silver' },
+        { rank: 16, username: 'Siya', durationMinutes: 5880, rankId: 'silver' },
+      ],
+    });
+
+    const template = templateRegistry.get('study-leaderboard');
+    const mappedSvg = mapExtendedStudyLeaderboardData(template!.content, validated);
+
+    // Col 1 container exists with adjusted height for 5 rows (height=515)
+    expect(mappedSvg).toContain('id="study-ext-table-col-1"');
+    expect(mappedSvg).toContain('height="515"');
+    expect(mappedSvg).toContain('id="study-ext-row-12"');
+    expect(mappedSvg).toContain('id="study-ext-row-16"');
+    expect(mappedSvg).toContain('id="study-ext-divider-15"');
+
+    // Unused rows in col 1 are removed
+    expect(mappedSvg).not.toContain('id="study-ext-row-17"');
+    expect(mappedSvg).not.toContain('id="study-ext-row-18"');
+    expect(mappedSvg).not.toContain('id="study-ext-divider-16"');
+
+    // Col 2 container and rows 19-25 are completely removed
+    expect(mappedSvg).not.toContain('id="study-ext-table-col-2"');
+    expect(mappedSvg).not.toContain('id="study-ext-row-19"');
+  });
 });
 
 

@@ -152,6 +152,65 @@ export function formatLeaderboardHours(durationMinutes?: number, rawHours?: stri
 }
 
 /**
+ * Removes an SVG element or group by its id, properly handling nested tags for container elements
+ * as well as self-closing tags (<rect />, <line />, <path />).
+ */
+export function removeSvgElementById(svg: string, id: string): string {
+  const startIdx = svg.indexOf(`id="${id}"`);
+  if (startIdx === -1) return svg;
+
+  // Find the opening '<' for this element tag
+  const tagStart = svg.lastIndexOf('<', startIdx);
+  if (tagStart === -1) return svg;
+
+  // Extract tag name (e.g. "g", "rect", "line", "path", "circle")
+  const match = svg.slice(tagStart).match(/^<([a-zA-Z0-9:_-]+)/);
+  if (!match) return svg;
+  const tagName = match[1];
+
+  // Check if self-closing tag (e.g. <rect ... /> or <line ... />)
+  const firstClose = svg.indexOf('>', tagStart);
+  if (firstClose !== -1 && svg[firstClose - 1] === '/') {
+    let endIdx = firstClose + 1;
+    while (endIdx < svg.length && (svg[endIdx] === ' ' || svg[endIdx] === '\t' || svg[endIdx] === '\n' || svg[endIdx] === '\r')) {
+      endIdx++;
+    }
+    return svg.slice(0, tagStart) + svg.slice(endIdx);
+  }
+
+  // Container tag (<tagName ...> ... </tagName>)
+  const openPattern = `<${tagName}`;
+  const closePattern = `</${tagName}>`;
+  let depth = 0;
+  let i = tagStart;
+  while (i < svg.length) {
+    if (svg.startsWith(openPattern, i) && (svg[i + openPattern.length] === ' ' || svg[i + openPattern.length] === '>' || svg[i + openPattern.length] === '/')) {
+      const subClose = svg.indexOf('>', i);
+      if (subClose !== -1 && svg[subClose - 1] === '/') {
+        i = subClose + 1;
+        continue;
+      }
+      depth++;
+      i += openPattern.length;
+    } else if (svg.startsWith(closePattern, i)) {
+      depth--;
+      if (depth === 0) {
+        let tagEnd = i + closePattern.length;
+        while (tagEnd < svg.length && (svg[tagEnd] === ' ' || svg[tagEnd] === '\t' || svg[tagEnd] === '\n' || svg[tagEnd] === '\r')) {
+          tagEnd++;
+        }
+        return svg.slice(0, tagStart) + svg.slice(tagEnd);
+      }
+      i += closePattern.length;
+    } else {
+      i++;
+    }
+  }
+
+  return svg;
+}
+
+/**
  * Formats monthly label by abbreviating long month names (>5 letters)
  * to 3 letters (e.g. October -> Oct, December -> Dec, January -> Jan),
  * while keeping short/medium months (March, April, May, June, July) in full.
@@ -363,14 +422,26 @@ export function mapStudyLeaderboardData(
     entriesByRank.set(entry.rank, entry);
   }
 
-  // 2. Podium Top Badges (#1, #2, #3 PNG Badges)
+  // 2. Podium Cards (#1, #2, #3)
   const medalCoords: Record<number, { x: number; y: number; size: number }> = {
     1: { x: 712, y: 163, size: 46 },
     2: { x: 306, y: 175, size: 46 },
     3: { x: 1104, y: 175, size: 46 },
   };
 
+  const podiumCardConfig: Record<number, { cx: number; maxNameWidth: number; slug: string }> = {
+    1: { cx: 771, maxNameWidth: 300, slug: 'avatar-aarav' },
+    2: { cx: 363, maxNameWidth: 280, slug: 'avatar-sakha' },
+    3: { cx: 1163, maxNameWidth: 270, slug: 'avatar-mira' },
+  };
+
   for (let rank = 1; rank <= 3; rank++) {
+    const entry = entriesByRank.get(rank);
+    if (!entry) {
+      output = removeSvgElementById(output, `podium-card-${rank}`);
+      continue;
+    }
+
     const medalUri = leaderboardAssetCache.getMedalDataUri(rank);
     if (medalUri) {
       const coord = medalCoords[rank]!;
@@ -382,18 +453,6 @@ export function mapStudyLeaderboardData(
         medalImgTag
       );
     }
-  }
-
-  // 3. Podium Cards (#1, #2, #3)
-  const podiumCardConfig: Record<number, { cx: number; maxNameWidth: number; slug: string }> = {
-    1: { cx: 771, maxNameWidth: 300, slug: 'avatar-aarav' },
-    2: { cx: 363, maxNameWidth: 280, slug: 'avatar-sakha' },
-    3: { cx: 1163, maxNameWidth: 270, slug: 'avatar-mira' },
-  };
-
-  for (let rank = 1; rank <= 3; rank++) {
-    const entry = entriesByRank.get(rank);
-    if (!entry) continue;
 
     const conf = podiumCardConfig[rank]!;
     const rankTheme = getRankTheme(entry.rankId);
@@ -504,10 +563,74 @@ export function mapStudyLeaderboardData(
   };
 
   const remainingEntries = data.entries.filter((e) => e.rank > 3);
+  const slotEntryMap = new Map<number, LeaderboardEntry>();
 
   for (let slotRank = 4; slotRank <= 11; slotRank++) {
     const entry = entriesByRank.get(slotRank) ?? remainingEntries[slotRank - 4];
-    if (!entry) continue;
+    if (entry) {
+      slotEntryMap.set(slotRank, entry);
+    }
+  }
+
+  // Handle Column 1 (slots 4, 5, 6, 7)
+  const col1Slots = [4, 5, 6, 7].filter((s) => slotEntryMap.has(s));
+  if (col1Slots.length === 0) {
+    output = removeSvgElementById(output, 'study-table-col-1');
+    for (const s of [4, 5, 6, 7]) {
+      output = removeSvgElementById(output, `study-row-${s}`);
+    }
+    for (const s of [4, 5, 6]) {
+      output = removeSvgElementById(output, `study-divider-${s}`);
+    }
+  } else {
+    for (const s of [4, 5, 6, 7]) {
+      if (!slotEntryMap.has(s)) {
+        output = removeSvgElementById(output, `study-row-${s}`);
+      }
+    }
+    for (const s of [4, 5, 6]) {
+      if (!slotEntryMap.has(s) || !slotEntryMap.has(s + 1)) {
+        output = removeSvgElementById(output, `study-divider-${s}`);
+      }
+    }
+    const podiumColHeights: Record<number, number> = { 1: 87, 2: 169, 3: 251, 4: 334 };
+    const h1 = podiumColHeights[col1Slots.length] ?? 334;
+    output = output.replace(
+      /(id="study-table-col-1"[^>]*height=")[^"]*(")/,
+      `$1${h1}$2`
+    );
+  }
+
+  // Handle Column 2 (slots 8, 9, 10, 11)
+  const col2Slots = [8, 9, 10, 11].filter((s) => slotEntryMap.has(s));
+  if (col2Slots.length === 0) {
+    output = removeSvgElementById(output, 'study-table-col-2');
+    for (const s of [8, 9, 10, 11]) {
+      output = removeSvgElementById(output, `study-row-${s}`);
+    }
+    for (const s of [8, 9, 10]) {
+      output = removeSvgElementById(output, `study-divider-${s}`);
+    }
+  } else {
+    for (const s of [8, 9, 10, 11]) {
+      if (!slotEntryMap.has(s)) {
+        output = removeSvgElementById(output, `study-row-${s}`);
+      }
+    }
+    for (const s of [8, 9, 10]) {
+      if (!slotEntryMap.has(s) || !slotEntryMap.has(s + 1)) {
+        output = removeSvgElementById(output, `study-divider-${s}`);
+      }
+    }
+    const podiumColHeights: Record<number, number> = { 1: 87, 2: 169, 3: 251, 4: 334 };
+    const h2 = podiumColHeights[col2Slots.length] ?? 334;
+    output = output.replace(
+      /(id="study-table-col-2"[^>]*height=")[^"]*(")/,
+      `$1${h2}$2`
+    );
+  }
+
+  for (const [slotRank, entry] of slotEntryMap.entries()) {
 
     const rankTheme = getRankTheme(entry.rankId);
     const isHighTier = isHighTierRank(entry.rankId);
@@ -695,9 +818,93 @@ export function mapExtendedStudyLeaderboardData(
     25: { pillY: 855.0, avatarCy: 872.0 },
   };
 
+  const extSlotEntryMap = new Map<number, LeaderboardEntry>();
+
   for (let slotRank = 12; slotRank <= 25; slotRank++) {
-    const entry = entriesByRank.get(slotRank) ?? data.entries[slotRank - 12];
-    if (!entry) continue;
+    const entryIndex = slotRank - 12;
+    const entry = entriesByRank.get(slotRank) ?? data.entries[entryIndex];
+    if (entry) {
+      extSlotEntryMap.set(slotRank, entry);
+    }
+  }
+
+  // Handle Column 1 (slots 12 to 18)
+  const extCol1Slots = [12, 13, 14, 15, 16, 17, 18].filter((s) => extSlotEntryMap.has(s));
+  if (extCol1Slots.length === 0) {
+    output = removeSvgElementById(output, 'study-ext-table-col-1');
+    for (const s of [12, 13, 14, 15, 16, 17, 18]) {
+      output = removeSvgElementById(output, `study-ext-row-${s}`);
+    }
+    for (const s of [12, 13, 14, 15, 16, 17]) {
+      output = removeSvgElementById(output, `study-ext-divider-${s}`);
+    }
+  } else {
+    for (const s of [12, 13, 14, 15, 16, 17, 18]) {
+      if (!extSlotEntryMap.has(s)) {
+        output = removeSvgElementById(output, `study-ext-row-${s}`);
+      }
+    }
+    for (const s of [12, 13, 14, 15, 16, 17]) {
+      if (!extSlotEntryMap.has(s) || !extSlotEntryMap.has(s + 1)) {
+        output = removeSvgElementById(output, `study-ext-divider-${s}`);
+      }
+    }
+    const extHeights: Record<number, number> = {
+      1: 101,
+      2: 207,
+      3: 313,
+      4: 416,
+      5: 515,
+      6: 611,
+      7: 714,
+    };
+    const h1 = extHeights[extCol1Slots.length] ?? 714;
+    const innerH1 = h1 - 2;
+    output = output.replace(
+      /(<g id="study-ext-table-col-1">[\s\S]*?<rect [^>]*height=")[^"]*("[^>]*\/>[\s\S]*?<rect [^>]*height=")[^"]*("[^>]*\/>[\s\S]*?<\/g>)/,
+      `$1${h1}$2${innerH1}$3`
+    );
+  }
+
+  // Handle Column 2 (slots 19 to 25)
+  const extCol2Slots = [19, 20, 21, 22, 23, 24, 25].filter((s) => extSlotEntryMap.has(s));
+  if (extCol2Slots.length === 0) {
+    output = removeSvgElementById(output, 'study-ext-table-col-2');
+    for (const s of [19, 20, 21, 22, 23, 24, 25]) {
+      output = removeSvgElementById(output, `study-ext-row-${s}`);
+    }
+    for (const s of [19, 20, 21, 22, 23, 24]) {
+      output = removeSvgElementById(output, `study-ext-divider-${s}`);
+    }
+  } else {
+    for (const s of [19, 20, 21, 22, 23, 24, 25]) {
+      if (!extSlotEntryMap.has(s)) {
+        output = removeSvgElementById(output, `study-ext-row-${s}`);
+      }
+    }
+    for (const s of [19, 20, 21, 22, 23, 24]) {
+      if (!extSlotEntryMap.has(s) || !extSlotEntryMap.has(s + 1)) {
+        output = removeSvgElementById(output, `study-ext-divider-${s}`);
+      }
+    }
+    const extHeights: Record<number, number> = {
+      1: 101,
+      2: 207,
+      3: 313,
+      4: 416,
+      5: 515,
+      6: 611,
+      7: 714,
+    };
+    const h2 = extHeights[extCol2Slots.length] ?? 714;
+    const innerH2 = h2 - 2;
+    output = output.replace(
+      /(<g id="study-ext-table-col-2">[\s\S]*?<rect [^>]*height=")[^"]*("[^>]*\/>[\s\S]*?<rect [^>]*height=")[^"]*("[^>]*\/>[\s\S]*?<\/g>)/,
+      `$1${h2}$2${innerH2}$3`
+    );
+  }
+
+  for (const [slotRank, entry] of extSlotEntryMap.entries()) {
 
     const rankTheme = getRankTheme(entry.rankId);
     const isHighTier = isHighTierRank(entry.rankId);

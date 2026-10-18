@@ -29,7 +29,14 @@ export async function renderVoiceLeaderboard(
   let isExtended = false;
   if (isStudy) {
     const startPos = input.range?.startPosition ?? (input.entries[0]?.rank ?? 1);
-    isExtended = startPos > 11 || (input.entries.length > 0 && input.entries.every((e) => e.rank > 11));
+    const layoutPref = input.render?.layout;
+    if (layoutPref === 'list') {
+      isExtended = true;
+    } else if (layoutPref === 'podium_and_list') {
+      isExtended = false;
+    } else {
+      isExtended = startPos > 11 || (input.entries.length > 0 && input.entries.every((e) => e.rank > 11));
+    }
 
     if (isExtended) {
       const extTemplate = (await import('../../core/templates/template-registry.js')).templateRegistry.get('study-leaderboard');

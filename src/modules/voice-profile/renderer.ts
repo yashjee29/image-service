@@ -12,13 +12,18 @@ export async function renderVoiceProfile(
   let avatarDataUri: string | undefined;
 
   // 1. Fetch & process avatar if URL provided (with 25MB LRU memory cache)
-  if (input.avatarUrl) {
-    avatarDataUri = await context.measureStage('avatar_retrieval', async () => {
-      return await avatarCache.getAvatarDataUri(
-        input.avatarUrl!,
-        voiceProfileConfig.avatar.processWidth
-      );
-    });
+  const avatarUrl = input.profile?.avatarUrl ?? input.avatarUrl;
+  if (avatarUrl) {
+    try {
+      avatarDataUri = await context.measureStage('avatar_retrieval', async () => {
+        return await avatarCache.getAvatarDataUri(
+          avatarUrl,
+          voiceProfileConfig.avatar.processWidth
+        );
+      });
+    } catch {
+      // Gracefully continue with template default avatar if remote fetch fails
+    }
   }
 
   // 2. Inject dynamic data into template
@@ -27,11 +32,13 @@ export async function renderVoiceProfile(
   });
 
   // 3. Rasterize using Resvg
-  const width = context.options?.dimensions?.width ?? voiceProfileConfig.dimensions.width;
+  const scale = input.render?.scale ?? context.options?.dimensions?.scale ?? 1;
+  const baseWidth = context.options?.dimensions?.width ?? voiceProfileConfig.dimensions.width;
+  const width = Math.round(baseWidth * scale);
   const background = context.options?.background ?? 'rgba(0,0,0,0)';
 
-  return await context.measureStage('resvg_rasterization', () => {
-    return SvgRenderer.renderToPng({
+  return await context.measureStage('resvg_rasterization', async () => {
+    return await SvgRenderer.renderToPngAsync({
       svgContent: dynamicSvg,
       width,
       background,

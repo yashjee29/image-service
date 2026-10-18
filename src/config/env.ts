@@ -6,7 +6,7 @@ loadDotenv();
 
 const EnvSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-  PORT: z.coerce.number().int().min(1).max(65535).default(3000),
+  PORT: z.coerce.number().int().min(1).max(65535).default(9100),
   HOST: z.string().default('0.0.0.0'),
   LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent']).default('info'),
 
@@ -26,8 +26,11 @@ const EnvSchema = z.object({
   CACHE_MAX_BYTES: z.coerce.number().int().positive().default(100 * 1024 * 1024), // 100 MB
   CACHE_TTL_MS: z.coerce.number().int().positive().default(60_000), // 60 seconds
 
-  // Concurrency & Queueing
-  MAX_CONCURRENT_RENDERS: z.coerce.number().int().positive().default(4),
+  // Concurrency & Queueing (Adaptive 1-core baseline -> 2-core burst under high load)
+  BASE_CONCURRENCY: z.coerce.number().int().positive().default(1),
+  BURST_CONCURRENCY: z.coerce.number().int().positive().default(2),
+  BURST_QUEUE_THRESHOLD: z.coerce.number().int().nonnegative().default(1),
+  MAX_CONCURRENT_RENDERS: z.coerce.number().int().positive().default(2),
   MAX_QUEUE_SIZE: z.coerce.number().int().positive().default(50),
   RENDER_TIMEOUT_MS: z.coerce.number().int().positive().default(10_000), // 10 seconds
 

@@ -1,0 +1,662 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024">
+<title>Study Leaderboard</title><desc>Standalone native-vector reconstruction of a study leaderboard UI. All illustrations, icons, characters, cards, and labels are editable SVG geometry and text.</desc>
+<defs>
+ <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdfa"/><stop offset="1" stop-color="#fff9f5"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe7a2"/><stop offset=".48" stop-color="#ff9c27"/><stop offset="1" stop-color="#d85b13"/></linearGradient>
+ <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".5" stop-color="#c3c8cb"/><stop offset="1" stop-color="#777e83"/></linearGradient>
+ <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd2a9"/><stop offset=".5" stop-color="#bd6337"/><stop offset="1" stop-color="#7f371c"/></linearGradient>
+ <linearGradient id="mint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a2d9c9"/><stop offset="1" stop-color="#4e9a87"/></linearGradient>
+ <linearGradient id="coral" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb7aa"/><stop offset="1" stop-color="#f15d53"/></linearGradient>
+ <linearGradient id="lav" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9b9e9"/><stop offset="1" stop-color="#9a73b5"/></linearGradient>
+ <linearGradient id="platinum" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9f2ff"/><stop offset=".5" stop-color="#4eb6df"/><stop offset="1" stop-color="#13557a"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#fffefa"/><stop offset="1" stop-color="#fbf2eb"/></radialGradient>
+ <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#a38c7e" flood-opacity=".09"/></filter>
+ <style>.ui{font-family:'Nunito Sans',Nunito,Arial,sans-serif}.outline{stroke-linecap:round;stroke-linejoin:round}</style>
+</defs>
+<rect x="14" y="14" width="1508" height="1000" rx="25" fill="url(#paper)" stroke="#eadfd7" stroke-width="1" filter="url(#softShadow)"/>
+<ellipse cx="770" cy="500" rx="630" ry="485" fill="#fffefd" stroke="none" stroke-width="0" opacity=".28"/>
+<g id="paper-clip" >
+<path d="M57 58 C48 48 42 59 50 69 L74 102 C81 112 95 103 88 93 L65 61 C60 54 52 60 57 68 L77 96" fill="none" stroke="#c9a187" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M62 57 C56 53 52 60 57 67 L77 96" fill="none" stroke="#f2d7c4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<g id="bookmark" >
+<path d="M1460 15 L1492 15 L1492 74 L1476 61 L1460 74 Z" fill="#f0d1ba" stroke="#d6ae92" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1464 18 L1488 18 L1488 67" fill="none" stroke="#f8e4d5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<g id="decorative-stars" >
+<path d="M68.00,175.00 L70.42,191.58 L87.00,194.00 L70.42,196.42 L68.00,213.00 L65.58,196.42 L49.00,194.00 L65.58,191.58 Z" fill="none" stroke="#62bca8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M115.00,243.00 L116.53,253.47 L127.00,255.00 L116.53,256.53 L115.00,267.00 L113.47,256.53 L103.00,255.00 L113.47,253.47 Z" fill="none" stroke="#ff806a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1469.00,149.00 L1470.78,161.22 L1483.00,163.00 L1470.78,164.78 L1469.00,177.00 L1467.22,164.78 L1455.00,163.00 L1467.22,161.22 Z" fill="none" stroke="#c4a4dc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1466.00,287.00 L1467.65,298.35 L1479.00,300.00 L1467.65,301.65 L1466.00,313.00 L1464.35,301.65 L1453.00,300.00 L1464.35,298.35 Z" fill="none" stroke="#68bca7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
+<path d="M68.00,652.00 L69.02,658.98 L76.00,660.00 L69.02,661.02 L68.00,668.00 L66.98,661.02 L60.00,660.00 L66.98,658.98 Z" fill="none" stroke="#ffb59f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1471.00,706.00 L1472.65,717.35 L1484.00,719.00 L1472.65,720.65 L1471.00,732.00 L1469.35,720.65 L1458.00,719.00 L1469.35,717.35 Z" fill="none" stroke="#67bca7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
+<path d="M75.00,749.00 L76.02,755.98 L83.00,757.00 L76.02,758.02 L75.00,765.00 L73.98,758.02 L67.00,757.00 L73.98,755.98 Z" fill="none" stroke="#c3a2dc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1450.00,672.00 L1450.89,678.11 L1457.00,679.00 L1450.89,679.89 L1450.00,686.00 L1449.11,679.89 L1443.00,679.00 L1449.11,678.11 Z" fill="none" stroke="#ffb49c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1485.00,961.00 L1486.27,969.73 L1495.00,971.00 L1486.27,972.27 L1485.00,981.00 L1483.73,972.27 L1475.00,971.00 L1483.73,969.73 Z" fill="none" stroke="#e5b18d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1460.00,203.00 L1464.55,214.74 L1477.12,215.44 L1467.36,223.39 L1470.58,235.56 L1460.00,228.74 L1449.42,235.56 L1452.64,223.39 L1442.88,215.44 L1455.45,214.74 Z" fill="none" stroke="#ff963d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43.00,683.00 L47.04,693.43 L58.22,694.06 L49.54,701.13 L52.40,711.94 L43.00,705.88 L33.60,711.94 L36.46,701.13 L27.78,694.06 L38.96,693.43 Z" fill="none" stroke="#ff7f67" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1466.00,782.00 L1470.80,794.39 L1484.07,795.13 L1473.77,803.52 L1477.17,816.37 L1466.00,809.17 L1454.83,816.37 L1458.23,803.52 L1447.93,795.13 L1461.20,794.39 Z" fill="none" stroke="#ff963d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<rect x="118" y="47" width="90" height="88" rx="17" fill="#fffaf7" stroke="#ffddd3" stroke-width="1" />
+<g id="trophy-icon">
+  <path d="M148 76 C136 76 134 88 150 94 M178 76 C190 76 192 88 176 94" fill="none" stroke="#e85b4d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M160 105 L160 113 L152 120 L174 120 L166 113 L166 105 Z" fill="#f2a49a" stroke="#e85b4d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M147 71 L179 71 L177 93 Q175 105 163 105 Q151 105 149 93 Z" fill="#ff806c" stroke="#e85b4d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <ellipse cx="163" cy="71" rx="16" ry="4" fill="#ffd0c7" stroke="#e85b4d" stroke-width="2" />
+  <polygon points="163,78 165,84 171,85 166,89 168,96 163,92 158,96 160,89 155,85 161,84" fill="#fff5ee" />
+</g>
+<text x="234" y="93" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="53" font-weight="800" fill="#15191f" text-anchor="start" >Study Leaderboard</text>
+<g id="header-category-badge">
+  <text x="234" y="137" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="600" fill="#62636c" text-anchor="start" letter-spacing="1">HALL OF FAME DECIDED BY</text>
+  <rect x="524" y="111" width="149" height="37" rx="19" fill="#eaf4ee" stroke="#d5e5dc" stroke-width="1" />
+  <text x="599" y="137" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="700" fill="#0e6c55" text-anchor="middle" >CAM HOURS</text>
+  <text x="681" y="137" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="600" fill="#62636c" text-anchor="start" >ONLY.</text>
+</g>
+<g id="header-metric-box">
+  <rect x="958" y="50" width="252" height="70" rx="16" fill="#fffdfa" stroke="#eadfd7" stroke-width="1" />
+  <rect x="981" y="75" width="25" height="18" rx="4" fill="#bcebd1" stroke="#5aaf83" stroke-width="1.5" />
+  <rect x="986" y="71" width="10" height="5" rx="2" fill="#79cba0" stroke="none" stroke-width="1" />
+  <path d="M1006 79 L1017 72 L1017 95 L1006 88 Z" fill="#8ed8b0" stroke="#5aaf83" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="993" cy="84" r="5" fill="#fff" stroke="#5aaf83" stroke-width="1.5" />
+  <text x="1031" y="94" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="600" fill="#14191f" text-anchor="start" >CAM HOURS</text>
+</g>
+<g id="header-period-box">
+  <rect x="1229" y="50" width="211" height="70" rx="16" fill="#fffdfa" stroke="#eadfd7" stroke-width="1" />
+  <rect x="1253" y="72" width="25" height="26" rx="4" fill="none" stroke="#f26c5f" stroke-width="2" />
+  <path d="M1253 80 L1278 80 M1259 68 L1259 76 M1272 68 L1272 76" fill="none" stroke="#f26c5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="1260" cy="86" r="1.5" fill="#f26c5f" />
+  <circle cx="1265.5" cy="86" r="1.5" fill="#f26c5f" />
+  <circle cx="1271" cy="86" r="1.5" fill="#f26c5f" />
+  <circle cx="1260" cy="92" r="1.5" fill="#f26c5f" />
+  <circle cx="1265.5" cy="92" r="1.5" fill="#f26c5f" />
+  <circle cx="1271" cy="92" r="1.5" fill="#f26c5f" />
+  <text x="1302" y="94" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="600" fill="#14191f" text-anchor="start" >Monthly</text>
+</g>
+<rect id="podium-card-rect-2" x="179" y="201" width="364" height="423" rx="29" fill="#fffdfa" stroke="#c5ded5" stroke-width="1.2" />
+<rect id="podium-card-rect-1" x="571" y="181" width="398" height="443" rx="29" fill="#fffdfa" stroke="#ff9b8f" stroke-width="1.2" />
+<rect id="podium-card-rect-3" x="992" y="201" width="352" height="423" rx="29" fill="#fffdfa" stroke="#e4d5ee" stroke-width="1.2" />
+<g id="podium-top-badge-2">
+<rect id="podium-top-pill-2" x="298.5" y="172" width="125" height="52" rx="19" fill="#fffaf7" stroke="#f0e3dc" stroke-width="1" filter="url(#softShadow)"/>
+<g id="podium-medal-2">
+<path d="M 331.8 204.8 L 334.6 213.4 L 337 210.0 L 339.4 213.4 L 342.2 204.8" fill="#e6d7b6" stroke="#50565b" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="337" cy="197" r="13.4" fill="#50565b" stroke="#fff4e9" stroke-width="1" />
+<circle cx="337" cy="197" r="10.4" fill="url(#silver)" stroke="#fff6da" stroke-width="1" />
+<circle cx="337" cy="197" r="7.0" fill="none" stroke="#50565b" stroke-width="0.8" />
+<text x="337" y="201.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16.0" font-weight="800" fill="#363b3f" text-anchor="middle" >2</text>
+</g>
+<text id="podium-rank-num-2" x="381" y="208" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="29" font-weight="800" fill="#47947e" text-anchor="middle" >#2</text>
+</g>
+<g id="podium-top-badge-1">
+<rect id="podium-top-pill-1" x="704.5" y="160" width="139" height="52" rx="19" fill="#fffaf7" stroke="#f0e3dc" stroke-width="1" filter="url(#softShadow)"/>
+<g id="podium-medal-1">
+<path d="M 744.8 192.8 L 747.6 201.4 L 750 198.0 L 752.4 201.4 L 755.2 192.8" fill="#e6d7b6" stroke="#a84b0d" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="750" cy="185" r="13.4" fill="#a84b0d" stroke="#fff4e9" stroke-width="1" />
+<circle cx="750" cy="185" r="10.4" fill="url(#gold)" stroke="#fff6da" stroke-width="1" />
+<circle cx="750" cy="185" r="7.0" fill="none" stroke="#a84b0d" stroke-width="0.8" />
+<text x="750" y="189.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16.0" font-weight="800" fill="#fffdf7" text-anchor="middle" stroke="#804321" stroke-width=".35" paint-order="stroke">1</text>
+</g>
+<text id="podium-rank-num-1" x="794" y="196" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="29" font-weight="800" fill="#f25e52" text-anchor="middle" >#1</text>
+</g>
+<g id="podium-top-badge-3">
+<rect id="podium-top-pill-3" x="1096.5" y="172" width="127" height="52" rx="19" fill="#fffaf7" stroke="#f0e3dc" stroke-width="1" filter="url(#softShadow)"/>
+<g id="podium-medal-3">
+<path d="M 1130.8 204.8 L 1133.6 213.4 L 1136 210.0 L 1138.4 213.4 L 1141.2 204.8" fill="#f0b5a4" stroke="#753219" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="1136" cy="197" r="13.4" fill="#753219" stroke="#fff4e9" stroke-width="1" />
+<circle cx="1136" cy="197" r="10.4" fill="url(#bronze)" stroke="#fff6da" stroke-width="1" />
+<circle cx="1136" cy="197" r="7.0" fill="none" stroke="#753219" stroke-width="0.8" />
+<text x="1136" y="201.0" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16.0" font-weight="800" fill="#fffdf7" text-anchor="middle" >3</text>
+</g>
+<text id="podium-rank-num-3" x="1180" y="208" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="29" font-weight="800" fill="#a45c3c" text-anchor="middle" >#3</text>
+</g>
+<circle cx="363" cy="319" r="84" fill="#fff" stroke="none" stroke-width="0" />
+<circle cx="363" cy="319" r="84" fill="none" stroke="#d1e3dc" stroke-width="1.2" />
+<defs><clipPath id="clip-sakha" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-sakha" transform="translate(283.00,239.00) scale(1.60000)" clip-path="url(#clip-sakha)">
+<circle cx="50" cy="50" r="50" fill="#d8d1c5" stroke="none" stroke-width="1" />
+<path d="M0 58 L12 44 L20 51 L34 34 L48 48 L60 31 L72 45 L83 36 L100 52 L100 70 L0 70 Z" fill="#c1b5a5" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+<path d="M0 69 L15 61 L27 67 L42 52 L60 68 L74 57 L90 65 L100 60 L100 100 L0 100 Z" fill="#aaa596" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+<line x1="7" y1="78" x2="20" y2="81" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="30" y1="76" x2="43" y2="79" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="53" y1="84" x2="66" y2="87" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="76" y1="77" x2="89" y2="80" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="15" y1="91" x2="28" y2="94" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="44" y1="94" x2="57" y2="97" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="68" y1="90" x2="81" y2="93" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="89" y1="95" x2="102" y2="98" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<path d="M8 103 Q11 75 28 70 L39 66 L61 66 L73 71 Q91 78 94 103 Z" fill="#25282c" stroke="#171a1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 68 L50 81 L64 68 L58 100 L42 100 Z" fill="#f4eee4" stroke="#171a1c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M39 69 L50 83 L46 91 L42 87 Z" fill="#d5d0c8" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M61 69 L50 83 L55 92 L62 86 Z" fill="#c9c4bc" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M49 83 L54 88 L50 100 L46 88 Z" fill="#3b4b54" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#efbd91" stroke="#9b694c" stroke-width="0.7" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#efbd91" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#efbd91" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#efbd91" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 55 Q50 58 57 54" fill="none" stroke="#874a3d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M28 34 Q38 29 47 34 L45 44 Q36 49 30 43 Z" fill="#11181a" stroke="#242323" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M53 34 Q62 29 72 34 L69 43 Q62 49 55 44 Z" fill="#11181a" stroke="#242323" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="46" y1="36" x2="54" y2="36" stroke="#15191b" stroke-width="2" stroke-linecap="round" />
+<path d="M30 34 L44 33 M55 33 L70 34" fill="none" stroke="#090c0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M32 36 L40 42 M57 36 L65 42" fill="none" stroke="#414647" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M23 39 Q16 19 33 11 Q51 3 68 16 Q81 23 74 38 L69 30 Q57 33 49 25 Q42 36 29 36 L29 46 Z" fill="#2c2018" stroke="#1a1714" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M29 20 Q43 9 60 17" fill="none" stroke="#624734" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M32 49 Q35 64 49 67 Q65 64 68 49 L65 59 L57 65 L49 68 L41 64 L34 58 Z" fill="#2c2018" stroke="#171615" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<circle cx="363" cy="319" r="80" fill="none" stroke="#fffdfa" stroke-width="1.3" />
+<circle cx="771" cy="319" r="84" fill="#fff" stroke="none" stroke-width="0" />
+<circle cx="771" cy="319" r="84" fill="none" stroke="#ffb9ad" stroke-width="1.2" />
+<defs><clipPath id="clip-aarav" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-aarav" transform="translate(691.00,239.00) scale(1.60000)" clip-path="url(#clip-aarav)">
+<circle cx="50" cy="50" r="50" fill="#c6bcb0" stroke="none" stroke-width="1" />
+<path d="M0 58 L12 44 L20 51 L34 34 L48 48 L60 31 L72 45 L83 36 L100 52 L100 70 L0 70 Z" fill="#c1b5a5" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+<path d="M0 69 L15 61 L27 67 L42 52 L60 68 L74 57 L90 65 L100 60 L100 100 L0 100 Z" fill="#aaa596" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+<line x1="7" y1="78" x2="20" y2="81" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="30" y1="76" x2="43" y2="79" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="53" y1="84" x2="66" y2="87" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="76" y1="77" x2="89" y2="80" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="15" y1="91" x2="28" y2="94" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="44" y1="94" x2="57" y2="97" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="68" y1="90" x2="81" y2="93" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="89" y1="95" x2="102" y2="98" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<path d="M9 104 Q11 77 29 70 L39 66 L61 66 L73 71 Q90 78 94 104 Z" fill="#e86e60" stroke="#4b3b3a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M30 73 Q33 63 50 65 Q67 64 70 74 L62 92 L50 100 L38 92 Z" fill="#ffad9f" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+<path d="M39 68 Q44 78 50 82 Q57 77 61 68" fill="none" stroke="#e9c5b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M45 84 L48 90 L50 88 L52 90 L55 84" fill="none" stroke="#c95550" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#d99b70" stroke="#9b694c" stroke-width="0.7" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#d99b70" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#d99b70" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#d99b70" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 55 Q50 58 57 54" fill="none" stroke="#874a3d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M28 34 Q38 29 47 34 L45 44 Q36 49 30 43 Z" fill="#11181a" stroke="#242323" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M53 34 Q62 29 72 34 L69 43 Q62 49 55 44 Z" fill="#11181a" stroke="#242323" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="46" y1="36" x2="54" y2="36" stroke="#15191b" stroke-width="2" stroke-linecap="round" />
+<path d="M30 34 L44 33 M55 33 L70 34" fill="none" stroke="#090c0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M32 36 L40 42 M57 36 L65 42" fill="none" stroke="#414647" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M22 40 L19 28 L28 29 L26 16 L37 23 L44 11 L51 20 L63 12 L64 23 L77 20 L73 33 L79 39 L69 39 L66 31 L58 35 L49 29 L41 36 L31 32 L29 42 Z" fill="#101820" stroke="#161719" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M31 26 L37 21 M48 23 L54 17 M65 27 L72 24" fill="none" stroke="#4c514d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="44" y1="81" x2="45" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<line x1="56" y1="81" x2="55" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<circle cx="45" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+<circle cx="55" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+</g>
+<circle cx="771" cy="319" r="80" fill="none" stroke="#fffdfa" stroke-width="1.3" />
+<circle cx="1163" cy="319" r="84" fill="#fff" stroke="none" stroke-width="0" />
+<circle cx="1163" cy="319" r="84" fill="none" stroke="#e9d9ef" stroke-width="1.2" />
+<defs><clipPath id="clip-mira" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-mira" transform="translate(1083.00,239.00) scale(1.60000)" clip-path="url(#clip-mira)">
+<circle cx="50" cy="50" r="50" fill="#cbb4cd" stroke="none" stroke-width="1" />
+<path d="M0 58 L12 44 L20 51 L34 34 L48 48 L60 31 L72 45 L83 36 L100 52 L100 70 L0 70 Z" fill="#c1b5a5" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+<path d="M0 69 L15 61 L27 67 L42 52 L60 68 L74 57 L90 65 L100 60 L100 100 L0 100 Z" fill="#aaa596" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+<line x1="7" y1="78" x2="20" y2="81" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="30" y1="76" x2="43" y2="79" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="53" y1="84" x2="66" y2="87" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="76" y1="77" x2="89" y2="80" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="15" y1="91" x2="28" y2="94" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="44" y1="94" x2="57" y2="97" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="68" y1="90" x2="81" y2="93" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<line x1="89" y1="95" x2="102" y2="98" stroke="#eee4d6" stroke-width="0.8" stroke-linecap="round" opacity=".6"/>
+<path d="M9 104 Q11 77 29 70 L39 66 L61 66 L73 71 Q90 78 94 104 Z" fill="#8c5fc2" stroke="#4b3b3a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M30 73 Q33 63 50 65 Q67 64 70 74 L62 92 L50 100 L38 92 Z" fill="#c3a4ed" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+<path d="M39 68 Q44 78 50 82 Q57 77 61 68" fill="none" stroke="#e9c5b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M45 84 L48 90 L50 88 L52 90 L55 84" fill="none" stroke="#c95550" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#f4c49b" stroke="#9b694c" stroke-width="0.7" />
+<path d="M22 34 Q18 12 43 11 Q68 7 78 31 L80 70 Q73 81 66 75 L65 43 L35 44 L33 77 Q22 82 18 66 Z" fill="#2b1712" stroke="#302018" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#f4c49b" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#f4c49b" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#f4c49b" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M42 53 Q50 61 59 52 Q55 65 47 62 Q43 59 42 53 Z" fill="#8e3f34" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M45 55 Q51 58 57 54" fill="none" stroke="#fff3e8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M34 35 Q40 31 45 35 M55 35 Q61 31 66 35" fill="none" stroke="#2b1712" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="40" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<ellipse cx="60" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<circle cx="40.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="60.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="41" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<circle cx="61" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<path d="M21 31 Q19 8 49 7 Q78 8 79 31 L73 38 L27 38 Z" fill="#7857ad" stroke="#533c7e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M23 30 Q50 23 77 30 L76 38 Q50 34 24 39 Z" fill="#b49add" stroke="#533c7e" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M34 13 Q31 22 34 30" fill="none" stroke="#9879c7" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M45 13 Q42 22 45 30" fill="none" stroke="#9879c7" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M56 13 Q53 22 56 30" fill="none" stroke="#9879c7" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M67 13 Q64 22 67 30" fill="none" stroke="#9879c7" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="44" y1="81" x2="45" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<line x1="56" y1="81" x2="55" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<circle cx="45" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+<circle cx="55" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+</g>
+<circle cx="1163" cy="319" r="80" fill="none" stroke="#fffdfa" stroke-width="1.3" />
+<text id="podium-user-2" x="363" y="440" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="33" font-weight="800" fill="#171b20" text-anchor="middle" >Sakha</text>
+<g id="podium-rank-pill-2">
+<rect x="270" y="458" width="183" height="43" rx="22" fill="#fbf9f6" stroke="#e5e7df" stroke-width="1" />
+<path d="M 299 464.48 L 311.76 476.36 L 306.92 489.56 L 299 494.84 L 291.08 489.56 L 286.24 476.36 Z" fill="#15302a" stroke="#15302a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 299 466.68 L 308.68 476.8 L 305.16 487.36 L 299 491.76 L 292.84 487.36 L 289.32 476.8 Z" fill="#1e8e73" stroke="#fff0ff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 299 466.68 L 299.44 491.54 L 292.84 487.36 L 289.32 476.8 Z" fill="#8de5c7" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 299 466.68 L 308.68 476.8 L 299.44 491.54 Z" fill="#fff7ff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+<text x="330" y="487" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="21" font-weight="500" fill="#454950" text-anchor="start" >Ascendant</text>
+</g>
+<line x1="242" y1="515" x2="483" y2="515" stroke="#e3ded8" stroke-width="1" stroke-linecap="round" />
+<text id="podium-hours-2" x="363" y="569" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="47" font-weight="800" fill="#55a18c" text-anchor="middle" >284h</text>
+<text x="363" y="601" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="500" fill="#5b5c65" text-anchor="middle" >study hours</text>
+<text id="podium-user-1" x="771" y="442" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="33" font-weight="800" fill="#171b20" text-anchor="middle" >Aarav</text>
+<g id="podium-rank-pill-1">
+<rect x="682" y="458" width="172" height="43" rx="22" fill="#fff8f5" stroke="#ffdfd8" stroke-width="1" />
+<path d="M 712 464.48 L 724.76 476.36 L 719.92 489.56 L 712 494.84 L 704.08 489.56 L 699.24 476.36 Z" fill="#34212b" stroke="#34212b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 712 466.68 L 721.68 476.8 L 718.16 487.36 L 712 491.76 L 705.84 487.36 L 702.32 476.8 Z" fill="#e13d58" stroke="#fff0ff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 712 466.68 L 712.44 491.54 L 705.84 487.36 L 702.32 476.8 Z" fill="#ff9ba5" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 712 466.68 L 721.68 476.8 L 712.44 491.54 Z" fill="#fff7ff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+<text x="743" y="487" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="21" font-weight="500" fill="#454950" text-anchor="start" >Immortal</text>
+</g>
+<line x1="651" y1="515" x2="891" y2="515" stroke="#e3ded8" stroke-width="1" stroke-linecap="round" />
+<text id="podium-hours-1" x="771" y="569" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="47" font-weight="800" fill="#f26a5e" text-anchor="middle" >321h</text>
+<text x="771" y="601" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="500" fill="#5b5c65" text-anchor="middle" >study hours</text>
+<text id="podium-user-3" x="1163" y="440" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="33" font-weight="800" fill="#171b20" text-anchor="middle" >Mira</text>
+<g id="podium-rank-pill-3">
+<rect x="1077" y="458" width="170" height="43" rx="22" fill="#fbf6fc" stroke="#eadcf1" stroke-width="1" />
+<path d="M 1107 464.48 L 1119.76 476.36 L 1114.92 489.56 L 1107 494.84 L 1099.08 489.56 L 1094.24 476.36 Z" fill="#23172a" stroke="#23172a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 1107 466.68 L 1116.68 476.8 L 1113.16 487.36 L 1107 491.76 L 1100.84 487.36 L 1097.32 476.8 Z" fill="#bd4ed3" stroke="#fff0ff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 1107 466.68 L 1107.44 491.54 L 1100.84 487.36 L 1097.32 476.8 Z" fill="#efb6f7" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 1107 466.68 L 1116.68 476.8 L 1107.44 491.54 Z" fill="#fff7ff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+<text x="1137" y="487" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="21" font-weight="500" fill="#454950" text-anchor="start" >Diamond</text>
+</g>
+<line x1="1048" y1="515" x2="1278" y2="515" stroke="#e3ded8" stroke-width="1" stroke-linecap="round" />
+<text id="podium-hours-3" x="1163" y="569" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="47" font-weight="800" fill="#a57dbd" text-anchor="middle" >251h</text>
+<text x="1163" y="601" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="500" fill="#5b5c65" text-anchor="middle" >study hours</text>
+<rect x="126" y="645" width="629" height="334" rx="19" fill="#fffdfa" stroke="#ebdfd7" stroke-width="1" filter="url(#softShadow)"/>
+<rect x="772" y="645" width="626" height="334" rx="19" fill="#fffdfa" stroke="#ebdfd7" stroke-width="1" filter="url(#softShadow)"/>
+<g id="study-row-4">
+<rect x="145" y="660" width="55" height="54" rx="11" fill="#fbf5f1" stroke="#eee2d9" stroke-width="1" />
+<text id="study-rank-num-4" x="172.5" y="695" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="27" font-weight="500" fill="#172027" text-anchor="middle" >4</text>
+<defs><clipPath id="clip-pixeldreams" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-pixeldreams" transform="translate(226.00,651.00) scale(0.72000)" clip-path="url(#clip-pixeldreams)">
+<circle cx="50" cy="50" r="50" fill="#b9d6d2" stroke="none" stroke-width="1" />
+<circle cx="21" cy="18" r="18" fill="#ffffff" stroke="none" stroke-width="0" opacity=".12"/>
+<path d="M0 78 Q20 65 37 80 T70 77 T100 76 L100 100 L0 100 Z" fill="#ffffff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".13"/>
+<path d="M10 103 Q13 77 31 72 L40 68 L60 68 L71 72 Q89 79 92 103 Z" fill="#222b2d" stroke="#263431" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M39 70 L50 85 L61 70" fill="none" stroke="#4d8478" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M42 85 L50 91 L58 85" fill="none" stroke="#e8e0ca" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#e9b17e" stroke="#9b694c" stroke-width="0.7" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#e9b17e" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#e9b17e" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#e9b17e" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 55 Q50 58 57 54" fill="none" stroke="#874a3d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M34 35 Q40 31 45 35 M55 35 Q61 31 66 35" fill="none" stroke="#111a1b" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="40" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<ellipse cx="60" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<circle cx="40.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="60.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="41" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<circle cx="61" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<path d="M22 40 L19 28 L28 29 L26 16 L37 23 L44 11 L51 20 L63 12 L64 23 L77 20 L73 33 L79 39 L69 39 L66 31 L58 35 L49 29 L41 36 L31 32 L29 42 Z" fill="#111a1b" stroke="#161719" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M31 26 L37 21 M48 23 L54 17 M65 27 L72 24" fill="none" stroke="#4c514d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<circle cx="262" cy="687" r="36" fill="none" stroke="#f4eee9" stroke-width="1" />
+<text id="study-user-4" x="324" y="695" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="23" font-weight="500" fill="#11171b" text-anchor="start" >PixelDreams</text>
+<g id="study-rank-pill-4">
+<rect x="496" y="668" width="140" height="39" rx="20" fill="#fcf7ff" stroke="#eadff0" stroke-width="1" />
+<path d="M 525 673.8 L 536.6 684.6 L 532.2 696.6 L 525 701.4 L 517.8 696.6 L 513.4 684.6 Z" fill="#23172a" stroke="#23172a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 525 675.8 L 533.8 685.0 L 530.6 694.6 L 525 698.6 L 519.4 694.6 L 516.2 685.0 Z" fill="#bd4ed3" stroke="#fff0ff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 525 675.8 L 525.4 698.4 L 519.4 694.6 L 516.2 685.0 Z" fill="#efb6f7" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 525 675.8 L 533.8 685.0 L 525.4 698.4 Z" fill="#fff7ff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+<text x="543" y="693" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#454852" text-anchor="start" >Diamond</text>
+</g>
+<text id="study-hours-4" x="728" y="695" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#9f7bb7" text-anchor="end" >228h</text>
+<line x1="145" y1="726" x2="736" y2="726" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
+</g>
+<g id="study-row-5">
+<rect x="145" y="742" width="55" height="54" rx="11" fill="#fbf5f1" stroke="#eee2d9" stroke-width="1" />
+<text id="study-rank-num-5" x="172.5" y="777" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="27" font-weight="500" fill="#172027" text-anchor="middle" >5</text>
+<defs><clipPath id="clip-kabir" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-kabir" transform="translate(226.00,733.00) scale(0.72000)" clip-path="url(#clip-kabir)">
+<circle cx="50" cy="50" r="50" fill="#b8c8eb" stroke="none" stroke-width="1" />
+<circle cx="21" cy="18" r="18" fill="#ffffff" stroke="none" stroke-width="0" opacity=".12"/>
+<path d="M0 78 Q20 65 37 80 T70 77 T100 76 L100 100 L0 100 Z" fill="#ffffff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".13"/>
+<path d="M10 103 Q13 77 31 72 L40 68 L60 68 L71 72 Q89 79 92 103 Z" fill="#3c86cc" stroke="#263431" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M39 70 L50 85 L61 70" fill="none" stroke="#9dc8f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M42 85 L50 91 L58 85" fill="none" stroke="#e8e0ca" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#eeb786" stroke="#9b694c" stroke-width="0.7" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#eeb786" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#eeb786" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#eeb786" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 55 Q50 58 57 54" fill="none" stroke="#874a3d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M34 35 Q40 31 45 35 M55 35 Q61 31 66 35" fill="none" stroke="#142b51" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="40" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<ellipse cx="60" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<circle cx="40.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="60.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="41" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<circle cx="61" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<path d="M23 42 Q17 29 26 21 L23 15 L36 19 L43 9 L51 20 L61 13 L66 22 L78 19 L75 33 L70 43 L67 31 Q57 28 49 34 Q39 39 29 33 Z" fill="#142b51" stroke="#101b2b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M30 22 L38 22 M46 20 L53 23 M62 23 L69 24" fill="none" stroke="#56647a" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<circle cx="262" cy="769" r="36" fill="none" stroke="#f4eee9" stroke-width="1" />
+<text id="study-user-5" x="324" y="777" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="23" font-weight="500" fill="#11171b" text-anchor="start" >Kabir</text>
+<g id="study-rank-pill-5">
+<rect x="496" y="750" width="140" height="39" rx="20" fill="#fcf7ff" stroke="#eadff0" stroke-width="1" />
+<path d="M 525 755.8 L 536.6 766.6 L 532.2 778.6 L 525 783.4 L 517.8 778.6 L 513.4 766.6 Z" fill="#23172a" stroke="#23172a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 525 757.8 L 533.8 767.0 L 530.6 776.6 L 525 780.6 L 519.4 776.6 L 516.2 767.0 Z" fill="#bd4ed3" stroke="#fff0ff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 525 757.8 L 525.4 780.4 L 519.4 776.6 L 516.2 767.0 Z" fill="#efb6f7" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 525 757.8 L 533.8 767.0 L 525.4 780.4 Z" fill="#fff7ff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+<text x="543" y="775" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#454852" text-anchor="start" >Diamond</text>
+</g>
+<text id="study-hours-5" x="728" y="777" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#9f7bb7" text-anchor="end" >207h</text>
+<line x1="145" y1="808" x2="736" y2="808" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
+</g>
+<g id="study-row-6">
+<rect x="145" y="824" width="55" height="54" rx="11" fill="#fbf5f1" stroke="#eee2d9" stroke-width="1" />
+<text id="study-rank-num-6" x="172.5" y="859" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="27" font-weight="500" fill="#172027" text-anchor="middle" >6</text>
+<defs><clipPath id="clip-anaya" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-anaya" transform="translate(226.00,815.00) scale(0.72000)" clip-path="url(#clip-anaya)">
+<circle cx="50" cy="50" r="50" fill="#a9d8c6" stroke="none" stroke-width="1" />
+<circle cx="21" cy="18" r="18" fill="#ffffff" stroke="none" stroke-width="0" opacity=".12"/>
+<path d="M0 78 Q20 65 37 80 T70 77 T100 76 L100 100 L0 100 Z" fill="#ffffff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".13"/>
+<path d="M9 104 Q11 77 29 70 L39 66 L61 66 L73 71 Q90 78 94 104 Z" fill="#8bc8a4" stroke="#4b3b3a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M30 73 Q33 63 50 65 Q67 64 70 74 L62 92 L50 100 L38 92 Z" fill="#d9e8c4" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+<path d="M39 68 Q44 78 50 82 Q57 77 61 68" fill="none" stroke="#e9c5b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M45 84 L48 90 L50 88 L52 90 L55 84" fill="none" stroke="#c95550" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#e9b487" stroke="#9b694c" stroke-width="0.7" />
+<path d="M22 34 Q18 12 43 11 Q68 7 78 31 L80 70 Q73 81 66 75 L65 43 L35 44 L33 77 Q22 82 18 66 Z" fill="#4a3020" stroke="#302018" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#e9b487" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#e9b487" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#e9b487" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 55 Q50 58 57 54" fill="none" stroke="#874a3d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M34 35 Q40 31 45 35 M55 35 Q61 31 66 35" fill="none" stroke="#4a3020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="40" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<ellipse cx="60" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<circle cx="40.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="60.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="41" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<circle cx="61" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<path d="M22 31 Q24 11 49 12 Q71 11 76 31 L70 36 L29 36 Z" fill="#d2e5c1" stroke="#67895e" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M24 31 Q48 27 78 34 Q67 42 31 38 Z" fill="#6da47d" stroke="#567b57" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="44" y1="81" x2="45" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<line x1="56" y1="81" x2="55" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<circle cx="45" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+<circle cx="55" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+</g>
+<circle cx="262" cy="851" r="36" fill="none" stroke="#f4eee9" stroke-width="1" />
+<text id="study-user-6" x="324" y="859" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="23" font-weight="500" fill="#11171b" text-anchor="start" >Anaya</text>
+<g id="study-rank-pill-6">
+<rect x="496" y="832" width="140" height="39" rx="20" fill="#fcf9f7" stroke="#e7e3df" stroke-width="1" />
+<path d="M 525 837.4 L 537.4 847.0 L 534.6 859.4 L 525 864.6 L 515.4 859.4 L 512.6 847.0 Z" fill="#183a55" stroke="#152a39" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 525 840.0 L 534.4 848.6 L 531.6 857.4 L 525 861.0 L 518.4 857.4 L 515.6 848.6 Z" fill="url(#platinum)" stroke="#d9f4ff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 525 840.2 L 527.0 860.8 L 518.4 857.4 L 515.6 848.6 Z" fill="#e7faff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+<text x="543" y="857" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#454852" text-anchor="start" >Platinum</text>
+</g>
+<text id="study-hours-6" x="728" y="859" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#4f9e8b" text-anchor="end" >193h</text>
+<line x1="145" y1="890" x2="736" y2="890" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
+</g>
+<g id="study-row-7">
+<rect x="145" y="906" width="55" height="54" rx="11" fill="#fbf5f1" stroke="#eee2d9" stroke-width="1" />
+<text id="study-rank-num-7" x="172.5" y="941" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="27" font-weight="500" fill="#172027" text-anchor="middle" >7</text>
+<defs><clipPath id="clip-dev" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-dev" transform="translate(226.00,897.00) scale(0.72000)" clip-path="url(#clip-dev)">
+<circle cx="50" cy="50" r="50" fill="#a6d9c7" stroke="none" stroke-width="1" />
+<circle cx="21" cy="18" r="18" fill="#ffffff" stroke="none" stroke-width="0" opacity=".12"/>
+<path d="M0 78 Q20 65 37 80 T70 77 T100 76 L100 100 L0 100 Z" fill="#ffffff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".13"/>
+<path d="M10 103 Q13 77 31 72 L40 68 L60 68 L71 72 Q89 79 92 103 Z" fill="#13856e" stroke="#263431" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M39 70 L50 85 L61 70" fill="none" stroke="#8bd7b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M42 85 L50 91 L58 85" fill="none" stroke="#e8e0ca" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#d99765" stroke="#9b694c" stroke-width="0.7" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#d99765" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#d99765" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#d99765" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 55 Q50 58 57 54" fill="none" stroke="#874a3d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M34 35 Q40 31 45 35 M55 35 Q61 31 66 35" fill="none" stroke="#111e1a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="40" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<ellipse cx="60" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<circle cx="40.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="60.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="41" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<circle cx="61" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<path d="M22 40 L19 28 L28 29 L26 16 L37 23 L44 11 L51 20 L63 12 L64 23 L77 20 L73 33 L79 39 L69 39 L66 31 L58 35 L49 29 L41 36 L31 32 L29 42 Z" fill="#111e1a" stroke="#161719" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M31 26 L37 21 M48 23 L54 17 M65 27 L72 24" fill="none" stroke="#4c514d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<circle cx="262" cy="933" r="36" fill="none" stroke="#f4eee9" stroke-width="1" />
+<text id="study-user-7" x="324" y="941" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="23" font-weight="500" fill="#11171b" text-anchor="start" >Dev</text>
+<g id="study-rank-pill-7">
+<rect x="496" y="914" width="111" height="39" rx="20" fill="#fffaf4" stroke="#f2e7d9" stroke-width="1" />
+<circle cx="525" cy="933" r="12.2" fill="#a64a0d" stroke="#fff7ee" stroke-width="0.8" />
+<circle cx="525" cy="933" r="9.6" fill="url(#gold)" stroke="#ffffff" stroke-width="0.7" />
+<circle cx="525" cy="933" r="6.2" fill="none" stroke="#a64a0d" stroke-width="0.9" />
+<path d="M 525 927.6 L 526.6 932.0 L 530.2 932.4 L 527.4 935.0 L 528.2 938.6 L 525 936.6 L 521.8 938.6 L 522.6 935.0 L 519.8 932.4 L 523.4 932.0 Z" fill="#fff4cc" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<text x="543" y="939" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#454852" text-anchor="start" >Gold</text>
+</g>
+<text id="study-hours-7" x="728" y="941" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#f1645c" text-anchor="end" >176h</text>
+</g>
+<g id="study-row-8">
+<rect x="791" y="660" width="55" height="54" rx="11" fill="#fbf5f1" stroke="#eee2d9" stroke-width="1" />
+<text id="study-rank-num-8" x="818.5" y="695" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="27" font-weight="500" fill="#172027" text-anchor="middle" >8</text>
+<defs><clipPath id="clip-isha" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-isha" transform="translate(872.00,651.00) scale(0.72000)" clip-path="url(#clip-isha)">
+<circle cx="50" cy="50" r="50" fill="#efc4a4" stroke="none" stroke-width="1" />
+<circle cx="21" cy="18" r="18" fill="#ffffff" stroke="none" stroke-width="0" opacity=".12"/>
+<path d="M0 78 Q20 65 37 80 T70 77 T100 76 L100 100 L0 100 Z" fill="#ffffff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".13"/>
+<path d="M9 104 Q11 77 29 70 L39 66 L61 66 L73 71 Q90 78 94 104 Z" fill="#eb784c" stroke="#4b3b3a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M30 73 Q33 63 50 65 Q67 64 70 74 L62 92 L50 100 L38 92 Z" fill="#ffb36e" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+<path d="M39 68 Q44 78 50 82 Q57 77 61 68" fill="none" stroke="#e9c5b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M45 84 L48 90 L50 88 L52 90 L55 84" fill="none" stroke="#c95550" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#f0bc91" stroke="#9b694c" stroke-width="0.7" />
+<path d="M22 34 Q18 12 43 11 Q68 7 78 31 L80 70 Q73 81 66 75 L65 43 L35 44 L33 77 Q22 82 18 66 Z" fill="#5a2c19" stroke="#302018" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#f0bc91" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#f0bc91" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#f0bc91" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M44 55 Q50 60 56 54" fill="none" stroke="#8a4036" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M34 35 Q40 31 45 35 M55 35 Q61 31 66 35" fill="none" stroke="#5a2c19" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="40" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<ellipse cx="60" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<circle cx="40.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="60.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="41" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<circle cx="61" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<circle cx="40" cy="42" r="8" fill="none" stroke="#4a3427" stroke-width="2" />
+<circle cx="60" cy="42" r="8" fill="none" stroke="#4a3427" stroke-width="2" />
+<line x1="48" y1="42" x2="52" y2="42" stroke="#4a3427" stroke-width="1.8" stroke-linecap="round" />
+<line x1="44" y1="81" x2="45" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<line x1="56" y1="81" x2="55" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<circle cx="45" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+<circle cx="55" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+</g>
+<circle cx="908" cy="687" r="36" fill="none" stroke="#f4eee9" stroke-width="1" />
+<text id="study-user-8" x="970" y="695" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="23" font-weight="500" fill="#11171b" text-anchor="start" >Isha</text>
+<g id="study-rank-pill-8">
+<rect x="1142" y="668" width="111" height="39" rx="20" fill="#fffaf4" stroke="#f2e7d9" stroke-width="1" />
+<circle cx="1171" cy="687" r="12.2" fill="#a64a0d" stroke="#fff7ee" stroke-width="0.8" />
+<circle cx="1171" cy="687" r="9.6" fill="url(#gold)" stroke="#ffffff" stroke-width="0.7" />
+<circle cx="1171" cy="687" r="6.2" fill="none" stroke="#a64a0d" stroke-width="0.9" />
+<path d="M 1171 681.6 L 1172.6 686.0 L 1176.2 686.4 L 1173.4 689.0 L 1174.2 692.6 L 1171 690.6 L 1167.8 692.6 L 1168.6 689.0 L 1165.8 686.4 L 1169.4 686.0 Z" fill="#fff4cc" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<text x="1189" y="693" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#454852" text-anchor="start" >Gold</text>
+</g>
+<text id="study-hours-8" x="1374" y="695" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#f1645c" text-anchor="end" >164h</text>
+<line x1="791" y1="726" x2="1382" y2="726" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
+</g>
+<g id="study-row-9">
+<rect x="791" y="742" width="55" height="54" rx="11" fill="#fbf5f1" stroke="#eee2d9" stroke-width="1" />
+<text id="study-rank-num-9" x="818.5" y="777" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="27" font-weight="500" fill="#172027" text-anchor="middle" >9</text>
+<defs><clipPath id="clip-neel" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-neel" transform="translate(872.00,733.00) scale(0.72000)" clip-path="url(#clip-neel)">
+<circle cx="50" cy="50" r="50" fill="#d0d0cb" stroke="none" stroke-width="1" />
+<circle cx="21" cy="18" r="18" fill="#ffffff" stroke="none" stroke-width="0" opacity=".12"/>
+<path d="M0 78 Q20 65 37 80 T70 77 T100 76 L100 100 L0 100 Z" fill="#ffffff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".13"/>
+<path d="M10 103 Q13 77 31 72 L40 68 L60 68 L71 72 Q89 79 92 103 Z" fill="#31393a" stroke="#263431" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M39 70 L50 85 L61 70" fill="none" stroke="#93b8a8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#e8af80" stroke="#9b694c" stroke-width="0.7" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#e8af80" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#e8af80" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#e8af80" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 55 Q50 58 57 54" fill="none" stroke="#874a3d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M34 35 Q40 31 45 35 M55 35 Q61 31 66 35" fill="none" stroke="#16201d" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="40" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<ellipse cx="60" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<circle cx="40.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="60.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="41" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<circle cx="61" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<path d="M23 42 Q17 29 26 21 L23 15 L36 19 L43 9 L51 20 L61 13 L66 22 L78 19 L75 33 L70 43 L67 31 Q57 28 49 34 Q39 39 29 33 Z" fill="#16201d" stroke="#101b2b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M30 22 L38 22 M46 20 L53 23 M62 23 L69 24" fill="none" stroke="#56647a" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<circle cx="908" cy="769" r="36" fill="none" stroke="#f4eee9" stroke-width="1" />
+<text id="study-user-9" x="970" y="777" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="23" font-weight="500" fill="#11171b" text-anchor="start" >Neel</text>
+<g id="study-rank-pill-9">
+<rect x="1142" y="750" width="116" height="39" rx="20" fill="#faf8f5" stroke="#e9e2dc" stroke-width="1" />
+<circle cx="1171" cy="769" r="12.2" fill="#555b60" stroke="#fff7ee" stroke-width="0.8" />
+<circle cx="1171" cy="769" r="9.6" fill="url(#silver)" stroke="#ffffff" stroke-width="0.7" />
+<circle cx="1171" cy="769" r="6.2" fill="none" stroke="#555b60" stroke-width="0.9" />
+<path d="M 1171 763.6 L 1172.6 768.0 L 1176.2 768.4 L 1173.4 771.0 L 1174.2 774.6 L 1171 772.6 L 1167.8 774.6 L 1168.6 771.0 L 1165.8 768.4 L 1169.4 768.0 Z" fill="#f7f8f9" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<text x="1189" y="775" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#454852" text-anchor="start" >Silver</text>
+</g>
+<text id="study-hours-9" x="1374" y="777" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#4f9e8b" text-anchor="end" >149h</text>
+<line x1="791" y1="808" x2="1382" y2="808" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
+</g>
+<g id="study-row-10">
+<rect x="791" y="824" width="55" height="54" rx="11" fill="#fbf5f1" stroke="#eee2d9" stroke-width="1" />
+<text id="study-rank-num-10" x="818.5" y="859" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="27" font-weight="500" fill="#172027" text-anchor="middle" >10</text>
+<defs><clipPath id="clip-tara" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-tara" transform="translate(872.00,815.00) scale(0.72000)" clip-path="url(#clip-tara)">
+<circle cx="50" cy="50" r="50" fill="#d0b7e6" stroke="none" stroke-width="1" />
+<circle cx="21" cy="18" r="18" fill="#ffffff" stroke="none" stroke-width="0" opacity=".12"/>
+<path d="M0 78 Q20 65 37 80 T70 77 T100 76 L100 100 L0 100 Z" fill="#ffffff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".13"/>
+<path d="M9 104 Q11 77 29 70 L39 66 L61 66 L73 71 Q90 78 94 104 Z" fill="#8053b9" stroke="#4b3b3a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M30 73 Q33 63 50 65 Q67 64 70 74 L62 92 L50 100 L38 92 Z" fill="#b79add" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+<path d="M39 68 Q44 78 50 82 Q57 77 61 68" fill="none" stroke="#e9c5b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M45 84 L48 90 L50 88 L52 90 L55 84" fill="none" stroke="#c95550" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#efbd92" stroke="#9b694c" stroke-width="0.7" />
+<path d="M22 34 Q18 12 43 11 Q68 7 78 31 L80 70 Q73 81 66 75 L65 43 L35 44 L33 77 Q22 82 18 66 Z" fill="#27152d" stroke="#302018" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#efbd92" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#efbd92" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#efbd92" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 55 Q50 58 57 54" fill="none" stroke="#874a3d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M34 35 Q40 31 45 35 M55 35 Q61 31 66 35" fill="none" stroke="#27152d" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="40" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<ellipse cx="60" cy="41" rx="3.3" ry="4.1" fill="#fffdf6" stroke="#3f3028" stroke-width="0.5" />
+<circle cx="40.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="60.5" cy="41" r="1.7" fill="#25211e" stroke="none" stroke-width="1" />
+<circle cx="41" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<circle cx="61" cy="40" r="0.7" fill="#fff" stroke="none" stroke-width="1" />
+<path d="M21 43 Q18 17 49 15 Q80 16 78 44" fill="none" stroke="#4b2c61" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="18" y="38" width="9" height="18" rx="4" fill="#b48ce0" stroke="#5c3679" stroke-width="1" />
+<rect x="74" y="38" width="9" height="18" rx="4" fill="#b48ce0" stroke="#5c3679" stroke-width="1" />
+<line x1="44" y1="81" x2="45" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<line x1="56" y1="81" x2="55" y2="91" stroke="#f4d5c2" stroke-width="1.1" stroke-linecap="round" />
+<circle cx="45" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+<circle cx="55" cy="92" r="1.2" fill="#f4d5c2" stroke="none" stroke-width="1" />
+</g>
+<circle cx="908" cy="851" r="36" fill="none" stroke="#f4eee9" stroke-width="1" />
+<text id="study-user-10" x="970" y="859" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="23" font-weight="500" fill="#11171b" text-anchor="start" >Tara</text>
+<g id="study-rank-pill-10">
+<rect x="1142" y="832" width="116" height="39" rx="20" fill="#faf8f5" stroke="#e9e2dc" stroke-width="1" />
+<circle cx="1171" cy="851" r="12.2" fill="#555b60" stroke="#fff7ee" stroke-width="0.8" />
+<circle cx="1171" cy="851" r="9.6" fill="url(#silver)" stroke="#ffffff" stroke-width="0.7" />
+<circle cx="1171" cy="851" r="6.2" fill="none" stroke="#555b60" stroke-width="0.9" />
+<path d="M 1171 845.6 L 1172.6 850.0 L 1176.2 850.4 L 1173.4 853.0 L 1174.2 856.6 L 1171 854.6 L 1167.8 856.6 L 1168.6 853.0 L 1165.8 850.4 L 1169.4 850.0 Z" fill="#f7f8f9" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<text x="1189" y="857" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#454852" text-anchor="start" >Silver</text>
+</g>
+<text id="study-hours-10" x="1374" y="859" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#4f9e8b" text-anchor="end" >132h</text>
+<line x1="791" y1="890" x2="1382" y2="890" stroke="#e9e2dc" stroke-width="1" stroke-linecap="round" />
+</g>
+<g id="study-row-11">
+<rect x="791" y="906" width="55" height="54" rx="11" fill="#fbf5f1" stroke="#eee2d9" stroke-width="1" />
+<text id="study-rank-num-11" x="818.5" y="941" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="27" font-weight="500" fill="#172027" text-anchor="middle" >11</text>
+<defs><clipPath id="clip-hexcode" clipPathUnits="userSpaceOnUse"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+<g id="avatar-hexcode" transform="translate(872.00,897.00) scale(0.72000)" clip-path="url(#clip-hexcode)">
+<circle cx="50" cy="50" r="50" fill="#8d9696" stroke="none" stroke-width="1" />
+<circle cx="21" cy="18" r="18" fill="#ffffff" stroke="none" stroke-width="0" opacity=".12"/>
+<path d="M0 78 Q20 65 37 80 T70 77 T100 76 L100 100 L0 100 Z" fill="#ffffff" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity=".13"/>
+<path d="M8 103 Q11 75 28 70 L39 66 L61 66 L73 71 Q91 78 94 103 Z" fill="#292b2c" stroke="#171a1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 68 L50 81 L64 68 L58 100 L42 100 Z" fill="#f4eee4" stroke="#171a1c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M39 69 L50 83 L46 91 L42 87 Z" fill="#d5d0c8" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M61 69 L50 83 L55 92 L62 86 Z" fill="#c9c4bc" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M49 83 L54 88 L50 100 L46 88 Z" fill="#3b4b54" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="43" y="58" width="14" height="17" rx="4" fill="#b6a18e" stroke="#9b694c" stroke-width="0.7" />
+<ellipse cx="28" cy="43" rx="6" ry="9" fill="#b6a18e" stroke="#a66b4d" stroke-width="0.8" />
+<ellipse cx="72" cy="43" rx="6" ry="9" fill="#b6a18e" stroke="#a66b4d" stroke-width="0.8" />
+<path d="M29 27 Q34 16 50 17 Q67 17 71 30 L68 51 Q64 63 50 66 Q36 63 31 51 Z" fill="#b6a18e" stroke="#a16a4b" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="36" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<circle cx="64" cy="49" r="4" fill="#e98678" stroke="none" stroke-width="0" opacity=".23"/>
+<path d="M50 39 L47 48 L51 49" fill="none" stroke="#a36c4b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 55 Q50 58 57 54" fill="none" stroke="#874a3d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M28 34 Q38 29 47 34 L45 44 Q36 49 30 43 Z" fill="#11181a" stroke="#242323" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M53 34 Q62 29 72 34 L69 43 Q62 49 55 44 Z" fill="#11181a" stroke="#242323" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="46" y1="36" x2="54" y2="36" stroke="#15191b" stroke-width="2" stroke-linecap="round" />
+<path d="M30 34 L44 33 M55 33 L70 34" fill="none" stroke="#090c0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M32 36 L40 42 M57 36 L65 42" fill="none" stroke="#414647" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M24 40 Q20 20 37 13 Q56 5 70 20 L75 36 L68 33 L64 27 L51 30 L36 27 L29 39 Z" fill="#101213" stroke="#050607" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="0" y="0" width="100" height="100" rx="0" fill="#414747" stroke="none" stroke-width="0" opacity=".12"/>
+<path d="M30 34 L45 32 L44 43 L32 44 Z M54 32 L69 34 L67 44 L55 43 Z" fill="#181b1b" stroke="#070808" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<circle cx="908" cy="933" r="36" fill="none" stroke="#f4eee9" stroke-width="1" />
+<text id="study-user-11" x="970" y="941" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="23" font-weight="500" fill="#11171b" text-anchor="start" >HexCode</text>
+<g id="study-rank-pill-11">
+<rect x="1142" y="914" width="127" height="39" rx="20" fill="#fff7f1" stroke="#eddcd0" stroke-width="1" />
+<circle cx="1171" cy="933" r="12.2" fill="#683019" stroke="#fff7ee" stroke-width="0.8" />
+<circle cx="1171" cy="933" r="9.6" fill="url(#bronze)" stroke="#ffffff" stroke-width="0.7" />
+<circle cx="1171" cy="933" r="6.2" fill="none" stroke="#683019" stroke-width="0.9" />
+<text x="1171" y="937.2" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="15.600000000000001" font-weight="800" fill="#4b2416" text-anchor="middle" >B</text>
+<text x="1189" y="939" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="#454852" text-anchor="start" >Bronze</text>
+</g>
+<text id="study-hours-11" x="1374" y="941" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="25" font-weight="700" fill="#f1645c" text-anchor="end" >121h</text>
+</g>
+<g id="notebook" >
+<path d="M-15 847 L53 807 Q61 804 68 811 L140 1016 L-7 1018 Z" fill="#fffaf5" stroke="#d9b8a0" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-7 866 L52 838 L120 1008 M-3 896 L63 868 M7 925 L73 897 M16 955 L84 926 M27 985 L96 955" fill="none" stroke="#e5c9b7" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M53 837 Q64 825 72 837 Q78 846 67 853 Q59 858 63 869" fill="none" stroke="#8f6fa5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M65 863 Q76 851 84 862 Q90 872 79 879 Q71 884 75 894" fill="none" stroke="#8f6fa5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M78 890 Q89 879 97 891 Q102 900 91 907 Q83 912 87 922" fill="none" stroke="#8f6fa5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<g id="pencil">
+  <!-- Pencil tip is built on the same axis and cross-section as the teal barrel. -->
+  <!-- Exposed wood: a tapered trapezoid, with its wide edge exactly matching the barrel. -->
+  <path d="M1475.1 862.0 L1490.0 870.0 L1494.3 846.9 L1490.8 845.1 Z"
+        fill="#e6bd93" stroke="#795743" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Two natural wood facets follow the same taper; neither protrudes past the silhouette. -->
+  <path d="M1475.1 862.0 L1482.55 866.0 L1492.55 846.0 L1490.8 845.1 Z"
+        fill="#f5d8ad" stroke="none"/>
+  <path d="M1482.55 866.0 L1490.0 870.0 L1494.3 846.9 L1492.55 846.0 Z"
+        fill="#d2a174" stroke="none"/>
+  <!-- Graphite: a centered triangular point, aligned with the barrel's long axis. -->
+  <path d="M1490.8 845.1 L1494.3 846.9 L1497.0 837.7 Z"
+        fill="#242322" stroke="#242322" stroke-width="0.35" stroke-linejoin="round"/>
+  <!-- Teal hexagonal barrel meets the wide wooden edge without a gap. -->
+  <path d="M1475.1 862.0 L1490.0 870.0 L1423.0 998.0 L1408.0 990.0 Z" fill="#78c5b0" stroke="#3b8f7f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1478.6 864.0 L1483.0 866.4 L1415.8 994.1 L1411.1 991.6 Z" fill="#d8f1db" stroke="none"/>
+  <path d="M1485.0 867.4 L1489.0 869.6 L1422.3 997.0 L1418.1 994.8 Z" fill="#409987" stroke="none"/>
+  <!-- Metal ferrule with two crisp bands and a beveled pink eraser. -->
+  <path d="M1408.0 990.0 L1423.0 998.0 L1418.7 1006.2 L1403.7 998.2 Z" fill="#f8d8ca" stroke="#8a584d" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M1406.8 992.3 L1421.8 1000.3" fill="none" stroke="#b77a6c" stroke-width="1.35" stroke-linecap="round"/>
+  <path d="M1404.7 996.3 L1419.7 1004.3" fill="none" stroke="#b77a6c" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M1403.7 998.2 L1418.7 1006.2 L1411.9 1018.6 L1397.8 1011.1 Z" fill="#f5a3a0" stroke="#7a4b44" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1403.7 998.2 L1418.7 1006.2" fill="none" stroke="#fff0e8" stroke-width="1"/>
+  <path d="M1397.8 1011.1 L1411.9 1018.6" fill="none" stroke="#9c655e" stroke-width="1"/>
+</g>
+</svg>

@@ -44,7 +44,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=9100
 ENV HOST=0.0.0.0
 
 # Copy node_modules and built dist from builder
@@ -56,9 +56,9 @@ COPY --from=builder /app/assets ./assets
 # Run as non-root user
 USER node
 
-EXPOSE 3000
+EXPOSE 9100
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-  CMD curl -f http://127.0.0.1:3000/health || exit 1
+  CMD curl -f http://127.0.0.1:9100/health || exit 1
 
 CMD ["node", "dist/server.js"]

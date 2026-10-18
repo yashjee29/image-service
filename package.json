@@ -10,9 +10,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "bake:shadow": "tsx scripts/bake-assets.ts",
-    "benchmark": "tsx scripts/benchmark-render.ts",
-    "compare:images": "tsx scripts/compare-images.ts",
-    "render:card": "tsx scripts/render-svg-card.ts"
+    "benchmark": "tsx scripts/benchmark-vps.ts",
+    "benchmark:vps": "tsx scripts/benchmark-vps.ts",
+    "benchmark:discord": "tsx scripts/benchmark-discord-cdn-leaderboard.ts",
+    "benchmark:concurrency": "tsx scripts/benchmark-concurrency.ts"
   },
   "keywords": [],
   "author": "",

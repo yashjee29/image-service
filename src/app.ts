@@ -2,6 +2,7 @@ import fastify, { type FastifyInstance } from 'fastify';
 import rateLimit from '@fastify/rate-limit';
 import { serverConfig } from './config/server.config.js';
 import { rankAssetCache } from './core/images/rank-asset-cache.js';
+import { leaderboardAssetCache } from './core/images/leaderboard-asset-cache.js';
 import { fontRegistry } from './core/fonts/font-registry.js';
 import { moduleRegistry } from './modules/registry.js';
 import { voiceProfileModule } from './modules/voice-profile/index.js';
@@ -16,15 +17,31 @@ export async function initializeServices(): Promise<void> {
   // Initialize fonts once at startup
   fontRegistry.initialize();
 
-  // Initialize pre-sized rank assets (60x60) for fast SVG embedding
-  await rankAssetCache.initialize(60);
+  // Initialize pre-sized rank assets (80px for pills, 120px for header) and medals (92px 2x supersampled) for fast SVG embedding
+  await rankAssetCache.initialize();
+  await leaderboardAssetCache.initialize();
 
   // Register all modules explicitly in the registry
   if (!moduleRegistry.has(voiceProfileModule.id)) {
     moduleRegistry.register(voiceProfileModule);
   }
+  if (!moduleRegistry.has('profile-card-v1')) {
+    moduleRegistry.registerAlias('profile-card-v1', voiceProfileModule.id);
+  }
   if (!moduleRegistry.has(voiceLeaderboardModule.id)) {
     moduleRegistry.register(voiceLeaderboardModule);
+  }
+  if (!moduleRegistry.has('study-leaderboard')) {
+    moduleRegistry.registerAlias('study-leaderboard', voiceLeaderboardModule.id);
+  }
+  if (!moduleRegistry.has('study-leaderboard-v1')) {
+    moduleRegistry.registerAlias('study-leaderboard-v1', voiceLeaderboardModule.id);
+  }
+  if (!moduleRegistry.has('study-leaderboard-2')) {
+    moduleRegistry.registerAlias('study-leaderboard-2', voiceLeaderboardModule.id);
+  }
+  if (!moduleRegistry.has('study-leaderboard-extended')) {
+    moduleRegistry.registerAlias('study-leaderboard-extended', voiceLeaderboardModule.id);
   }
 }
 

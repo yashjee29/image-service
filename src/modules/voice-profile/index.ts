@@ -6,6 +6,7 @@ const TEMPLATE_PATH = resolve(process.cwd(), 'templates', voiceProfileModule.id,
 
 // Register template on startup
 templateRegistry.register(voiceProfileModule.id, TEMPLATE_PATH);
+templateRegistry.register('profile-card-v1', TEMPLATE_PATH);
 
 export { voiceProfileModule };
 export * from './schema.js';

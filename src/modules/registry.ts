@@ -14,6 +14,7 @@ export interface ModuleMetadata {
 export class ModuleRegistry {
   private static instance: ModuleRegistry;
   private readonly modules = new Map<string, ImageModule<unknown>>();
+  private readonly aliases = new Map<string, string>();
 
   public static getInstance(): ModuleRegistry {
     if (!ModuleRegistry.instance) {
@@ -42,8 +43,16 @@ export class ModuleRegistry {
     this.modules.set(module.id, module as ImageModule<unknown>);
   }
 
+  public registerAlias(alias: string, targetId: string): void {
+    if (!alias || typeof alias !== 'string') {
+      throw new ValidationError('Alias registration failed: alias must be a non-empty string');
+    }
+    this.aliases.set(alias, targetId);
+  }
+
   public get<TInput = unknown>(id: string): ImageModule<TInput> {
-    const mod = this.modules.get(id);
+    const targetId = this.aliases.get(id) ?? id;
+    const mod = this.modules.get(targetId);
     if (!mod) {
       throw new ModuleNotFoundError(id);
     }
@@ -51,7 +60,8 @@ export class ModuleRegistry {
   }
 
   public has(id: string): boolean {
-    return this.modules.has(id);
+    const targetId = this.aliases.get(id) ?? id;
+    return this.modules.has(targetId);
   }
 
   public getAll(): ImageModule<unknown>[] {
@@ -69,6 +79,7 @@ export class ModuleRegistry {
 
   public clear(): void {
     this.modules.clear();
+    this.aliases.clear();
   }
 }
 

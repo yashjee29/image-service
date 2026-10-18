@@ -44,6 +44,18 @@ export function isPrivateIp(ip: string): boolean {
   return false;
 }
 
+interface DnsCacheEntry {
+  expiresAt: number;
+  records: Array<{ address: string; family: number }>;
+}
+
+const DNS_CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+const dnsCache = new Map<string, DnsCacheEntry>();
+
+export function clearDnsCache(): void {
+  dnsCache.clear();
+}
+
 export async function validateSafeUrl(urlStr: string): Promise<URL> {
   let parsedUrl: URL;
   try {
@@ -68,14 +80,27 @@ export async function validateSafeUrl(urlStr: string): Promise<URL> {
     throw new AssetFetchError(`SSRF attempt detected: private IP address ${hostname}`);
   }
 
-  // Resolve DNS to verify IP
+  // Resolve DNS to verify IP (with short-lived TTL cache to avoid threadpool bottleneck on 11 parallel avatars)
   try {
-    const lookup = await dns.lookup(hostname, { all: true });
-    for (const record of lookup) {
+    let records: Array<{ address: string; family: number }>;
+    const cached = dnsCache.get(hostname);
+    if (cached && cached.expiresAt > Date.now()) {
+      records = cached.records;
+    } else {
+      records = await dns.lookup(hostname, { all: true });
+    }
+
+    for (const record of records) {
       if (isPrivateIp(record.address)) {
         throw new AssetFetchError(`SSRF attempt detected: ${hostname} resolves to private IP ${record.address}`);
       }
     }
+
+    // Cache valid public records
+    dnsCache.set(hostname, {
+      expiresAt: Date.now() + DNS_CACHE_TTL_MS,
+      records,
+    });
   } catch (err) {
     if (err instanceof AssetFetchError) throw err;
     throw new AssetFetchError(`DNS lookup failed for hostname ${hostname}: ${(err as Error).message}`);

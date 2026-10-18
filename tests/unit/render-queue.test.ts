@@ -54,4 +54,57 @@ describe('RenderQueue', () => {
     // Second task queued, should time out after 25ms
     await expect(queue.run(() => Promise.resolve('ok'))).rejects.toThrow(RenderTimeoutError);
   });
+
+  it('operates at base concurrency (1 core) under normal serial load', async () => {
+    // Default queue uses base: 1, burst: 2, threshold: 1
+    const queue = new RenderQueue({ baseConcurrent: 1, burstConcurrent: 2, burstThreshold: 1 });
+    let maxObservedActive = 0;
+    let active = 0;
+
+    const runSerial = async () => {
+      active++;
+      maxObservedActive = Math.max(maxObservedActive, active);
+      await new Promise((r) => setTimeout(r, 10));
+      active--;
+      return 'ok';
+    };
+
+    await queue.run(runSerial);
+    await queue.run(runSerial);
+
+    expect(maxObservedActive).toBe(1);
+    expect(queue.getStats().effectiveMaxConcurrent).toBe(1);
+    expect(queue.getStats().isBursting).toBe(false);
+  });
+
+  it('bursts to 2 cores when requests queue up and drops back to 1 core when drained', async () => {
+    const queue = new RenderQueue({ baseConcurrent: 1, burstConcurrent: 2, burstThreshold: 1 });
+    let maxObservedActive = 0;
+    let active = 0;
+
+    const makeTask = (ms: number) => async () => {
+      active++;
+      maxObservedActive = Math.max(maxObservedActive, active);
+      await new Promise((r) => setTimeout(r, ms));
+      active--;
+      return 'done';
+    };
+
+    // Dispatch 4 simultaneous tasks
+    const p1 = queue.run(makeTask(40));
+    const p2 = queue.run(makeTask(40));
+    const p3 = queue.run(makeTask(40));
+    const p4 = queue.run(makeTask(40));
+
+    const results = await Promise.all([p1, p2, p3, p4]);
+
+    expect(results).toEqual(['done', 'done', 'done', 'done']);
+    // Verified: Exactly 2 cores were used during burst, not 3 or 4
+    expect(maxObservedActive).toBe(2);
+    // Verified: Dropped back to 1 core after draining
+    expect(queue.getStats().activeCount).toBe(0);
+    expect(queue.getStats().queuedCount).toBe(0);
+    expect(queue.getStats().effectiveMaxConcurrent).toBe(1);
+    expect(queue.getStats().isBursting).toBe(false);
+  });
 });

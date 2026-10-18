@@ -8,10 +8,21 @@ interface QueueItem<T> {
   timeoutId?: NodeJS.Timeout;
 }
 
+export interface RenderQueueOptions {
+  baseConcurrent?: number;
+  burstConcurrent?: number;
+  burstThreshold?: number;
+  maxQueueSize?: number;
+  timeoutMs?: number;
+}
+
 export interface RenderQueueStats {
   activeCount: number;
   queuedCount: number;
-  maxConcurrent: number;
+  effectiveMaxConcurrent: number;
+  baseConcurrent: number;
+  burstConcurrent: number;
+  isBursting: boolean;
   maxQueueSize: number;
   totalProcessed: number;
   totalRejected: number;
@@ -23,14 +34,55 @@ export class RenderQueue {
   private totalProcessed = 0;
   private totalRejected = 0;
 
+  private readonly baseConcurrent: number;
+  private readonly burstConcurrent: number;
+  private readonly burstThreshold: number;
+  private readonly maxQueueSize: number;
+  private readonly timeoutMs: number;
+
   constructor(
-    private readonly maxConcurrent: number = rendererConfig.maxConcurrentRenders,
-    private readonly maxQueueSize: number = rendererConfig.maxQueueSize,
-    private readonly timeoutMs: number = rendererConfig.renderTimeoutMs
-  ) {}
+    optsOrBase?: number | RenderQueueOptions,
+    maxQueueSize?: number,
+    timeoutMs?: number,
+    burstConcurrent?: number,
+    burstThreshold?: number
+  ) {
+    if (typeof optsOrBase === 'object' && optsOrBase !== null) {
+      this.baseConcurrent = optsOrBase.baseConcurrent ?? rendererConfig.baseConcurrentRenders;
+      this.burstConcurrent = optsOrBase.burstConcurrent ?? rendererConfig.burstConcurrentRenders;
+      this.burstThreshold = optsOrBase.burstThreshold ?? rendererConfig.burstQueueThreshold;
+      this.maxQueueSize = optsOrBase.maxQueueSize ?? rendererConfig.maxQueueSize;
+      this.timeoutMs = optsOrBase.timeoutMs ?? rendererConfig.renderTimeoutMs;
+    } else if (typeof optsOrBase === 'number') {
+      this.baseConcurrent = optsOrBase;
+      this.burstConcurrent = burstConcurrent ?? optsOrBase;
+      this.burstThreshold = burstThreshold ?? rendererConfig.burstQueueThreshold;
+      this.maxQueueSize = maxQueueSize ?? rendererConfig.maxQueueSize;
+      this.timeoutMs = timeoutMs ?? rendererConfig.renderTimeoutMs;
+    } else {
+      // Default zero-argument instantiation uses dynamic 1-to-2 core autoscaling from config
+      this.baseConcurrent = rendererConfig.baseConcurrentRenders;
+      this.burstConcurrent = rendererConfig.burstConcurrentRenders;
+      this.burstThreshold = rendererConfig.burstQueueThreshold;
+      this.maxQueueSize = rendererConfig.maxQueueSize;
+      this.timeoutMs = rendererConfig.renderTimeoutMs;
+    }
+  }
+
+  /**
+   * Dynamically determines current allowed concurrency:
+   * - Baseline: 1 core (under normal load).
+   * - Burst: 2 cores (activated when requests backlog in queue).
+   */
+  public getEffectiveMaxConcurrent(): number {
+    if (this.queue.length >= this.burstThreshold) {
+      return this.burstConcurrent;
+    }
+    return this.baseConcurrent;
+  }
 
   public async run<T>(task: () => Promise<T>): Promise<T> {
-    if (this.activeCount < this.maxConcurrent) {
+    if (this.activeCount < this.getEffectiveMaxConcurrent()) {
       return this.executeDirect(task);
     }
 
@@ -61,6 +113,9 @@ export class RenderQueue {
         reject,
         timeoutId,
       });
+
+      // Check if queued item triggers burst concurrency to process immediately
+      this.processNext();
     });
   }
 
@@ -76,7 +131,7 @@ export class RenderQueue {
   }
 
   private processNext(): void {
-    if (this.activeCount >= this.maxConcurrent || this.queue.length === 0) {
+    if (this.activeCount >= this.getEffectiveMaxConcurrent() || this.queue.length === 0) {
       return;
     }
 
@@ -107,10 +162,14 @@ export class RenderQueue {
   }
 
   public getStats(): RenderQueueStats {
+    const effectiveMax = this.getEffectiveMaxConcurrent();
     return {
       activeCount: this.activeCount,
       queuedCount: this.queue.length,
-      maxConcurrent: this.maxConcurrent,
+      effectiveMaxConcurrent: effectiveMax,
+      baseConcurrent: this.baseConcurrent,
+      burstConcurrent: this.burstConcurrent,
+      isBursting: effectiveMax > this.baseConcurrent,
       maxQueueSize: this.maxQueueSize,
       totalProcessed: this.totalProcessed,
       totalRejected: this.totalRejected,

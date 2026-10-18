@@ -230,7 +230,7 @@ pnpm dev
 Liveness check endpoint.
 
 ```bash
-curl -s http://localhost:3000/health
+curl -s http://localhost:9100/health
 ```
 
 Response (`200 OK`):
@@ -247,7 +247,7 @@ Response (`200 OK`):
 Readiness check verifying registered modules, loaded templates, and font registry state.
 
 ```bash
-curl -s http://localhost:3000/ready
+curl -s http://localhost:9100/ready
 ```
 
 Response (`200 OK`):
@@ -276,7 +276,7 @@ Exposes real-time throughput, latency percentiles (P50, P95, P99), queue depth, 
 Returns all registered modules and default dimensions.
 
 ```bash
-curl -s http://localhost:3000/api/v1/modules
+curl -s http://localhost:9100/api/v1/modules
 ```
 
 Response:
@@ -316,7 +316,7 @@ Renders an image from the specified module and returns raw PNG bytes.
 #### Example 1: Render Voice Profile Card
 
 ```bash
-curl -X POST http://localhost:3000/api/v1/render/voice-profile \
+curl -X POST http://localhost:9100/api/v1/render/voice-profile \
   -H "Content-Type: application/json" \
   -d '{
     "data": {
@@ -357,7 +357,7 @@ curl -X POST http://localhost:3000/api/v1/render/voice-profile \
 #### Example 2: Render Voice Leaderboard Card
 
 ```bash
-curl -X POST http://localhost:3000/api/v1/render/voice-leaderboard \
+curl -X POST http://localhost:9100/api/v1/render/voice-leaderboard \
   -H "Content-Type: application/json" \
   -d '{
     "data": {
@@ -463,20 +463,22 @@ Speedup Factor:          ~1.27x - 4.28x faster (runtime)
 ================================================================================
 ```
 
-### Standalone CLI Render & 100-Image Workload Benchmark
+### VPS Benchmark Suite
+
+Run the end-to-end benchmark suite on any VPS or local machine to measure hardware specs, WAN Discord CDN cold starts, warm in-memory latency, and dynamic 1-to-2 core burst concurrency:
 
 ```bash
-# Single image render with PID tagging & peak resource snapshot
-pnpm run render:card
-
-# 100-image workload directly with event loop yielding
-pnpm run render:card -- --100
-
-# 100-image workload with remote avatar fetched & cached at 167px
-pnpm run render:card -- --100 --avatar https://avatars.githubusercontent.com/u/9919?s=200&v=4
+pnpm run benchmark:vps
+# or: npm run benchmark:vps
 ```
 
-### Verified Benchmark Results
+The benchmark outputs:
+1. **Host Environment**: OS, kernel architecture, detected CPU model, logical cores, available RAM, and active concurrency limits.
+2. **Phase 1: Cold Start**: Concurrent WAN download of 11 live avatars from `cdn.discordapp.com` + Sharp decoding + SVG replacement + Resvg rasterization.
+3. **Phase 2: Warm Steady-State**: 30 dynamic queries with in-memory LRU cache (P50, P95, P99, min/max, req/s).
+4. **Phase 3: Concurrency Burst**: 10 simultaneous user requests measuring dynamic 1-core baseline scaling up to 2 cores under load.
+
+### Standalone CLI Render & Workload Benchmark
 
 | Metric | Without Avatar (Default Vector) | With Discord Avatar (167px Cached) | Status |
 | :--- | :--- | :--- | :--- |
@@ -528,7 +530,7 @@ pnpm test
 docker build -t cash-mod-image-service .
 
 # Run container
-docker run -d -p 3000:3000 --name cash-mod-image-service cash-mod-image-service
+docker run -d -p 9100:9100 --name cash-mod-image-service cash-mod-image-service
 ```
 
 ### Run with Docker Compose
@@ -542,5 +544,5 @@ docker compose up -d
 - Base: `node:22-bookworm-slim`
 - User: `node` (non-root)
 - Dependencies: `ca-certificates`, `fontconfig`, `curl`
-- Healthcheck: polls `http://127.0.0.1:3000/health` every 30s
+- Healthcheck: polls `http://127.0.0.1:9100/health` every 30s
 - No persistent volumes: memory-only rendering lifecycle.

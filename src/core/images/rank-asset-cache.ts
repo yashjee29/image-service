@@ -63,7 +63,7 @@ export class RankAssetCache {
 
     for (const rank of ALL_RANKS) {
       const fileName = files.find(
-        (f) => f.toLowerCase() === `${rank}.png` || f.toLowerCase() === `${rank}.svg`
+        (f) => f.toLowerCase() === `${rank}.png`
       );
 
       if (!fileName) continue;

@@ -18,11 +18,12 @@ export function resolveTemplatePath(id: string, preferredPath: string): string {
     resolve(process.cwd(), 'templates', id, 'leaderboard.svg'),
     resolve(process.cwd(), 'templates', id, `${id}.svg`),
     resolve(process.cwd(), 'templates', `${id}.svg`),
+    resolve(process.cwd(), 'dist', 'templates', id, 'profile.svg'),
+    resolve(process.cwd(), 'dist', 'templates', id, 'leaderboard.svg'),
+    resolve(process.cwd(), 'dist', 'templates', id, `${id}.svg`),
+    resolve(process.cwd(), 'dist', 'templates', `${id}.svg`),
     resolve(process.cwd(), 'assets', 'templates', id, `${id}.svg`),
     resolve(process.cwd(), 'assets', 'templates', `${id}.svg`),
-    resolve(process.cwd(), 'src', 'modules', id, 'templates', `${id}.svg`),
-    resolve(process.cwd(), 'src', 'modules', id, 'templates', 'profile.svg'),
-    resolve(process.cwd(), 'src', 'modules', id, 'templates', 'leaderboard.svg'),
   ];
 
   for (const candidate of candidates) {

@@ -1,12 +1,8 @@
-import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import { templateRegistry } from '../../core/templates/template-registry.js';
 import { voiceProfileModule } from './module.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const TEMPLATE_PATH = resolve(__dirname, 'templates/profile.svg');
+const TEMPLATE_PATH = resolve(process.cwd(), 'templates', voiceProfileModule.id, 'profile.svg');
 
 // Register template on startup
 templateRegistry.register(voiceProfileModule.id, TEMPLATE_PATH);

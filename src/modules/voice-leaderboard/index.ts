@@ -1,12 +1,8 @@
-import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import { templateRegistry } from '../../core/templates/template-registry.js';
 import { voiceLeaderboardModule } from './module.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const TEMPLATE_PATH = resolve(__dirname, 'templates/leaderboard.svg');
+const TEMPLATE_PATH = resolve(process.cwd(), 'templates', voiceLeaderboardModule.id, 'leaderboard.svg');
 
 // Register template on startup
 templateRegistry.register(voiceLeaderboardModule.id, TEMPLATE_PATH);

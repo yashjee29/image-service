@@ -9,9 +9,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const ROOT_DIR = resolve(__dirname, '..');
-const PROFILE_MODULE_DIR = resolve(ROOT_DIR, 'src/modules/voice-profile');
-const RAW_SVG_PATH = resolve(PROFILE_MODULE_DIR, 'templates/profile-raw.svg');
-const BAKED_SVG_PATH = resolve(PROFILE_MODULE_DIR, 'templates/profile.svg');
+const RAW_SVG_PATH = resolve(ROOT_DIR, 'templates/voice-profile/profile-raw.svg');
+const BAKED_SVG_PATH = resolve(ROOT_DIR, 'templates/voice-profile/profile.svg');
 
 export interface ComparisonResult {
   width: number;

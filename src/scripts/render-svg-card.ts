@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { Resvg } from '@resvg/resvg-js';
+import sharp from 'sharp';
 import { fontRegistry } from '../core/fonts/font-registry.js';
 import { avatarCache, FINAL_DISPLAY_AVATAR_DIAMETER } from '../core/images/avatar-cache.js';
 import { rankAssetCache } from '../core/images/rank-asset-cache.js';
@@ -16,11 +17,11 @@ const ARTIFACTS_DIR = join(process.cwd(), 'artifacts');
 function resolveProfileSvg(useBaked: boolean): string {
   const bakedCandidates = [
     resolve(process.cwd(), 'templates', 'voice-profile', 'profile.svg'),
-    resolve(process.cwd(), 'src', 'modules', 'voice-profile', 'templates', 'profile.svg'),
+    resolve(process.cwd(), 'dist', 'templates', 'voice-profile', 'profile.svg'),
   ];
   const rawCandidates = [
     resolve(process.cwd(), 'templates', 'voice-profile', 'profile-raw.svg'),
-    resolve(process.cwd(), 'src', 'modules', 'voice-profile', 'templates', 'profile-raw.svg'),
+    resolve(process.cwd(), 'dist', 'templates', 'voice-profile', 'profile-raw.svg'),
   ];
 
   const candidates = useBaked ? bakedCandidates : rawCandidates;
@@ -89,7 +90,22 @@ async function main() {
   if (avatarUrl) {
     logWithPid('Fetching and clipping custom avatar via AvatarCache...');
     const t0 = performance.now();
-    svgContent = await injectCustomAvatar(svgContent, avatarUrl);
+    try {
+      svgContent = await injectCustomAvatar(svgContent, avatarUrl);
+    } catch {
+      logWithPid('Remote avatar network fetch timed out / failed; using local test avatar buffer...');
+      const fallbackBuf = await sharp({
+        create: {
+          width: 300,
+          height: 300,
+          channels: 4,
+          background: { r: 120, g: 70, b: 240, alpha: 1 },
+        },
+      })
+        .png()
+        .toBuffer();
+      svgContent = await injectCustomAvatar(svgContent, fallbackBuf);
+    }
     const avatarDur = performance.now() - t0;
     logWithPid(`Injected circular custom avatar into SVG (${avatarDur.toFixed(1)} ms, cached).`);
   }

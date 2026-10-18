@@ -7,10 +7,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const ROOT_DIR = resolve(__dirname, '..');
-const PROFILE_MODULE_DIR = resolve(ROOT_DIR, 'src/modules/voice-profile');
-const RAW_SVG_PATH = resolve(PROFILE_MODULE_DIR, 'templates/profile-raw.svg');
-const BAKED_PNG_PATH = resolve(PROFILE_MODULE_DIR, 'assets/baked-background.png');
-const BAKED_SVG_PATH = resolve(PROFILE_MODULE_DIR, 'templates/profile.svg');
+const RAW_SVG_PATH = resolve(ROOT_DIR, 'templates/voice-profile/profile-raw.svg');
+const BAKED_PNG_PATH = resolve(ROOT_DIR, 'assets/profile/card-background-baked.png');
+const BAKED_SVG_PATH = resolve(ROOT_DIR, 'templates/voice-profile/profile.svg');
 
 export async function bakeVoiceProfileAssets(): Promise<void> {
   console.log('[bake-assets] Generating static baked shadow container...');

@@ -1,6 +1,17 @@
 import { existsSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { rendererConfig } from '../../config/renderer.config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = join(__filename, '..');
+
+/**
+ * The profile cards strictly use Poppins Medium (500), SemiBold (600),
+ * Bold (700), and ExtraBold (800). Unused weights (Italics, Thin, Light, Black)
+ * are excluded by default to minimize Resvg native fontdb memory footprint.
+ */
+export const REQUIRED_FONT_REGEX = /Poppins-(Medium|SemiBold|Bold|ExtraBold)\.ttf$/;
 
 export interface FontRegistrySummary {
   count: number;
@@ -21,18 +32,44 @@ export class FontRegistry {
       return;
     }
 
-    const resolvedDir = resolve(this.fontsDir);
-    if (!existsSync(resolvedDir)) {
+    const isCustomDir = this.fontsDir !== rendererConfig.fontsDir;
+    const candidateDirs = isCustomDir
+      ? [resolve(this.fontsDir)]
+      : [
+          resolve(this.fontsDir),
+          resolve(process.cwd(), 'assets', 'fonts'),
+          resolve(process.cwd(), 'dist', 'assets', 'fonts'),
+          resolve(__dirname, '..', '..', '..', 'assets', 'fonts'),
+        ];
+
+    let foundDir: string | null = null;
+    for (const dir of candidateDirs) {
+      if (existsSync(dir)) {
+        foundDir = dir;
+        break;
+      }
+    }
+
+    if (!foundDir) {
       this.fontFiles = [];
       this.initialized = true;
       return;
     }
 
     try {
-      const files = readdirSync(resolvedDir);
-      this.fontFiles = files
-        .filter((file) => file.endsWith('.ttf') || file.endsWith('.otf'))
-        .map((file) => join(resolvedDir, file));
+      const allFiles = readdirSync(foundDir);
+      const ttfFiles = allFiles.filter((f) => f.endsWith('.ttf') || f.endsWith('.otf'));
+
+      // First try to load the 4 required weights for optimal memory footprint
+      const requiredOnly = ttfFiles
+        .filter((file) => REQUIRED_FONT_REGEX.test(file))
+        .map((file) => join(foundDir!, file));
+
+      if (requiredOnly.length > 0) {
+        this.fontFiles = requiredOnly;
+      } else {
+        this.fontFiles = ttfFiles.map((file) => join(foundDir!, file));
+      }
     } catch {
       this.fontFiles = [];
     }

@@ -1,6 +1,6 @@
 import { SvgRenderer } from '../../core/renderer/svg-renderer.js';
 import type { RenderContext } from '../../core/renderer/renderer.types.js';
-import { bufferToDataUri } from '../../core/images/image-injector.js';
+import { avatarCache } from '../../core/images/avatar-cache.js';
 import { mapVoiceLeaderboardData, type LeaderboardAvatarMap } from './data-mapper.js';
 import type { VoiceLeaderboardInput } from './schema.js';
 import { voiceLeaderboardConfig } from './config.js';
@@ -11,22 +11,16 @@ export async function renderVoiceLeaderboard(
 ): Promise<Buffer> {
   const avatarMap: LeaderboardAvatarMap = {};
 
-  // Fetch & process avatars for entries that supply avatarUrl
+  // Fetch & process avatars for entries that supply avatarUrl (with 25MB LRU memory cache)
   const avatarPromises = input.entries
     .filter((entry) => Boolean(entry.avatarUrl))
     .map(async (entry) => {
       try {
-        const rawBuf = await context.measureStage(`avatar_fetch_${entry.rank}`, async () => {
-          return await context.fetchImage(entry.avatarUrl!);
+        const diameter = entry.rank === 1 ? 120 : 80;
+        const uri = await context.measureStage(`avatar_fetch_${entry.rank}`, async () => {
+          return await avatarCache.getAvatarDataUri(entry.avatarUrl!, diameter);
         });
-        const processedBuf = await context.measureStage(`avatar_process_${entry.rank}`, async () => {
-          return await context.processImage(rawBuf, {
-            width: entry.rank === 1 ? 120 : 80,
-            height: entry.rank === 1 ? 120 : 80,
-            fit: 'cover',
-          });
-        });
-        avatarMap[entry.rank] = bufferToDataUri(processedBuf);
+        avatarMap[entry.rank] = uri;
       } catch {
         // If an avatar fails to load, gracefully fall back to the vector placeholder
       }

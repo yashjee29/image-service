@@ -1,4 +1,5 @@
 import { escapeXmlText } from '../../core/svg/svg-escaping.js';
+import { rankAssetCache } from '../../core/images/rank-asset-cache.js';
 import { voiceProfileConfig } from './config.js';
 import type { VoiceProfileInput } from './schema.js';
 
@@ -8,7 +9,7 @@ export function mapVoiceProfileData(svgTemplate: string, data: VoiceProfileInput
 
   // 1. Inject Avatar
   if (avatarDataUri) {
-    const avatarGroupRegex = /<!-- Stylized Vector Portrait inside Avatar Clip -->[\s\S]*?(?=<!-- Inner Avatar Border Ring -->)/;
+    const avatarGroupRegex = /<!-- (?:Stylized Vector Portrait|Custom User Avatar) inside Avatar Clip -->[\s\S]*?(?=<!-- Inner Avatar Border Ring -->)/;
     const { x, y, width, height } = voiceProfileConfig.avatar;
     const avatarMarkup = `<!-- Custom User Avatar inside Avatar Clip -->
     <g clip-path="url(#avatar-clip)">
@@ -17,6 +18,19 @@ export function mapVoiceProfileData(svgTemplate: string, data: VoiceProfileInput
 
     `;
     output = output.replace(avatarGroupRegex, avatarMarkup);
+  }
+
+  // 1.5. Inject Rank Icon
+  if (data.rank) {
+    const rankDataUri = rankAssetCache.getRankDataUri(data.rank);
+    if (rankDataUri) {
+      const rankRegex = /<!-- (?:Gold )?rank icon[\s\S]*?<g transform="translate\(424,\s*123\)">[\s\S]*?<\/g>/i;
+      const rankTag = `<!-- Rank icon (${escapeXmlText(data.rank)}) -->
+    <g transform="translate(424, 123)">
+      <image href="${rankDataUri}" x="-30" y="-30" width="60" height="60" preserveAspectRatio="xMidYMid meet" />
+    </g>`;
+      output = output.replace(rankRegex, rankTag);
+    }
   }
 
   // 2. Username

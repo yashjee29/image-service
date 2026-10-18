@@ -1,6 +1,6 @@
 import { SvgRenderer } from '../../core/renderer/svg-renderer.js';
 import type { RenderContext } from '../../core/renderer/renderer.types.js';
-import { bufferToDataUri } from '../../core/images/image-injector.js';
+import { avatarCache } from '../../core/images/avatar-cache.js';
 import { mapVoiceProfileData } from './data-mapper.js';
 import type { VoiceProfileInput } from './schema.js';
 import { voiceProfileConfig } from './config.js';
@@ -11,21 +11,14 @@ export async function renderVoiceProfile(
 ): Promise<Buffer> {
   let avatarDataUri: string | undefined;
 
-  // 1. Fetch & process avatar if URL provided
+  // 1. Fetch & process avatar if URL provided (with 25MB LRU memory cache)
   if (input.avatarUrl) {
-    const rawAvatarBuffer = await context.measureStage('avatar_retrieval', async () => {
-      return await context.fetchImage(input.avatarUrl!);
+    avatarDataUri = await context.measureStage('avatar_retrieval', async () => {
+      return await avatarCache.getAvatarDataUri(
+        input.avatarUrl!,
+        voiceProfileConfig.avatar.processWidth
+      );
     });
-
-    const processedAvatarBuffer = await context.measureStage('image_preprocessing', async () => {
-      return await context.processImage(rawAvatarBuffer, {
-        width: voiceProfileConfig.avatar.processWidth,
-        height: voiceProfileConfig.avatar.processHeight,
-        fit: 'cover',
-      });
-    });
-
-    avatarDataUri = bufferToDataUri(processedAvatarBuffer, 'image/png');
   }
 
   // 2. Inject dynamic data into template

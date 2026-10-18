@@ -1,6 +1,13 @@
+process.env.NODE_ENV = 'test';
+
 import { buildApp } from '../src/app.js';
 import { renderCache } from '../src/core/cache/render-cache.js';
 import { formatBytes } from '../src/utils/buffer-utils.js';
+import {
+  printProcessHeader,
+  logWithPid,
+  printPeakResourceUsage,
+} from '../src/utils/processMetrics.js';
 
 interface BenchmarkStats {
   totalRequests: number;
@@ -52,7 +59,7 @@ export async function runBenchmark(options: {
 }): Promise<BenchmarkStats> {
   const { iterations = 100, concurrency = 1, enableWarmCache = false } = options;
 
-  const app = await buildApp();
+  const app = await buildApp({ logger: false, rateLimit: false });
   renderCache.clear();
 
   const samplePayload = {
@@ -192,24 +199,25 @@ export async function runBenchmark(options: {
   const throughput = (iterations / totalWallClockMs) * 1000;
 
   const mode = enableWarmCache ? 'WARM-CACHE' : 'COLD-CACHE (NEW INPUT EVERY IMAGE)';
-  console.log('================================================================================');
-  console.log(`   ${iterations}-IMAGE WORKLOAD BENCHMARK (${mode}, CONCURRENCY: ${concurrency})`);
-  console.log('================================================================================');
-  console.log(`Total Wall-Clock Time:   ${totalWallClockMs.toFixed(2)} ms (${(totalWallClockMs / 1000).toFixed(2)}s)`);
-  console.log(`Throughput:               ${throughput.toFixed(2)} img/s`);
-  console.log(`Average Latency:          ${percentiles.avg.toFixed(2)} ms`);
-  console.log(`Median Latency (P50):     ${percentiles.p50.toFixed(2)} ms`);
-  console.log(`P95 Latency:              ${percentiles.p95.toFixed(2)} ms`);
-  console.log(`P99 Latency:              ${percentiles.p99.toFixed(2)} ms`);
-  console.log(`Min / Max Latency:        ${percentiles.min.toFixed(2)} / ${percentiles.max.toFixed(2)} ms`);
-  console.log(`Total CPU Time:           ${totalCpuTimeMs.toFixed(2)} ms`);
-  console.log(`Total PNG Output:         ${formatBytes(totalOutputBytes)} (${(totalOutputBytes / (totalWallClockMs / 1000) / (1024 * 1024)).toFixed(2)} MB/s)`);
-  console.log(`Cache Hits / Misses:      ${cacheHits} / ${cacheMisses}`);
+  logWithPid('================================================================================');
+  logWithPid(`   ${iterations}-IMAGE WORKLOAD BENCHMARK (${mode}, CONCURRENCY: ${concurrency})`);
+  logWithPid('================================================================================');
+  logWithPid(`Total Wall-Clock Time:   ${totalWallClockMs.toFixed(2)} ms (${(totalWallClockMs / 1000).toFixed(2)}s)`);
+  logWithPid(`Throughput:               ${throughput.toFixed(2)} img/s`);
+  logWithPid(`Average Latency:          ${percentiles.avg.toFixed(2)} ms`);
+  logWithPid(`Median Latency (P50):     ${percentiles.p50.toFixed(2)} ms`);
+  logWithPid(`P95 Latency:              ${percentiles.p95.toFixed(2)} ms`);
+  logWithPid(`P99 Latency:              ${percentiles.p99.toFixed(2)} ms`);
+  logWithPid(`Min / Max Latency:        ${percentiles.min.toFixed(2)} / ${percentiles.max.toFixed(2)} ms`);
+  logWithPid(`Total CPU Time:           ${totalCpuTimeMs.toFixed(2)} ms`);
+  logWithPid(`Total PNG Output:         ${formatBytes(totalOutputBytes)} (${(totalOutputBytes / (totalWallClockMs / 1000) / (1024 * 1024)).toFixed(2)} MB/s)`);
+  logWithPid(`Cache Hits / Misses:      ${cacheHits} / ${cacheMisses}`);
   const mem = process.memoryUsage();
-  console.log(`Process RSS Memory:       ${formatBytes(mem.rss)} (Heap: ${formatBytes(mem.heapUsed)})`);
-  console.log('================================================================================\n');
+  logWithPid(`Process RSS Memory:       ${formatBytes(mem.rss)} (Heap: ${formatBytes(mem.heapUsed)})`);
+  logWithPid('================================================================================\n');
 
   await app.close();
+  printPeakResourceUsage(`Benchmark (${mode})`);
 
   return {
     totalRequests: iterations,

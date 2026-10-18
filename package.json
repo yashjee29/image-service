@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && node -e \"const fs = require('fs'); fs.cpSync('src/modules', 'dist/modules', { recursive: true, filter: (src) => !src.endsWith('.ts') });\"",
+    "build": "tsc && node -e \"const fs = require('fs'); fs.cpSync('src/modules', 'dist/modules', { recursive: true, filter: (src) => !src.endsWith('.ts') }); if (fs.existsSync('assets')) fs.cpSync('assets', 'dist/assets', { recursive: true }); if (fs.existsSync('templates')) fs.cpSync('templates', 'dist/templates', { recursive: true });\"",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "bake:shadow": "tsx scripts/bake-assets.ts",
     "benchmark": "tsx scripts/benchmark-render.ts",
-    "compare:images": "tsx scripts/compare-images.ts"
+    "compare:images": "tsx scripts/compare-images.ts",
+    "render:card": "tsx scripts/render-svg-card.ts"
   },
   "keywords": [],
   "author": "",

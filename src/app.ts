@@ -1,6 +1,7 @@
 import fastify, { type FastifyInstance } from 'fastify';
 import rateLimit from '@fastify/rate-limit';
 import { serverConfig } from './config/server.config.js';
+import { rankAssetCache } from './core/images/rank-asset-cache.js';
 import { fontRegistry } from './core/fonts/font-registry.js';
 import { moduleRegistry } from './modules/registry.js';
 import { voiceProfileModule } from './modules/voice-profile/index.js';
@@ -11,9 +12,12 @@ import { healthRoutes } from './routes/health.routes.js';
 import { metadataRoutes } from './routes/metadata.routes.js';
 import { renderRoutes } from './routes/render.routes.js';
 
-export function initializeServices(): void {
+export async function initializeServices(): Promise<void> {
   // Initialize fonts once at startup
   fontRegistry.initialize();
+
+  // Initialize pre-sized rank assets (60x60) for fast SVG embedding
+  await rankAssetCache.initialize(60);
 
   // Register all modules explicitly in the registry
   if (!moduleRegistry.has(voiceProfileModule.id)) {
@@ -24,11 +28,16 @@ export function initializeServices(): void {
   }
 }
 
-export async function buildApp(): Promise<FastifyInstance> {
-  initializeServices();
+export interface AppBuildOptions {
+  logger?: boolean;
+  rateLimit?: boolean;
+}
+
+export async function buildApp(appOptions?: AppBuildOptions): Promise<FastifyInstance> {
+  await initializeServices();
 
   const app = fastify({
-    logger: serverConfig.isTest
+    logger: appOptions?.logger === false || serverConfig.isTest
       ? false
       : {
           level: serverConfig.logLevel,
@@ -48,7 +57,8 @@ export async function buildApp(): Promise<FastifyInstance> {
   });
 
   // Rate Limiting
-  if (!serverConfig.isTest) {
+  const enableRateLimit = appOptions?.rateLimit ?? !serverConfig.isTest;
+  if (enableRateLimit) {
     await app.register(rateLimit, {
       max: serverConfig.rateLimit.max,
       timeWindow: serverConfig.rateLimit.timeWindow,

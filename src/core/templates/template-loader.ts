@@ -11,6 +11,29 @@ export interface LoadedTemplate {
   readonly loadedAt: number;
 }
 
+export function resolveTemplatePath(id: string, preferredPath: string): string {
+  const candidates = [
+    resolve(preferredPath),
+    resolve(process.cwd(), 'templates', id, 'profile.svg'),
+    resolve(process.cwd(), 'templates', id, 'leaderboard.svg'),
+    resolve(process.cwd(), 'templates', id, `${id}.svg`),
+    resolve(process.cwd(), 'templates', `${id}.svg`),
+    resolve(process.cwd(), 'assets', 'templates', id, `${id}.svg`),
+    resolve(process.cwd(), 'assets', 'templates', `${id}.svg`),
+    resolve(process.cwd(), 'src', 'modules', id, 'templates', `${id}.svg`),
+    resolve(process.cwd(), 'src', 'modules', id, 'templates', 'profile.svg'),
+    resolve(process.cwd(), 'src', 'modules', id, 'templates', 'leaderboard.svg'),
+  ];
+
+  for (const candidate of candidates) {
+    if (existsSync(candidate)) {
+      return candidate;
+    }
+  }
+
+  return resolve(preferredPath);
+}
+
 export class TemplateLoader {
   private static instance: TemplateLoader;
   private readonly cache = new Map<string, LoadedTemplate>();
@@ -28,7 +51,7 @@ export class TemplateLoader {
       return existing;
     }
 
-    const resolvedPath = resolve(filePath);
+    const resolvedPath = resolveTemplatePath(id, filePath);
     if (!existsSync(resolvedPath)) {
       throw new TemplateNotFoundError(`Template file not found at ${resolvedPath}`);
     }

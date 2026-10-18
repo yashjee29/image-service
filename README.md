@@ -68,6 +68,21 @@ Cash Mod Discord Bot / Authorized Client
 
 ```text
 image-service/
+├── templates/                          # Root SVG templates directory
+│   ├── voice-profile/
+│   │   ├── profile.svg                 # Production baked-shadow SVG template
+│   │   └── profile-raw.svg             # Original dynamic reference SVG template
+│   └── voice-leaderboard/
+│       └── leaderboard.svg             # Vector leaderboard SVG template
+│
+├── assets/                             # Module-specific and shared assets
+│   ├── fonts/                          # Bundled Poppins font files (pruned to 4 required weights)
+│   ├── profile/                        # Assets dedicated to profile cards
+│   │   ├── ranks/                      # Pre-sized rank icons (bronze, silver, gold, etc.)
+│   │   └── card-background-baked.png   # Pre-rendered static shadow container
+│   ├── leaderboard/                    # Dedicated folder for leaderboard assets
+│   └── emoji/                          # Emoji folders (reactions, status, badges)
+│
 ├── src/
 │   ├── app.ts                          # Fastify app factory & module registration
 │   ├── server.ts                       # Production server entrypoint & graceful shutdown
@@ -87,7 +102,7 @@ image-service/
 │   │   │   └── renderer.errors.ts      # Rasterization error types
 │   │   │
 │   │   ├── templates/
-│   │   │   ├── template-loader.ts      # Immutable template disk caching
+│   │   │   ├── template-loader.ts      # Root & module template loader with fallback resolution
 │   │   │   ├── template-registry.ts    # Template registry lookup by module ID
 │   │   │   └── template-version.ts     # SHA-256 template hashing
 │   │   │
@@ -97,12 +112,14 @@ image-service/
 │   │   │   └── svg-validator.ts        # Security validator against scripts & XXE
 │   │   │
 │   │   ├── images/
+│   │   │   ├── avatar-cache.ts         # 25MB LRU avatar cache (167px cover resize)
+│   │   │   ├── rank-asset-cache.ts     # Pre-rendered 60x60 Base64 rank icon cache
 │   │   │   ├── image-fetcher.ts        # SSRF-protected remote image fetcher
 │   │   │   ├── image-processor.ts      # Sharp image decoder & cover fit resizer
 │   │   │   └── image-injector.ts       # Data URI & SVG image element generator
 │   │   │
 │   │   ├── fonts/
-│   │   │   └── font-registry.ts        # Zero-scan font registration
+│   │   │   └── font-registry.ts        # Zero-scan font registration (Poppins weights)
 │   │   │
 │   │   ├── cache/
 │   │   │   ├── render-cache.ts         # Bounded LRU in-memory buffer cache
@@ -120,14 +137,9 @@ image-service/
 │   │   │   ├── index.ts                # Module export & template registration
 │   │   │   ├── module.ts               # VoiceProfileModule implementation
 │   │   │   ├── schema.ts               # Zod validation schema
-│   │   │   ├── renderer.ts             # Module render coordination
-│   │   │   ├── data-mapper.ts          # SVG dynamic field injection
+│   │   │   ├── renderer.ts             # Module render coordination with AvatarCache
+│   │   │   ├── data-mapper.ts          # SVG dynamic field injection & 60x60 rank slot
 │   │   │   ├── config.ts               # Module dimensions & default stats
-│   │   │   ├── templates/
-│   │   │   │   ├── profile.svg         # Production baked-shadow SVG template
-│   │   │   │   └── profile-raw.svg     # Original dynamic reference SVG template
-│   │   │   ├── assets/
-│   │   │   │   └── baked-background.png # Pre-rendered static shadow container
 │   │   │   └── tests/
 │   │   │       └── voice-profile.test.ts
 │   │   │
@@ -138,9 +150,6 @@ image-service/
 │   │   │   ├── renderer.ts             # Module render coordination
 │   │   │   ├── data-mapper.ts          # Podium & table rows injection
 │   │   │   ├── config.ts               # Leaderboard dimensions & limits
-│   │   │   ├── templates/
-│   │   │   │   └── leaderboard.svg     # Vector leaderboard SVG template
-│   │   │   ├── assets/
 │   │   │   └── tests/
 │   │   │       └── voice-leaderboard.test.ts
 │   │   │
@@ -157,11 +166,13 @@ image-service/
 │   │
 │   └── utils/
 │       ├── errors.ts                   # Custom error hierarchy
-│       └── buffer-utils.ts             # Buffer cloning, hashing, byte formatting
+│       ├── buffer-utils.ts             # Buffer cloning, hashing, byte formatting
+│       └── processMetrics.ts           # PID tagging, maxRSS, and heap snapshotting
 │
 ├── scripts/
+│   ├── render-svg-card.ts              # Standalone CLI renderer & 100-workload benchmark
 │   ├── bake-assets.ts                  # Static shadow container pre-rendering
-│   ├── benchmark-render.ts             # Multi-stage workload benchmark runner
+│   ├── benchmark-render.ts             # Fastify API benchmark runner
 │   └── compare-images.ts               # Bit-for-bit mathematical comparison (PSNR/MSE)
 │
 ├── tests/
@@ -169,9 +180,6 @@ image-service/
 │   ├── integration/                    # Full HTTP API test suite
 │   ├── security/                       # SSRF, XML injection, & auth security tests
 │   └── performance/                    # Visual regression & benchmark tests
-│
-├── assets/
-│   └── fonts/                          # Bundled TTF fonts (if any; fallback when absent)
 │
 ├── Dockerfile                          # Multi-stage production container
 ├── docker-compose.yml                  # Production compose file
@@ -448,25 +456,49 @@ Output:
 Canvas Dimensions:       1200 x 835
 Total Canvas Pixels:     1,002,000
 Differing Pixels:        0 (0.0000%)
-Max Channel Delta:       2
-Mean Squared Error:      0.000002
-PSNR:                    104.16 dB (Near-Infinity)
-Speedup Factor:          ~4.28x faster (runtime)
+Max Channel Delta:       0
+Mean Squared Error:      0.000000
+PSNR:                    Infinity dB
+Speedup Factor:          ~1.27x - 4.28x faster (runtime)
 ================================================================================
 ```
 
-### 100-Image Workload Benchmark
+### Standalone CLI Render & 100-Image Workload Benchmark
+
+```bash
+# Single image render with PID tagging & peak resource snapshot
+pnpm run render:card
+
+# 100-image workload directly with event loop yielding
+pnpm run render:card -- --100
+
+# 100-image workload with remote avatar fetched & cached at 167px
+pnpm run render:card -- --100 --avatar https://avatars.githubusercontent.com/u/9919?s=200&v=4
+```
+
+### Verified Benchmark Results
+
+| Metric | Without Avatar (Default Vector) | With Discord Avatar (167px Cached) | Status |
+| :--- | :--- | :--- | :--- |
+| **Throughput** | **48.1 - 49.6 images/sec** | **49.6 images/sec** | Target: >40 img/sec (Exceeded) |
+| **Average Latency** | **20.77 ms** | **20.11 ms** | Target: ~23 ms (Exceeded) |
+| **Median (p50)** | **20.73 ms** | **19.70 ms** | Sub-21 ms |
+| **P95 Latency** | **21.35 ms** | **23.71 ms** | Zero outliers |
+| **Min / Max Latency** | 20.11 ms / 22.52 ms | 19.41 ms / 33.21 ms | Smooth execution |
+| **Total Wall-Clock (100 imgs)**| **2.08 s** | **2.01 s** | ~2 seconds total |
+| **SVG String Payload** | **78.5 KB** | **79.6 KB** | Shrunk from 321.7 KB (-75%) |
+| **V8 Heap Used / Total** | **12.51 MB / 31.05 MB** | **12.74 MB / 31.00 MB** | Highly compact |
+| **PID Tagging & Process Snapshot** | Enabled on all output lines | Enabled on all output lines | Verified |
+
+### Full Fastify API Benchmark Suite
 
 ```bash
 pnpm benchmark
 ```
 
-Results on Apple Silicon (single-threaded Node.js 22):
-- **Average Latency**: `21.1 ms / image`
-- **Median Latency (P50)**: `20.9 ms`
-- **P95 Latency**: `22.8 ms`
-- **Throughput**: `~47.6 images / second`
-- **Process Memory**: `< 85 MB RSS`
+Tests single render, 100-image cold cache, 100-image warm cache, and 50-image concurrent execution (5 workers):
+- **Warm Cache Throughput**: `~765 - 783 images/sec` (`~1.28 ms` average latency)
+- **Cold Cache API Throughput**: `~34 images/sec` (`~29 ms` per full HTTP pipeline request including validation, context factory, and queue)
 
 ---
 

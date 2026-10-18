@@ -10,6 +10,7 @@ export const DayChartItemSchema = z.object({
 export const VoiceProfileInputSchema = z.object({
   username: z.string().min(1).max(32).default('Sakha'),
   avatarUrl: z.string().url().optional(),
+  rank: z.string().max(20).optional(), // e.g. "gold", "platinum", "diamond", "ascendant"
   bio: z.string().max(80).optional(),
   achievements: z.number().int().min(0).optional(),
   goals: z.number().int().min(0).optional(),

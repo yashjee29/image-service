@@ -347,11 +347,11 @@ describe('VoiceProfileModule', () => {
     expect(renderedSvg).not.toContain('🍻');
     expect(renderedSvg).not.toContain('👁️');
 
-    // 2. No dummy numbers or fake text should leak
+    // 2. No dummy numbers or fake badges should leak, but tagline is always present
     expect(renderedSvg).not.toContain('1,128h');
     expect(renderedSvg).not.toContain('809h');
     expect(renderedSvg).not.toContain('1,937h');
-    expect(renderedSvg).not.toContain('Focus. Compete. Improve.');
+    expect(renderedSvg).toContain('Focus. Compete. Improve.');
     expect(renderedSvg).not.toContain('>Hall of Fame<');
     expect(renderedSvg).not.toContain('>Top Performer<');
     expect(renderedSvg).not.toContain('>Winner<');

@@ -16,7 +16,8 @@ export const voiceProfileConfig = {
   },
   defaults: {
     username: 'User',
-    bio: '',
+    tagline: 'Focus. Compete. Improve.',
+    bio: 'Focus. Compete. Improve.',
     achievements: 0,
     goals: 0,
     milestones: 0,

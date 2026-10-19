@@ -524,21 +524,17 @@ export function mapVoiceProfileData(
     );
   }
 
-  // 3. Bio
-  const rawBio = data.profile?.bio ?? data.bio;
-  if (rawBio && rawBio.trim().length > 0) {
-    const cleanBio = sanitizeDisplayText(rawBio, '');
-    output = output.replace(
-      /<text x="253" y="181" font-size="20" font-weight="500" fill="[^"]*">[^<]*<\/text>/,
-      `<text x="253" y="181" font-size="20" font-weight="500" fill="#5A6275">${escapeXmlText(cleanBio)}</text>`
-    );
-  } else {
-    // Remove default placeholder motto so it never shows fake default bio
-    output = output.replace(
-      /<text x="253" y="181" font-size="20" font-weight="500" fill="[^"]*">[^<]*<\/text>/,
-      ''
-    );
-  }
+  // 3. Tagline (Always present, defaults to 'Focus. Compete. Improve.')
+  const rawTagline = (data.profile as any)?.tagline ?? (data as any).tagline ?? data.profile?.bio ?? data.bio;
+  const defaultTagline = (defaults as any).tagline ?? 'Focus. Compete. Improve.';
+  const cleanTagline = (rawTagline && rawTagline.trim().length > 0)
+    ? sanitizeDisplayText(rawTagline, defaultTagline)
+    : defaultTagline;
+
+  output = output.replace(
+    /<text x="253" y="181" font-size="20" font-weight="500" fill="[^"]*">[^<]*<\/text>/,
+    `<text x="253" y="181" font-size="20" font-weight="500" fill="#5A6275">${escapeXmlText(cleanTagline)}</text>`
+  );
 
   // 3.5. Badges (Default to empty, never inject fake badges)
   const badgeList = data.badges !== undefined ? data.badges : [];

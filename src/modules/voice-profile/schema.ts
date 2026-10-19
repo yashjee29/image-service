@@ -11,6 +11,7 @@ export const ProfileInfoSchema = z.object({
   username: z.string().min(1).max(32).default('User'),
   avatarUrl: z.string().url().optional(),
   bio: z.string().max(80).optional(),
+  tagline: z.string().max(80).optional(),
 });
 
 export const RankDetailsSchema = z.object({
@@ -101,6 +102,7 @@ export const VoiceProfileApiSchema = z.object({
   avatarUrl: z.string().url().optional(),
   rankId: z.string().max(20).optional(),
   bio: z.string().max(80).optional(),
+  tagline: z.string().max(80).optional(),
   achievements: z.number().int().min(0).optional(),
   goals: z.number().int().min(0).optional(),
   milestones: z.number().int().min(0).optional(),

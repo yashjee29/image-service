@@ -202,7 +202,7 @@
     </g>
 
     <!-- Bio Tagline -->
-    <text x="253" y="181" font-size="20" font-weight="500" fill="#5A6275"></text>
+    <text x="253" y="181" font-size="20" font-weight="500" fill="#5A6275">Focus. Compete. Improve.</text>
 
     <!-- Badge 1: Hall of Fame -->
     <g transform="translate(252, 213)">

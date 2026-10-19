@@ -528,6 +528,83 @@ describe('VoiceLeaderboardModule', () => {
     // Valid symbol username player#1234 should be preserved
     expect(podiumSvg).toContain('player#1234');
   });
+
+  it('renders dynamic matching pastel backgrounds and borders for different ranks', async () => {
+    const { getRankTheme, RANK_THEMES } = await import('../config.js');
+    const { mapStudyLeaderboardData } = await import('../data-mapper.js');
+
+    // Verify themes have vibrant matching pastel pill backgrounds
+    expect(RANK_THEMES.gold!.pillBg).toBe('#FEF3C7');
+    expect(RANK_THEMES.gold!.pillBorder).toBe('#FCD34D');
+    expect(RANK_THEMES.diamond!.pillBg).toBe('#EDE9FE');
+    expect(RANK_THEMES.diamond!.pillBorder).toBe('#C4B5FD');
+    expect(RANK_THEMES.ascendant!.pillBg).toBe('#D1FAE5');
+    expect(RANK_THEMES.ascendant!.pillBorder).toBe('#6EE7B7');
+    expect(RANK_THEMES.immortal!.pillBg).toBe('#FFE4E6');
+    expect(RANK_THEMES.immortal!.pillBorder).toBe('#FDA4AF');
+    expect(RANK_THEMES.platinum!.pillBg).toBe('#CCFBF1');
+    expect(RANK_THEMES.platinum!.pillBorder).toBe('#5EEAD4');
+    expect(RANK_THEMES.unranked!.pillBg).toBe('#F3F4F6');
+
+    // Test fuzzy matching
+    expect(getRankTheme('Gold II').id).toBe('gold');
+    expect(getRankTheme('diamond_3').id).toBe('diamond');
+    expect(getRankTheme('immortal 1').id).toBe('immortal');
+    expect(getRankTheme(undefined).id).toBe('unranked');
+
+    // Test SVG rendering with diverse ranks
+    const input = voiceLeaderboardModule.validate({
+      render: { layout: 'podium_and_list' },
+      entries: [
+        { rank: 1, username: 'TopGold', tier: 'Gold II', durationMinutes: 1200 },
+        { rank: 2, username: 'TopDiamond', badge: 'Diamond', durationMinutes: 1000 },
+        { rank: 3, username: 'TopAscendant', rankId: 'ascendant', durationMinutes: 800 },
+        { rank: 4, username: 'TopUnranked', durationMinutes: 600 },
+      ],
+    });
+
+    const podiumTemplate = templateRegistry.get('study-leaderboard-2');
+    const svg = mapStudyLeaderboardData(podiumTemplate!.content, input);
+
+    // Rank 1 (Gold) should have Gold pillBg #FEF3C7 and pillBorder #FCD34D
+    expect(svg).toContain('fill="#FEF3C7" stroke="#FCD34D"');
+    // Rank 2 (Diamond) should have Diamond pillBg #EDE9FE and pillBorder #C4B5FD
+    expect(svg).toContain('fill="#EDE9FE" stroke="#C4B5FD"');
+    // Rank 3 (Ascendant) should have Ascendant pillBg #D1FAE5 and pillBorder #6EE7B7
+    expect(svg).toContain('fill="#D1FAE5" stroke="#6EE7B7"');
+    // Rank 4 (Unranked) should have Unranked pillBg #F3F4F6 and pillBorder #D1D5DB
+    expect(svg).toContain('fill="#F3F4F6" stroke="#D1D5DB"');
+  });
+
+  it('guarantees symmetric horizontal padding for rank pills', async () => {
+    const { mapStudyLeaderboardData } = await import('../data-mapper.js');
+    const input = voiceLeaderboardModule.validate({
+      render: { layout: 'podium_and_list' },
+      entries: [
+        { rank: 1, username: 'PlayerOne', rankName: 'Unranked', durationMinutes: 500 },
+      ],
+    });
+
+    const podiumTemplate = templateRegistry.get('study-leaderboard-2');
+    const svg = mapStudyLeaderboardData(podiumTemplate!.content, input);
+
+    // Extract podium-rank-pill-1 rect and text
+    const pillGroupMatch = svg.match(/<g id="podium-rank-pill-1">([\s\S]*?)<\/g>/);
+    expect(pillGroupMatch).not.toBeNull();
+    const pillGroup = pillGroupMatch![1]!;
+
+    const rectMatch = pillGroup.match(/<rect x="([^"]+)" [^>]*width="([^"]+)"/);
+    expect(rectMatch).not.toBeNull();
+    const rectX = parseFloat(rectMatch![1]!);
+    const rectW = parseFloat(rectMatch![2]!);
+
+    const imageMatch = pillGroup.match(/<image [^>]*x="([^"]+)" [^>]*width="([^"]+)"/);
+    if (imageMatch) {
+      const imageX = parseFloat(imageMatch[1]!);
+      // Left padding = imageX - rectX = 16
+      expect(imageX - rectX).toBe(16);
+    }
+  });
 });
 
 

@@ -14,134 +14,134 @@ export const RANK_THEMES: Record<string, RankTheme> = {
   radiant: {
     id: 'radiant',
     name: 'Radiant',
-    primaryColor: '#FFAA00',
-    darkerColor: '#B87200',
-    cardBorder: '#FFE29A',
-    pillBg: '#FFFDF5',
-    pillBorder: '#FDE4B0',
-    pillTextColor: '#7A5200',
-    glowColor: '#FFAA00',
+    primaryColor: '#D97706',
+    darkerColor: '#B45309',
+    cardBorder: '#FCD34D',
+    pillBg: '#FEF3C7',
+    pillBorder: '#FCD34D',
+    pillTextColor: '#78350F',
+    glowColor: '#F59E0B',
   },
   radient: {
     id: 'radient',
     name: 'Radiant',
-    primaryColor: '#FFAA00',
-    darkerColor: '#B87200',
-    cardBorder: '#FFE29A',
-    pillBg: '#FFFDF5',
-    pillBorder: '#FDE4B0',
-    pillTextColor: '#7A5200',
-    glowColor: '#FFAA00',
+    primaryColor: '#D97706',
+    darkerColor: '#B45309',
+    cardBorder: '#FCD34D',
+    pillBg: '#FEF3C7',
+    pillBorder: '#FCD34D',
+    pillTextColor: '#78350F',
+    glowColor: '#F59E0B',
   },
   immortal: {
     id: 'immortal',
     name: 'Immortal',
-    primaryColor: '#F26A5E',
-    darkerColor: '#C93B2E',
-    cardBorder: '#FF9B8F',
-    pillBg: '#FFF8F5',
-    pillBorder: '#FFDFD8',
-    pillTextColor: '#7E2A24',
-    glowColor: '#F26A5E',
+    primaryColor: '#E11D48',
+    darkerColor: '#BE123C',
+    cardBorder: '#FDA4AF',
+    pillBg: '#FFE4E6',
+    pillBorder: '#FDA4AF',
+    pillTextColor: '#881337',
+    glowColor: '#E11D48',
   },
   ascendant: {
     id: 'ascendant',
     name: 'Ascendant',
-    primaryColor: '#55A18C',
-    darkerColor: '#246D5B',
-    cardBorder: '#C5DED5',
-    pillBg: '#FBF9F6',
-    pillBorder: '#E5E7DF',
-    pillTextColor: '#15302A',
-    glowColor: '#55A18C',
+    primaryColor: '#059669',
+    darkerColor: '#047857',
+    cardBorder: '#6EE7B7',
+    pillBg: '#D1FAE5',
+    pillBorder: '#6EE7B7',
+    pillTextColor: '#064E3B',
+    glowColor: '#059669',
   },
   diamond: {
     id: 'diamond',
     name: 'Diamond',
-    primaryColor: '#9F7BB7',
-    darkerColor: '#683A85',
-    cardBorder: '#E4D5EE',
-    pillBg: '#FCF7FF',
-    pillBorder: '#EADFF0',
-    pillTextColor: '#452A56',
-    glowColor: '#9F7BB7',
+    primaryColor: '#7C3AED',
+    darkerColor: '#6D28D9',
+    cardBorder: '#C4B5FD',
+    pillBg: '#EDE9FE',
+    pillBorder: '#C4B5FD',
+    pillTextColor: '#4C1D95',
+    glowColor: '#7C3AED',
   },
   platinum: {
     id: 'platinum',
     name: 'Platinum',
-    primaryColor: '#5DA09F',
-    darkerColor: '#296B6A',
-    cardBorder: '#C6E3E3',
-    pillBg: '#F4FBFC',
-    pillBorder: '#E0E9E9',
-    pillTextColor: '#1D5D79',
-    glowColor: '#5DA09F',
+    primaryColor: '#0D9488',
+    darkerColor: '#0F766E',
+    cardBorder: '#5EEAD4',
+    pillBg: '#CCFBF1',
+    pillBorder: '#5EEAD4',
+    pillTextColor: '#134E4A',
+    glowColor: '#0D9488',
   },
   gold: {
     id: 'gold',
     name: 'Gold',
-    primaryColor: '#E68D4A',
-    darkerColor: '#A85312',
-    cardBorder: '#F3D4B6',
-    pillBg: '#FFFAF4',
-    pillBorder: '#F2E7D9',
-    pillTextColor: '#754316',
-    glowColor: '#E68D4A',
+    primaryColor: '#D97706',
+    darkerColor: '#B45309',
+    cardBorder: '#FCD34D',
+    pillBg: '#FEF3C7',
+    pillBorder: '#FCD34D',
+    pillTextColor: '#78350F',
+    glowColor: '#D97706',
   },
   silver: {
     id: 'silver',
     name: 'Silver',
-    primaryColor: '#7A8B99',
-    darkerColor: '#41515E',
-    cardBorder: '#D8DEE4',
-    pillBg: '#FAF8F5',
-    pillBorder: '#E9E2DC',
-    pillTextColor: '#454852',
-    glowColor: '#7A8B99',
+    primaryColor: '#475569',
+    darkerColor: '#334155',
+    cardBorder: '#CBD5E1',
+    pillBg: '#F1F5F9',
+    pillBorder: '#CBD5E1',
+    pillTextColor: '#334155',
+    glowColor: '#475569',
   },
   bronze: {
     id: 'bronze',
     name: 'Bronze',
-    primaryColor: '#BD6337',
-    darkerColor: '#823412',
-    cardBorder: '#E8C5B2',
-    pillBg: '#FFF7F1',
-    pillBorder: '#EDDCD0',
-    pillTextColor: '#683019',
-    glowColor: '#BD6337',
+    primaryColor: '#B45309',
+    darkerColor: '#92400E',
+    cardBorder: '#FDBA74',
+    pillBg: '#FFEDD5',
+    pillBorder: '#FDBA74',
+    pillTextColor: '#7C2D12',
+    glowColor: '#B45309',
   },
   iron: {
     id: 'iron',
     name: 'Iron',
-    primaryColor: '#6D7278',
-    darkerColor: '#363C44',
-    cardBorder: '#D4D6D9',
-    pillBg: '#F8F9FA',
-    pillBorder: '#E2E4E7',
-    pillTextColor: '#3E4246',
-    glowColor: '#6D7278',
+    primaryColor: '#475569',
+    darkerColor: '#334155',
+    cardBorder: '#94A3B8',
+    pillBg: '#F1F5F9',
+    pillBorder: '#CBD5E1',
+    pillTextColor: '#1E293B',
+    glowColor: '#475569',
   },
   unrated: {
     id: 'unrated',
     name: 'Unrated',
-    primaryColor: '#62636C',
-    darkerColor: '#32343A',
-    cardBorder: '#E2E8F0',
-    pillBg: '#F8F9FA',
-    pillBorder: '#E2E8F0',
-    pillTextColor: '#62636C',
-    glowColor: '#62636C',
+    primaryColor: '#4B5563',
+    darkerColor: '#374151',
+    cardBorder: '#D1D5DB',
+    pillBg: '#F3F4F6',
+    pillBorder: '#D1D5DB',
+    pillTextColor: '#374151',
+    glowColor: '#4B5563',
   },
   unranked: {
     id: 'unranked',
     name: 'Unranked',
-    primaryColor: '#62636C',
-    darkerColor: '#32343A',
-    cardBorder: '#E2E8F0',
-    pillBg: '#F8F9FA',
-    pillBorder: '#E2E8F0',
-    pillTextColor: '#62636C',
-    glowColor: '#62636C',
+    primaryColor: '#4B5563',
+    darkerColor: '#374151',
+    cardBorder: '#D1D5DB',
+    pillBg: '#F3F4F6',
+    pillBorder: '#D1D5DB',
+    pillTextColor: '#374151',
+    glowColor: '#4B5563',
   },
 };
 
@@ -155,9 +155,24 @@ export const REQUESTER_HIGHLIGHT_THEME = {
 };
 
 export function getRankTheme(rankId?: string): RankTheme {
-  if (!rankId) return RANK_THEMES.unrated!;
+  if (!rankId) return RANK_THEMES.unranked!;
   const normalized = rankId.toLowerCase().trim();
-  return RANK_THEMES[normalized] ?? RANK_THEMES.unrated!;
+  if (RANK_THEMES[normalized]) return RANK_THEMES[normalized]!;
+
+  // Partial / subword match (e.g. "gold 2", "diamond_3", "immortal 1")
+  if (normalized.includes('radiant') || normalized.includes('radient')) return RANK_THEMES.radiant!;
+  if (normalized.includes('immortal')) return RANK_THEMES.immortal!;
+  if (normalized.includes('ascendant')) return RANK_THEMES.ascendant!;
+  if (normalized.includes('diamond')) return RANK_THEMES.diamond!;
+  if (normalized.includes('platinum') || normalized.includes('plat')) return RANK_THEMES.platinum!;
+  if (normalized.includes('gold')) return RANK_THEMES.gold!;
+  if (normalized.includes('silver')) return RANK_THEMES.silver!;
+  if (normalized.includes('bronze')) return RANK_THEMES.bronze!;
+  if (normalized.includes('iron')) return RANK_THEMES.iron!;
+  if (normalized.includes('unrated')) return RANK_THEMES.unrated!;
+  if (normalized.includes('unranked')) return RANK_THEMES.unranked!;
+
+  return RANK_THEMES.unranked!;
 }
 
 export const HIGH_TIER_RANKS = new Set([
@@ -170,7 +185,11 @@ export const HIGH_TIER_RANKS = new Set([
 
 export function isHighTierRank(rankId?: string): boolean {
   if (!rankId) return false;
-  return HIGH_TIER_RANKS.has(rankId.toLowerCase().trim());
+  const normalized = rankId.toLowerCase().trim();
+  for (const high of HIGH_TIER_RANKS) {
+    if (normalized.includes(high)) return true;
+  }
+  return false;
 }
 
 export const voiceLeaderboardConfig = {

@@ -14,6 +14,7 @@ export const LeaderboardEntrySchema = z.object({
   badge: z.string().max(30).optional(),
   rankId: z.string().max(30).optional(),
   rankName: z.string().max(30).optional(),
+  tier: z.string().max(30).optional(),
   isCurrentUser: z.boolean().optional(),
 });
 
@@ -79,6 +80,16 @@ export const VoiceLeaderboardInputSchema = z.preprocess((val: any) => {
       e.isCurrentUser ||
       (highlightRequester && requesterUserId && e.userId && e.userId === requesterUserId)
     );
+    const resolvedRankId =
+      rankObj?.id ??
+      e.rankId ??
+      e.tier ??
+      (typeof e.rank === 'string' ? e.rank : undefined) ??
+      e.badge;
+    const resolvedRankName =
+      rankObj?.name ??
+      e.rankName ??
+      (e.rankId ? undefined : (e.tier ?? e.badge));
     return {
       rank: rankNum,
       position: rankNum,
@@ -89,8 +100,9 @@ export const VoiceLeaderboardInputSchema = z.preprocess((val: any) => {
       hours: e.hours,
       camHours: e.camHours,
       badge: e.badge,
-      rankId: rankObj?.id ?? e.rankId ?? (typeof e.rank === 'string' ? e.rank : undefined),
-      rankName: rankObj?.name ?? e.rankName,
+      tier: e.tier,
+      rankId: resolvedRankId,
+      rankName: resolvedRankName,
       isCurrentUser,
     };
   });

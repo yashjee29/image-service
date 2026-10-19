@@ -9,37 +9,46 @@ export interface LeaderboardAvatarMap {
 }
 
 export const RANK_TEXT_WIDTHS_16: Record<string, number> = {
+  unranked: 77,
+  unrated: 63,
   iron: 29,
   bronze: 53,
   silver: 42,
-  gold: 37,
+  gold: 36,
   platinum: 70,
   diamond: 73,
   ascendant: 87,
   immortal: 73,
   radiant: 62,
-  unrated: 63,
-  unranked: 63,
 };
 
 export const RANK_TEXT_WIDTHS_21: Record<string, number> = {
-  iron: 39,
-  bronze: 70,
+  unranked: 100,
+  unrated: 83,
+  iron: 38,
+  bronze: 69,
   silver: 56,
   gold: 48,
-  platinum: 93,
-  diamond: 96,
-  ascendant: 115,
+  platinum: 92,
+  diamond: 95,
+  ascendant: 114,
   immortal: 96,
-  radiant: 82,
-  unrated: 83,
-  unranked: 83,
+  radiant: 81,
 };
 
 export function getRankTextWidth(rankName: string, fontSize: number): number {
   const key = rankName.toLowerCase().trim();
-  if (fontSize === 16 && RANK_TEXT_WIDTHS_16[key]) return RANK_TEXT_WIDTHS_16[key]!;
-  if (fontSize === 21 && RANK_TEXT_WIDTHS_21[key]) return RANK_TEXT_WIDTHS_21[key]!;
+  const widths = fontSize === 16 ? RANK_TEXT_WIDTHS_16 : RANK_TEXT_WIDTHS_21;
+  if (widths[key]) return widths[key]!;
+
+  for (const baseRank of Object.keys(widths)) {
+    if (key.startsWith(baseRank) || key.includes(baseRank)) {
+      const extra = key.replace(baseRank, '').trim();
+      if (!extra) return widths[baseRank]!;
+      return widths[baseRank]! + estimateTextWidth(' ' + extra, fontSize);
+    }
+  }
+
   return estimateTextWidth(rankName, fontSize);
 }
 
@@ -454,10 +463,16 @@ export function mapStudyLeaderboardData(
     }
 
     const conf = podiumCardConfig[rank]!;
-    const rankTheme = getRankTheme(entry.rankId);
-    const isHighTier = isHighTierRank(entry.rankId);
-    const rankIconUri = rankAssetCache.getRankDataUri(entry.rankId ?? rankTheme.id, 80);
-    const rankName = entry.rankName ?? rankTheme.name;
+    const resolvedRankKey =
+      entry.rankId ??
+      entry.rankName ??
+      entry.badge ??
+      (typeof (entry as any).rank === 'string' ? (entry as any).rank : undefined) ??
+      (entry as any).tier;
+    const rankTheme = getRankTheme(resolvedRankKey);
+    const isHighTier = isHighTierRank(resolvedRankKey ?? rankTheme.id);
+    const rankIconUri = rankAssetCache.getRankDataUri(entry.rankId ?? rankTheme.id, 80) ?? rankAssetCache.getRankDataUri(rankTheme.id, 80);
+    const rankName = entry.rankName ?? (entry.rankId ? rankTheme.name : (entry.badge ?? rankTheme.name));
     const hoursFormatted = formatLeaderboardHours(entry.durationMinutes, entry.hours ?? entry.camHours);
     const fitting = fitUsername(entry.username, conf.maxNameWidth, [33, 29, 26, 23]);
     const escapedName = escapeXmlText(fitting.displayName);
@@ -630,11 +645,16 @@ export function mapStudyLeaderboardData(
   }
 
   for (const [slotRank, entry] of slotEntryMap.entries()) {
-
-    const rankTheme = getRankTheme(entry.rankId);
-    const isHighTier = isHighTierRank(entry.rankId);
-    const rankIconUri = rankAssetCache.getRankDataUri(entry.rankId ?? rankTheme.id, 80);
-    const rankName = entry.rankName ?? rankTheme.name;
+    const resolvedRankKey =
+      entry.rankId ??
+      entry.rankName ??
+      entry.badge ??
+      (typeof (entry as any).rank === 'string' ? (entry as any).rank : undefined) ??
+      (entry as any).tier;
+    const rankTheme = getRankTheme(resolvedRankKey);
+    const isHighTier = isHighTierRank(resolvedRankKey ?? rankTheme.id);
+    const rankIconUri = rankAssetCache.getRankDataUri(entry.rankId ?? rankTheme.id, 80) ?? rankAssetCache.getRankDataUri(rankTheme.id, 80);
+    const rankName = entry.rankName ?? (entry.rankId ? rankTheme.name : (entry.badge ?? rankTheme.name));
     const hoursFormatted = formatLeaderboardHours(entry.durationMinutes, entry.hours ?? entry.camHours);
 
     const isCol1 = slotRank <= 7;
@@ -651,7 +671,7 @@ export function mapStudyLeaderboardData(
     const tw = getRankTextWidth(rankName, 16);
     const pad = 12;
     const gap = 8;
-    const pillW = pad + iconSize + gap + tw + 14;
+    const pillW = pad + iconSize + gap + tw + pad;
 
     const hoursEndX = isCol1 ? 728 : 1374;
     const hoursW = estimateTextWidth(hoursFormatted, 25);
@@ -918,11 +938,16 @@ export function mapExtendedStudyLeaderboardData(
   }
 
   for (const [slotRank, entry] of extSlotEntryMap.entries()) {
-
-    const rankTheme = getRankTheme(entry.rankId);
-    const isHighTier = isHighTierRank(entry.rankId);
-    const rankIconUri = rankAssetCache.getRankDataUri(entry.rankId ?? rankTheme.id, 80);
-    const rankName = entry.rankName ?? rankTheme.name;
+    const resolvedRankKey =
+      entry.rankId ??
+      entry.rankName ??
+      entry.badge ??
+      (typeof (entry as any).rank === 'string' ? (entry as any).rank : undefined) ??
+      (entry as any).tier;
+    const rankTheme = getRankTheme(resolvedRankKey);
+    const isHighTier = isHighTierRank(resolvedRankKey ?? rankTheme.id);
+    const rankIconUri = rankAssetCache.getRankDataUri(entry.rankId ?? rankTheme.id, 80) ?? rankAssetCache.getRankDataUri(rankTheme.id, 80);
+    const rankName = entry.rankName ?? (entry.rankId ? rankTheme.name : (entry.badge ?? rankTheme.name));
     const hoursFormatted = formatLeaderboardHours(entry.durationMinutes, entry.hours ?? entry.camHours);
 
     const isCol1 = slotRank <= 18;
@@ -935,7 +960,7 @@ export function mapExtendedStudyLeaderboardData(
     const tw = getRankTextWidth(rankName, 16);
     const pad = 12;
     const gap = 8;
-    const pillW = pad + iconSize + gap + tw + 14;
+    const pillW = pad + iconSize + gap + tw + pad;
 
     const hoursW = estimateTextWidth(hoursFormatted, 25);
     const hoursLeft = hoursEndX - hoursW;

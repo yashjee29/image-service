@@ -129,7 +129,8 @@ export class RankAssetCache {
   }
 
   public getRankDataUri(rankName: string, size?: number): string | undefined {
-    const normalized = rankName.toLowerCase().trim();
+    let normalized = rankName.toLowerCase().trim();
+    if (normalized === 'unranked') normalized = 'unrated';
     const key = normalized === 'radiant' ? 'radient' : normalized;
 
     if (size !== undefined) {
@@ -144,7 +145,8 @@ export class RankAssetCache {
   }
 
   public has(rankName: string, size?: number): boolean {
-    const normalized = rankName.toLowerCase().trim();
+    let normalized = rankName.toLowerCase().trim();
+    if (normalized === 'unranked') normalized = 'unrated';
     const key = normalized === 'radiant' ? 'radient' : normalized;
 
     if (size !== undefined) {

@@ -132,6 +132,17 @@ export const RANK_THEMES: Record<string, RankTheme> = {
     pillTextColor: '#62636C',
     glowColor: '#62636C',
   },
+  unranked: {
+    id: 'unranked',
+    name: 'Unranked',
+    primaryColor: '#62636C',
+    darkerColor: '#32343A',
+    cardBorder: '#E2E8F0',
+    pillBg: '#F8F9FA',
+    pillBorder: '#E2E8F0',
+    pillTextColor: '#62636C',
+    glowColor: '#62636C',
+  },
 };
 
 export const REQUESTER_HIGHLIGHT_THEME = {

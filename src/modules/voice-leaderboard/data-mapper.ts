@@ -19,6 +19,7 @@ export const RANK_TEXT_WIDTHS_16: Record<string, number> = {
   immortal: 73,
   radiant: 62,
   unrated: 63,
+  unranked: 63,
 };
 
 export const RANK_TEXT_WIDTHS_21: Record<string, number> = {
@@ -32,6 +33,7 @@ export const RANK_TEXT_WIDTHS_21: Record<string, number> = {
   immortal: 96,
   radiant: 82,
   unrated: 83,
+  unranked: 83,
 };
 
 export function getRankTextWidth(rankName: string, fontSize: number): number {

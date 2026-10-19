@@ -6,6 +6,8 @@ import { templateRegistry } from '../../../core/templates/template-registry.js';
 import { rankAssetCache } from '../../../core/images/rank-asset-cache.js';
 import { fontRegistry } from '../../../core/fonts/font-registry.js';
 import { resolve } from 'node:path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 describe('VoiceProfileModule', () => {
   beforeAll(async () => {
@@ -318,5 +320,48 @@ describe('VoiceProfileModule', () => {
     expect(renderedSvg).toContain('line x1="216" y1="71" x2="216" y2="141"');
     expect(renderedSvg).toContain('line x1="400" y1="71" x2="400" y2="141"');
     expect(renderedSvg).toContain('line x1="616" y1="71" x2="616" y2="141"');
+  });
+
+  it('sanitizes unsupported emojis in username and eliminates template dummy data for zero/empty profile', async () => {
+    const { mapVoiceProfileData } = await import('../data-mapper.js');
+    const templateSvg = fs.readFileSync(
+      path.resolve(process.cwd(), 'templates/voice-profile/profile.svg'),
+      'utf-8'
+    );
+
+    // Profile with emoji username, 0 hours, no bio, no badges, rank 0
+    const input = {
+      profile: {
+        username: 'chivas🍻👁️',
+      },
+      timeBreakdown: {
+        camMinutes: 0,
+        nonCamMinutes: 0,
+      },
+    };
+
+    const renderedSvg = mapVoiceProfileData(templateSvg, input as any);
+
+    // 1. Emoji username should be sanitized to chivas (no tofu)
+    expect(renderedSvg).toContain('chivas');
+    expect(renderedSvg).not.toContain('🍻');
+    expect(renderedSvg).not.toContain('👁️');
+
+    // 2. No dummy numbers or fake text should leak
+    expect(renderedSvg).not.toContain('1,128h');
+    expect(renderedSvg).not.toContain('809h');
+    expect(renderedSvg).not.toContain('1,937h');
+    expect(renderedSvg).not.toContain('Focus. Compete. Improve.');
+    expect(renderedSvg).not.toContain('>Hall of Fame<');
+    expect(renderedSvg).not.toContain('>Top Performer<');
+    expect(renderedSvg).not.toContain('>Winner<');
+
+    // 3. Time breakdown cards show 0h and 0%
+    expect(renderedSvg).toContain('0h');
+    expect(renderedSvg).toContain('0%');
+
+    // 4. Counters default to 0 and leaderboard defaults to #-- and Top 100%
+    expect(renderedSvg).toContain('#--');
+    expect(renderedSvg).toContain('Top 100%');
   });
 });

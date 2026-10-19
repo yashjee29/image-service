@@ -1,4 +1,4 @@
-import { escapeXmlText } from '../../core/svg/svg-escaping.js';
+import { escapeXmlText, sanitizeDisplayText } from '../../core/svg/svg-escaping.js';
 import { rankAssetCache } from '../../core/images/rank-asset-cache.js';
 import { leaderboardAssetCache } from '../../core/images/leaderboard-asset-cache.js';
 import { getRankTheme, isHighTierRank, REQUESTER_HIGHLIGHT_THEME } from './config.js';
@@ -99,16 +99,17 @@ export function fitUsername(
   maxWidth = 300,
   fontSizes = [33, 29, 26, 23]
 ): { displayName: string; fontSize: number; width: number } {
+  const sanitized = sanitizeDisplayText(rawName, 'User');
   for (const size of fontSizes) {
-    const w = estimateNameWidth(rawName, size);
+    const w = estimateNameWidth(sanitized, size);
     if (w <= maxWidth) {
-      return { displayName: rawName, fontSize: size, width: w };
+      return { displayName: sanitized, fontSize: size, width: w };
     }
   }
 
   const minSize = fontSizes[fontSizes.length - 1]!;
-  for (let len = rawName.length - 1; len >= 1; len--) {
-    const candidate = rawName.substring(0, len) + '...';
+  for (let len = sanitized.length - 1; len >= 1; len--) {
+    const candidate = sanitized.substring(0, len) + '...';
     const w = estimateNameWidth(candidate, minSize);
     if (w <= maxWidth) {
       return { displayName: candidate, fontSize: minSize, width: w };
@@ -1081,7 +1082,7 @@ export function mapVoiceLeaderboardData(
     const entry = entriesByRank.get(rank);
     if (!entry) continue;
 
-    const escapedName = escapeXmlText(entry.username);
+    const escapedName = escapeXmlText(sanitizeDisplayText(entry.username, 'User'));
     const escapedHours = escapeXmlText(formatLeaderboardHours(entry.durationMinutes, entry.hours ?? entry.camHours));
     const badgeText = escapeXmlText(entry.badge ?? (rank === 1 ? 'Champion' : rank === 2 ? 'Silver' : 'Bronze'));
 
@@ -1124,7 +1125,7 @@ export function mapVoiceLeaderboardData(
     const rowWidth = 490;
     const rowHeight = 56;
 
-    const escapedName = escapeXmlText(entry.username);
+    const escapedName = escapeXmlText(sanitizeDisplayText(entry.username, 'User'));
     const escapedHours = escapeXmlText(formatLeaderboardHours(entry.durationMinutes, entry.hours ?? entry.camHours));
     const avatarUri = avatarMap[entry.rank];
     const isCurrentUser = Boolean(entry.isCurrentUser);

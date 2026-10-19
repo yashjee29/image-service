@@ -496,6 +496,38 @@ describe('VoiceLeaderboardModule', () => {
     expect(extCategoryBadge).toContain('>ONLY.<');
     expect(extCategoryBadge).not.toContain('VOICE');
   });
+
+  it('strips unsupported emojis and normalizes fancy pseudo-fonts in leaderboard usernames', async () => {
+    const { mapStudyLeaderboardData, mapExtendedStudyLeaderboardData } = await import('../data-mapper.js');
+    
+    // Podium test with emoji username and pseudo-font
+    const validatedPodium = voiceLeaderboardModule.validate({
+      render: { layout: 'podium_and_list' },
+      entries: [
+        { rank: 1, username: 'chivas🍻👁️', durationMinutes: 1000 },
+        { rank: 2, username: '𝕔𝕙𝕚𝕧𝕒𝕤', durationMinutes: 800 },
+        { rank: 3, username: '🍻👁️🔥', durationMinutes: 600 },
+        { rank: 4, username: 'player#1234', durationMinutes: 400 },
+      ],
+    });
+    const podiumTemplate = templateRegistry.get('study-leaderboard-2');
+    const podiumSvg = mapStudyLeaderboardData(podiumTemplate!.content, validatedPodium);
+    
+    // chivas🍻👁️ should be sanitized to chivas (no emojis)
+    expect(podiumSvg).toContain('chivas');
+    expect(podiumSvg).not.toContain('🍻');
+    expect(podiumSvg).not.toContain('👁️');
+    
+    // 𝕔𝕙𝕚𝕧𝕒𝕤 should be normalized to chivas
+    expect(podiumSvg).not.toContain('𝕔𝕙𝕚𝕧𝕒𝕤');
+
+    // All emoji username should fallback to User
+    expect(podiumSvg).toContain('User');
+    expect(podiumSvg).not.toContain('🔥');
+
+    // Valid symbol username player#1234 should be preserved
+    expect(podiumSvg).toContain('player#1234');
+  });
 });
 
 

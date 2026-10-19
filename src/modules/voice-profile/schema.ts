@@ -8,7 +8,7 @@ export const RenderOptionsSchema = z.object({
 
 export const ProfileInfoSchema = z.object({
   userId: z.string().optional(),
-  username: z.string().min(1).max(32).default('Sakha'),
+  username: z.string().min(1).max(32).default('User'),
   avatarUrl: z.string().url().optional(),
   bio: z.string().max(80).optional(),
 });
@@ -40,8 +40,8 @@ export const CountersSchema = z.object({
 });
 
 export const LeaderboardDataSchema = z.object({
-  rank: z.union([z.number().int(), z.string()]).default(1),
-  topPercent: z.union([z.number(), z.string()]).default(1),
+  rank: z.union([z.number().int(), z.string()]).default(0),
+  topPercent: z.union([z.number(), z.string()]).default(100),
   trendValues: z.array(z.number().nonnegative()).optional(),
 });
 

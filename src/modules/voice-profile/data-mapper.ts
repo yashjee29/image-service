@@ -1,4 +1,4 @@
-import { escapeXmlText } from '../../core/svg/svg-escaping.js';
+import { escapeXmlText, sanitizeDisplayText } from '../../core/svg/svg-escaping.js';
 import { rankAssetCache } from '../../core/images/rank-asset-cache.js';
 import { voiceProfileConfig } from './config.js';
 import type { VoiceProfileInput } from './schema.js';
@@ -212,18 +212,19 @@ export function fitUsername(
   rawName: string,
   maxWidth = 300
 ): { displayName: string; fontSize: number; width: number } {
+  const cleanName = sanitizeDisplayText(rawName, 'User');
   const fontSizes = [44, 40, 36, 32];
   for (const size of fontSizes) {
-    const w = estimateNameWidth(rawName, size);
+    const w = estimateNameWidth(cleanName, size);
     if (w <= maxWidth) {
-      return { displayName: rawName, fontSize: size, width: w };
+      return { displayName: cleanName, fontSize: size, width: w };
     }
   }
 
   // Truncate at size 32
   const minSize = 32;
-  for (let len = rawName.length - 1; len >= 1; len--) {
-    const candidate = rawName.substring(0, len) + '...';
+  for (let len = cleanName.length - 1; len >= 1; len--) {
+    const candidate = cleanName.substring(0, len) + '...';
     const w = estimateNameWidth(candidate, minSize);
     if (w <= maxWidth) {
       return { displayName: candidate, fontSize: minSize, width: w };
@@ -524,25 +525,23 @@ export function mapVoiceProfileData(
   }
 
   // 3. Bio
-  const bio = data.profile?.bio ?? data.bio;
-  if (bio !== undefined) {
-    const escapedBio = escapeXmlText(bio);
+  const rawBio = data.profile?.bio ?? data.bio;
+  if (rawBio && rawBio.trim().length > 0) {
+    const cleanBio = sanitizeDisplayText(rawBio, '');
     output = output.replace(
       /<text x="253" y="181" font-size="20" font-weight="500" fill="[^"]*">[^<]*<\/text>/,
-      `<text x="253" y="181" font-size="20" font-weight="500" fill="#5A6275">${escapedBio}</text>`
+      `<text x="253" y="181" font-size="20" font-weight="500" fill="#5A6275">${escapeXmlText(cleanBio)}</text>`
+    );
+  } else {
+    // Remove default placeholder motto so it never shows fake default bio
+    output = output.replace(
+      /<text x="253" y="181" font-size="20" font-weight="500" fill="[^"]*">[^<]*<\/text>/,
+      ''
     );
   }
 
-  // 3.5. Badges
-  const badgeList =
-    data.badges !== undefined
-      ? data.badges
-      : [
-          { id: 'hall-of-fame', name: 'Hall of Fame', assetKey: 'badge-hall-of-fame' },
-          { id: 'top-performer', name: 'Top Performer', assetKey: 'badge-top-performer' },
-          { id: 'winner', name: 'Winner', assetKey: 'badge-winner' },
-        ];
-
+  // 3.5. Badges (Default to empty, never inject fake badges)
+  const badgeList = data.badges !== undefined ? data.badges : [];
   const badgesMarkup = layoutBadges(badgeList);
   const badgesBlockRegex = /<!-- Badge 1:[\s\S]*?<!-- Badge 3:[\s\S]*?<\/g>/;
   output = output.replace(badgesBlockRegex, badgesMarkup);
@@ -568,7 +567,7 @@ export function mapVoiceProfileData(
 
   // 5. Leaderboard
   let rankStr = defaults.leaderboardRank;
-  if (data.leaderboard?.rank !== undefined) {
+  if (data.leaderboard?.rank !== undefined && data.leaderboard.rank !== 0 && data.leaderboard.rank !== '0') {
     const rawRank = String(data.leaderboard.rank);
     rankStr = rawRank.startsWith('#') ? rawRank : `#${rawRank}`;
   }
@@ -652,8 +651,7 @@ export function mapVoiceProfileData(
   );
 
   // 7. Next Rank Progression ("TO NEXT RANK GROUP")
-  if (data.rank || data.nextRank) {
-    let curRankId = defaults.currentRankId;
+  let curRankId = defaults.currentRankId;
     let curName = defaults.currentRankName;
     let curRange = defaults.currentRankRange;
     let nxtRankId = defaults.nextRankId;
@@ -725,34 +723,33 @@ export function mapVoiceProfileData(
       /(?:<!-- [^\n]*Rank Badge[^\n]*\n\s*)?<g transform="translate\(30, 63\)">[\s\S]*?<text x="796" y="68"[^>]*>[\s\S]*?<\/text>/,
       progressionSvg
     );
-  }
 
-  // 8. Time Breakdown
-  if (data.timeBreakdown?.camMinutes !== undefined && data.timeBreakdown?.nonCamMinutes !== undefined) {
-    const camMins = data.timeBreakdown.camMinutes;
-    const nonCamMins = data.timeBreakdown.nonCamMinutes;
-    const totalMins = camMins + nonCamMins;
+  // 8. Time Breakdown (Always map; never allow template dummy numbers 1,128h / 809h to show)
+  const camMins = data.timeBreakdown?.camMinutes ?? 0;
+  const nonCamMins = data.timeBreakdown?.nonCamMinutes ?? 0;
+  const totalMins = data.timeBreakdown !== undefined
+    ? (camMins + nonCamMins)
+    : (data.hours?.allTime?.durationMinutes ?? 0);
 
-    const camHoursStr = formatDurationHours(camMins);
-    const camPercentStr = totalMins > 0 ? `${Math.round((camMins / totalMins) * 100)}%` : '0%';
-    output = output.replace(
-      /(<!-- Card 1: CAM HOURS -->[\s\S]*?<text x="229" y="33\.5" text-anchor="middle" font-size="13" font-weight="700" fill=")[^"]*(")[^<]*(<\/text>[\s\S]*?<text x="24" y="76" font-size="31" class="stat-num">)[^<]*(<\/text>)/,
-      `$1#5BB996$2>${escapeXmlText(camPercentStr)}$3${escapeXmlText(camHoursStr)}$4`
-    );
+  const camHoursStr = formatDurationHours(camMins);
+  const camPercentStr = totalMins > 0 ? `${Math.round((camMins / totalMins) * 100)}%` : '0%';
+  output = output.replace(
+    /(<!-- Card 1: CAM HOURS -->[\s\S]*?<text x="24" y="76" font-size="31" class="stat-num">)[^<]*(<\/text>\s*<text [^>]*font-size="17"[^>]*>)[^<]*(<\/text>)/,
+    `$1${escapeXmlText(camHoursStr)}$2${escapeXmlText(camPercentStr)}$3`
+  );
 
-    const nonCamHoursStr = formatDurationHoursAndMins(nonCamMins);
-    const nonCamPercentStr = totalMins > 0 ? `${Math.round((nonCamMins / totalMins) * 100)}%` : '0%';
-    output = output.replace(
-      /(<!-- Card 2: NON CAM HOURS -->[\s\S]*?<text x="229" y="33\.5" text-anchor="middle" font-size="13" font-weight="700" fill=")[^"]*(")[^<]*(<\/text>[\s\S]*?<text x="24" y="76" font-size="31" class="stat-num">)[^<]*(<\/text>)/,
-      `$1#F97316$2>${escapeXmlText(nonCamPercentStr)}$3${escapeXmlText(nonCamHoursStr)}$4`
-    );
+  const nonCamHoursStr = formatDurationHoursAndMins(nonCamMins);
+  const nonCamPercentStr = totalMins > 0 ? `${Math.round((nonCamMins / totalMins) * 100)}%` : '0%';
+  output = output.replace(
+    /(<!-- Card 2: NON CAM HOURS -->[\s\S]*?<text x="24" y="76" font-size="31" class="stat-num">)[^<]*(<\/text>\s*<text [^>]*font-size="17"[^>]*>)[^<]*(<\/text>)/,
+    `$1${escapeXmlText(nonCamHoursStr)}$2${escapeXmlText(nonCamPercentStr)}$3`
+  );
 
-    const overallHoursStr = formatDurationHoursAndMins(totalMins);
-    output = output.replace(
-      /(<!-- Card 3: OVERALL HOURS -->[\s\S]*?<text x="24" y="76" font-size="31" font-weight="700" fill=")[^"]*(" letter-spacing="-0.02em">)[^<]*(<\/text>)/,
-      `$1#8E7AC5$2${escapeXmlText(overallHoursStr)}$3`
-    );
-  }
+  const overallHoursStr = formatDurationHoursAndMins(totalMins);
+  output = output.replace(
+    /(<!-- Card 3: OVERALL HOURS -->[\s\S]*?<text x="24" y="76" font-size="31" [^>]*letter-spacing="-0\.02em">)[^<]*(<\/text>)/,
+    `$1${escapeXmlText(overallHoursStr)}$2`
+  );
 
   // 9. Activity (Last 7 Days)
   const periodLabel = data.activity?.periodLabel ?? 'LAST 7 DAYS';
@@ -771,55 +768,55 @@ export function mapVoiceProfileData(
     { textX: 460.5, barX: 448 },
   ];
 
-  if (data.activity?.entries && data.activity.entries.length === 7) {
-    const entries = data.activity.entries;
-    const maxMinutes = Math.max(...entries.map((d) => d.durationMinutes), 600);
-    const hasCurrentDayFlag = entries.some(
-      (d) => d.isCurrentDay !== undefined || d.highlight !== undefined
-    );
+  const defaultDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const activityEntries =
+    data.activity?.entries && data.activity.entries.length === 7
+      ? data.activity.entries
+      : data.last7Days && data.last7Days.length === 7
+      ? data.last7Days.map((d) => ({
+          label: d.day,
+          durationMinutes: d.minutes ?? 0,
+          durationStr: d.duration,
+          highlight: d.highlight,
+          isCurrentDay: d.highlight,
+        }))
+      : defaultDays.map((day, idx) => ({
+          label: day,
+          durationMinutes: 0,
+          durationStr: '0h',
+          highlight: idx === 6,
+          isCurrentDay: idx === 6,
+        }));
 
-    let barsMarkup = '';
-    entries.forEach((d, idx) => {
-      const pos = xPositions[idx]!;
-      const minutes = d.durationMinutes;
-      const height = Math.min(80, Math.max(10, Math.round((minutes / maxMinutes) * 80)));
-      const y = 130 - height; // baseline at y=130
-      const textY = y - 9;
-      const durationStr = formatActivityDuration(minutes);
-      const isHighlight = hasCurrentDayFlag
-        ? Boolean(d.isCurrentDay ?? d.highlight)
-        : idx === 6;
-      const fill = isHighlight ? 'url(#bar-active)' : 'url(#bar-lavender)';
+  const maxMinutes = Math.max(...activityEntries.map((d) => d.durationMinutes), 600);
+  const hasCurrentDayFlag = activityEntries.some(
+    (d) => d.isCurrentDay !== undefined || d.highlight !== undefined
+  );
 
-      barsMarkup += `\n      <!-- Bar ${idx + 1}: ${escapeXmlText(d.label)} (${escapeXmlText(durationStr)}) -->
+  let barsMarkup = '';
+  activityEntries.forEach((d, idx) => {
+    const pos = xPositions[idx]!;
+    const minutes = d.durationMinutes;
+    const height = Math.min(80, Math.max(10, Math.round((minutes / maxMinutes) * 80)));
+    const y = 130 - height; // baseline at y=130
+    const textY = y - 9;
+    const durationStr =
+      'durationStr' in d && d.durationStr
+        ? (d.durationStr as string)
+        : formatActivityDuration(minutes);
+    const isHighlight = hasCurrentDayFlag
+      ? Boolean(d.isCurrentDay ?? d.highlight)
+      : idx === 6;
+    const fill = isHighlight ? 'url(#bar-active)' : 'url(#bar-lavender)';
+
+    barsMarkup += `\n      <!-- Bar ${idx + 1}: ${escapeXmlText(d.label)} (${escapeXmlText(durationStr)}) -->
       <text x="${pos.textX}" y="${textY}" text-anchor="middle" class="chart-text">${escapeXmlText(durationStr)}</text>
       <rect x="${pos.barX}" y="${y}" width="25" height="${height}" rx="4" fill="${fill}" />
       <text x="${pos.textX}" y="147" text-anchor="middle" class="chart-text">${escapeXmlText(d.label)}</text>`;
-    });
+  });
 
-    const barsBlockRegex = /<!-- Bar 1: Mon [\s\S]*?<!-- Bar 7: Sun [\s\S]*?<text x="460\.5" y="147" text-anchor="middle" class="chart-text">Sun<\/text>/;
-    output = output.replace(barsBlockRegex, barsMarkup.trim());
-  } else if (data.last7Days && data.last7Days.length === 7) {
-    // Legacy last7Days mapping
-    const maxMinutes = Math.max(...data.last7Days.map((d) => d.minutes ?? 60), 600);
-    let barsMarkup = '';
-    data.last7Days.forEach((d, idx) => {
-      const pos = xPositions[idx]!;
-      const minutes = d.minutes ?? 60;
-      const height = Math.min(80, Math.max(10, Math.round((minutes / maxMinutes) * 80)));
-      const y = 130 - height;
-      const textY = y - 9;
-      const fill = d.highlight ? 'url(#bar-active)' : 'url(#bar-lavender)';
-
-      barsMarkup += `\n      <!-- Bar ${idx + 1}: ${escapeXmlText(d.day)} (${escapeXmlText(d.duration)}) -->
-      <text x="${pos.textX}" y="${textY}" text-anchor="middle" class="chart-text">${escapeXmlText(d.duration)}</text>
-      <rect x="${pos.barX}" y="${y}" width="25" height="${height}" rx="4" fill="${fill}" />
-      <text x="${pos.textX}" y="147" text-anchor="middle" class="chart-text">${escapeXmlText(d.day)}</text>`;
-    });
-
-    const barsBlockRegex = /<!-- Bar 1: Mon [\s\S]*?<!-- Bar 7: Sun [\s\S]*?<text x="460\.5" y="147" text-anchor="middle" class="chart-text">Sun<\/text>/;
-    output = output.replace(barsBlockRegex, barsMarkup.trim());
-  }
+  const barsBlockRegex = /<!-- Bar 1: Mon [\s\S]*?<!-- Bar 7: Sun [\s\S]*?<text x="460\.5" y="147" text-anchor="middle" class="chart-text">Sun<\/text>/;
+  output = output.replace(barsBlockRegex, barsMarkup.trim());
 
   return output;
 }

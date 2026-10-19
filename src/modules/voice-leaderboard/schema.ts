@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { voiceLeaderboardConfig } from './config.js';
+import { sanitizeDisplayText } from '../../core/svg/svg-escaping.js';
 
 export const LeaderboardEntrySchema = z.object({
   rank: z.number().int().min(1).max(100),
@@ -82,7 +83,7 @@ export const VoiceLeaderboardInputSchema = z.preprocess((val: any) => {
       rank: rankNum,
       position: rankNum,
       userId: e.userId,
-      username: e.username ?? 'User',
+      username: sanitizeDisplayText(e.username, 'User'),
       avatarUrl: e.avatarUrl,
       durationMinutes: e.durationMinutes,
       hours: e.hours,

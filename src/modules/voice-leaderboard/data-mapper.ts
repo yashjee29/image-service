@@ -354,26 +354,22 @@ export function buildHeaderPeriodBox(
 export function buildHeaderSubtitleBadge(
   startX: number,
   startY: number,
-  category: string
+  _category?: string
 ): string {
-  const m = category.toLowerCase();
-  const isNonCam = m.includes('non') || m.includes('voice') || m.includes('audio');
-  const isBoth = m.includes('both') || m.includes('total') || m.includes('all');
-  
-  const bgFill = isNonCam ? '#f5f3ff' : (isBoth ? '#fff7ed' : '#eaf4ee');
-  const bgStroke = isNonCam ? '#ddd6fe' : (isBoth ? '#ffedd5' : '#d5e5dc');
-  const textFill = isNonCam ? '#6d28d9' : (isBoth ? '#c2410c' : '#0e6c55');
+  // Always fixed to "CAM HOURS" for all leaderboards regardless of cam or non-cam mode
+  const bgFill = '#eaf4ee';
+  const bgStroke = '#d5e5dc';
+  const textFill = '#0e6c55';
 
-  const textW = estimateTextWidth(category, 20);
-  const pillW = Math.max(130, textW + 28);
-  const pillX = startX + 290;
-  const textX = pillX + pillW / 2;
+  const pillW = 151;
+  const pillX = startX + 297;
+  const textX = pillX + 75.5;
   const onlyX = pillX + pillW + 12;
 
   return `<g id="header-category-badge">
     <text x="${startX}" y="${startY + 26}" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="600" fill="#62636c" text-anchor="start" letter-spacing="1">HALL OF FAME DECIDED BY</text>
-    <rect x="${pillX}" y="${startY}" width="${pillW}" height="37" rx="19" fill="${bgFill}" stroke="${bgStroke}" stroke-width="1" />
-    <text x="${textX}" y="${startY + 26}" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="700" fill="${textFill}" text-anchor="middle">${escapeXmlText(category)}</text>
+    <rect x="${pillX}" y="${startY}" width="${pillW}" height="37" rx="18.5" fill="${bgFill}" stroke="${bgStroke}" stroke-width="1" />
+    <text x="${textX}" y="${startY + 26}" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="700" fill="${textFill}" text-anchor="middle">CAM HOURS</text>
     <text x="${onlyX}" y="${startY + 26}" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="20" font-weight="600" fill="#62636c" text-anchor="start">ONLY.</text>
   </g>`;
 }

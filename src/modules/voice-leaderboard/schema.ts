@@ -126,10 +126,16 @@ export const VoiceLeaderboardInputSchema = z.preprocess((val: any) => {
     : voiceLeaderboardConfig.defaults.title;
   const title = val.title ?? defaultTitle;
 
+  const defaultSubtitle = isStudy
+    ? voiceLeaderboardConfig.studyDefaults.subtitle
+    : voiceLeaderboardConfig.defaults.subtitle;
+  const subtitle = val.subtitle ?? defaultSubtitle;
+
   return {
     ...val,
     templateId,
     title,
+    subtitle,
     requestContext: val.requestContext,
     render: val.render,
     period: period ?? val.period,

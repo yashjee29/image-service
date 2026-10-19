@@ -456,6 +456,46 @@ describe('VoiceLeaderboardModule', () => {
     expect(listSvg).toContain('No Users on this Page');
     expect(listSvg).not.toContain('id="study-ext-table-col-1"');
   });
+
+  it('always displays "HALL OF FAME DECIDED BY CAM HOURS ONLY." in header regardless of metric filter', async () => {
+    const { mapStudyLeaderboardData, mapExtendedStudyLeaderboardData } = await import('../data-mapper.js');
+    
+    // Test podium template with non-cam mode
+    const nonCamPodium = voiceLeaderboardModule.validate({
+      render: { layout: 'podium_and_list' },
+      filters: { metric: 'non-cam' },
+      entries: [
+        { rank: 1, username: 'PlayerOne', durationMinutes: 1000 },
+      ],
+    });
+    const podiumTemplate = templateRegistry.get('study-leaderboard-2');
+    const podiumSvg = mapStudyLeaderboardData(podiumTemplate!.content, nonCamPodium);
+    const categoryBadgeMatch = podiumSvg.match(/<g id="header-category-badge">[\s\S]*?<\/g>/);
+    expect(categoryBadgeMatch).not.toBeNull();
+    const categoryBadge = categoryBadgeMatch![0];
+    expect(categoryBadge).toContain('HALL OF FAME DECIDED BY');
+    expect(categoryBadge).toContain('>CAM HOURS<');
+    expect(categoryBadge).toContain('>ONLY.<');
+    expect(categoryBadge).not.toContain('NON-CAM');
+
+    // Test extended list template with voice mode
+    const voiceList = voiceLeaderboardModule.validate({
+      render: { layout: 'list' },
+      filters: { metric: 'voice' },
+      entries: [
+        { rank: 12, username: 'PlayerTwelve', durationMinutes: 500 },
+      ],
+    });
+    const listTemplate = templateRegistry.get('study-leaderboard');
+    const listSvg = mapExtendedStudyLeaderboardData(listTemplate!.content, voiceList);
+    const extCategoryBadgeMatch = listSvg.match(/<g id="header-category-badge">[\s\S]*?<\/g>/);
+    expect(extCategoryBadgeMatch).not.toBeNull();
+    const extCategoryBadge = extCategoryBadgeMatch![0];
+    expect(extCategoryBadge).toContain('HALL OF FAME DECIDED BY');
+    expect(extCategoryBadge).toContain('>CAM HOURS<');
+    expect(extCategoryBadge).toContain('>ONLY.<');
+    expect(extCategoryBadge).not.toContain('VOICE');
+  });
 });
 
 

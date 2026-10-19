@@ -297,10 +297,6 @@
 
       <text x="49" y="30" class="sub-header">LAST 7 DAYS</text>
 
-      <!-- View details link -->
-      <text x="418" y="29" font-size="12.5" font-weight="600" fill="#0066FF">View details</text>
-      <path d="M489 25 H497 M493.5 21.5 L497.5 25 L493.5 28.5" stroke="#0066FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-
       <!-- Dashed Baseline -->
       <line x1="14" y1="130" x2="502" y2="130" stroke="#E2DBD7" stroke-width="1.3" stroke-dasharray="5,4" />
 

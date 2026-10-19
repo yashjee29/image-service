@@ -363,5 +363,8 @@ describe('VoiceProfileModule', () => {
     // 4. Counters default to 0 and leaderboard defaults to #-- and Top 100%
     expect(renderedSvg).toContain('#--');
     expect(renderedSvg).toContain('Top 100%');
+
+    // 5. "View details" and link arrow should not exist in bar graph
+    expect(renderedSvg).not.toContain('View details');
   });
 });

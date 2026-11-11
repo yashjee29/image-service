@@ -7,6 +7,7 @@ import { fontRegistry } from './core/fonts/font-registry.js';
 import { moduleRegistry } from './modules/registry.js';
 import { voiceProfileModule } from './modules/voice-profile/index.js';
 import { voiceLeaderboardModule } from './modules/voice-leaderboard/index.js';
+import { welcomeImageModule } from './modules/welcome-image/index.js';
 import { errorHandler } from './plugins/error-handler.js';
 import { requestContextPlugin } from './plugins/request-context.js';
 import { healthRoutes } from './routes/health.routes.js';
@@ -42,6 +43,18 @@ export async function initializeServices(): Promise<void> {
   }
   if (!moduleRegistry.has('study-leaderboard-extended')) {
     moduleRegistry.registerAlias('study-leaderboard-extended', voiceLeaderboardModule.id);
+  }
+  if (!moduleRegistry.has(welcomeImageModule.id)) {
+    moduleRegistry.register(welcomeImageModule);
+  }
+  if (!moduleRegistry.has('welcome')) {
+    moduleRegistry.registerAlias('welcome', welcomeImageModule.id);
+  }
+  if (!moduleRegistry.has('welcome-card')) {
+    moduleRegistry.registerAlias('welcome-card', welcomeImageModule.id);
+  }
+  if (!moduleRegistry.has('welcome-image-v1')) {
+    moduleRegistry.registerAlias('welcome-image-v1', welcomeImageModule.id);
   }
 }
 

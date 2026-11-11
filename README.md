@@ -72,8 +72,11 @@ image-service/
 │   ├── voice-profile/
 │   │   ├── profile.svg                 # Production baked-shadow SVG template
 │   │   └── profile-raw.svg             # Original dynamic reference SVG template
-│   └── voice-leaderboard/
-│       └── leaderboard.svg             # Vector leaderboard SVG template
+│   ├── voice-leaderboard/
+│   │   └── leaderboard.svg             # Vector leaderboard SVG template
+│   └── welcome-image/
+│       ├── welcome-image.svg           # Welcome card template
+│       └── welcome-image-raw.svg       # Original SVG reference
 │
 ├── assets/                             # Module-specific and shared assets
 │   ├── fonts/                          # Bundled Poppins font files (pruned to 4 required weights)
@@ -373,6 +376,19 @@ curl -X POST http://localhost:9100/api/v1/render/voice-leaderboard \
   --output voice-leaderboard.png
 ```
 
+#### Example 3: Render Welcome Image Banner
+
+```bash
+curl -X POST http://localhost:9100/api/v1/render/welcome-image \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "Aarav",
+    "avatarUrl": "https://cdn.discordapp.com/avatars/123/abc.png",
+    "badgeText": "Glad to have you here!"
+  }' \
+  --output welcome-card.png
+```
+
 ---
 
 ## 6. How to Add a New Image Module
@@ -432,6 +448,26 @@ To add a new image design (e.g., `text-leaderboard`, `user-badge`, `achievement-
 
 5. **Register in `src/modules/achievement-card/index.ts` and `src/app.ts`**:
    The module registry handles typed lookup, validation, caching, and raw PNG HTTP dispatch automatically.
+
+### Embedding PNG assets or emojis in SVG templates
+
+Use the shared image helpers from `src/core/images/image-injector.ts` in any module's data mapper. They keep PNG encoding and SVG `<image>` attributes consistent with the profile and leaderboard renderers:
+
+```typescript
+import { buildSvgImageFromBuffer } from '../../core/images/image-injector.js';
+
+const emojiMarkup = buildSvgImageFromBuffer({
+  buffer: emojiPngBuffer,
+  x: 420,
+  y: 180,
+  width: 28,
+  height: 28,
+  preserveAspectRatio: 'xMidYMid meet',
+});
+const svg = context.template.content.replace('<!-- EMOJI_SLOT -->', emojiMarkup);
+```
+
+For already encoded image data, use `buildSvgImageTag({ dataUri, ... })`; for a raw buffer that needs a data URI first, use `bufferToDataUri(buffer, 'image/png')`. Pass `clipPathUrl` when the asset needs clipping, such as circular avatars. Keep layout coordinates and sizing in the module's data mapper or config.
 
 ---
 

@@ -1,0 +1,810 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <!-- Fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
+      .font-main {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      }
+    </style>
+
+    <!-- Background & Surface Gradients -->
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#FDFBF9" />
+      <stop offset="55%" stop-color="#FCF6F2" />
+      <stop offset="100%" stop-color="#F9EAE3" />
+    </linearGradient>
+
+    <linearGradient id="deskSurface" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9E5DC" />
+      <stop offset="50%" stop-color="#F5D8CC" />
+      <stop offset="100%" stop-color="#EFCABB" />
+    </linearGradient>
+
+    <linearGradient id="deskFadeLeft" x1="0%" y1="0%" x2="22%" y2="0%">
+      <stop offset="0%" stop-color="#FCF6F2" stop-opacity="1" />
+      <stop offset="100%" stop-color="#FCF6F2" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Lamp Light Cone Gradient -->
+    <linearGradient id="lampGlow" x1="65%" y1="15%" x2="30%" y2="85%">
+      <stop offset="0%" stop-color="#FFE599" stop-opacity="0.65" />
+      <stop offset="55%" stop-color="#FFF0C2" stop-opacity="0.32" />
+      <stop offset="100%" stop-color="#FFF7DE" stop-opacity="0.0" />
+    </linearGradient>
+
+    <!-- Lamp Shade Gradients -->
+    <linearGradient id="lampShadeGrad" x1="0%" y1="0%" x2="100%" y2="30%">
+      <stop offset="0%" stop-color="#9E8D95" />
+      <stop offset="55%" stop-color="#88777F" />
+      <stop offset="100%" stop-color="#73636B" />
+    </linearGradient>
+
+    <linearGradient id="lampInnerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE299" />
+      <stop offset="100%" stop-color="#F6C467" />
+    </linearGradient>
+
+    <!-- Avatar Gradients & Clip -->
+    <clipPath id="avatarClip">
+      <circle cx="175" cy="226" r="115" />
+    </clipPath>
+
+    <linearGradient id="avatarSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCE5D4" />
+      <stop offset="65%" stop-color="#F6CEBE" />
+      <stop offset="100%" stop-color="#E2B6B3" />
+    </linearGradient>
+
+    <linearGradient id="hoodieGrad" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A61" />
+      <stop offset="55%" stop-color="#F55B43" />
+      <stop offset="100%" stop-color="#D9412B" />
+    </linearGradient>
+
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8B486" />
+      <stop offset="65%" stop-color="#EEA06E" />
+      <stop offset="100%" stop-color="#DA8554" />
+    </linearGradient>
+
+    <!-- Book Gradients -->
+    <linearGradient id="bookRedSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F4715A" />
+      <stop offset="50%" stop-color="#EE5E46" />
+      <stop offset="100%" stop-color="#DC4B35" />
+    </linearGradient>
+    <linearGradient id="bookRedTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FA917D" />
+      <stop offset="100%" stop-color="#F2725C" />
+    </linearGradient>
+
+    <linearGradient id="bookPurpleSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A890EE" />
+      <stop offset="55%" stop-color="#967CE0" />
+      <stop offset="100%" stop-color="#8065CE" />
+    </linearGradient>
+    <linearGradient id="bookPurpleTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C0ADF6" />
+      <stop offset="100%" stop-color="#A38BE8" />
+    </linearGradient>
+
+    <linearGradient id="bookTealSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#62C8AC" />
+      <stop offset="55%" stop-color="#4AB698" />
+      <stop offset="100%" stop-color="#369E81" />
+    </linearGradient>
+
+    <!-- Ceramic Pot & Cup Gradients -->
+    <linearGradient id="potGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFF1EA" />
+      <stop offset="65%" stop-color="#F9E0D4" />
+      <stop offset="100%" stop-color="#E8C7B9" />
+    </linearGradient>
+
+    <!-- Soft Drop Shadow -->
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#5B3829" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- ==================== MAIN CONTAINER CARD ==================== -->
+  <rect x="18" y="18" width="1164" height="639" rx="30" fill="url(#cardBg)" stroke="#EDE0DA" stroke-width="1.5" />
+
+  <!-- Subtle Window Light Reflection on Top-Right Wall -->
+  <g opacity="0.42">
+    <polygon points="895,19 955,19 915,245 855,245" fill="#FFFDFB" />
+    <polygon points="972,19 1045,19 1005,245 932,245" fill="#FFFDFB" />
+    <polygon points="875,115 1050,65 1050,82 875,132" fill="#F6E6DF" />
+    <polygon points="860,200 1035,150 1035,167 860,217" fill="#F6E6DF" />
+  </g>
+
+  <!-- ==================== TOP-LEFT SPARKLES ==================== -->
+  <!-- Orange 4-Point Star -->
+  <path d="M 90 56 Q 90 72 106 72 Q 90 72 90 88 Q 90 72 74 72 Q 90 72 90 56 Z"
+        fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+  <!-- Purple 4-Point Star -->
+  <path d="M 58 91 Q 58 105 72 105 Q 58 105 58 119 Q 58 105 44 105 Q 58 105 58 91 Z"
+        fill="none" stroke="#9B6BFF" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" />
+
+  <!-- ==================== AVATAR ILLUSTRATION ==================== -->
+  <g id="avatar">
+    <!-- Outer White/Cream Circle with Peach Ring -->
+    <circle cx="175" cy="226" r="127" fill="#FFFDFB" stroke="#F4B7A2" stroke-width="2.5" />
+    <!-- Subtle Inner Border -->
+    <circle cx="175" cy="226" r="115.5" fill="none" stroke="#F3D5C9" stroke-width="1" />
+
+    <!-- Clipped Character Illustration -->
+    <g clip-path="url(#avatarClip)">
+      <!-- Sunset Sky Background -->
+      <rect x="55" y="105" width="240" height="245" fill="url(#avatarSky)" />
+
+      <!-- Soft Sun Glow -->
+      <circle cx="180" cy="245" r="85" fill="#FFF2E2" opacity="0.45" />
+
+      <!-- Cityscape Silhouette -->
+      <g fill="#C8B2B8" opacity="0.75">
+        <rect x="56" y="205" width="28" height="140" />
+        <rect x="78" y="185" width="32" height="160" />
+        <rect x="104" y="215" width="25" height="130" />
+        <rect x="218" y="218" width="26" height="125" />
+        <rect x="238" y="190" width="34" height="155" />
+        <rect x="266" y="210" width="30" height="135" />
+      </g>
+      <g fill="#AC96A0" opacity="0.65">
+        <rect x="65" y="228" width="36" height="120" />
+        <rect x="208" y="238" width="38" height="110" />
+        <rect x="252" y="224" width="35" height="120" />
+      </g>
+
+      <!-- Neck & Collar Shadow -->
+      <path d="M 140 236 L 135 288 L 196 292 L 185 248 Z" fill="url(#skinGrad)" stroke="#231815" stroke-width="1.8" />
+      <!-- Neck Chin Shadow -->
+      <path d="M 145 242 Q 168 262 185 250 L 183 268 Q 160 272 142 256 Z" fill="#C97046" opacity="0.75" />
+
+      <!-- Dark Undershirt V-Neck -->
+      <path d="M 148 278 Q 168 294 188 278 L 192 315 L 145 315 Z" fill="#2A2024" />
+
+      <!-- Hoodie Base & Shoulders -->
+      <path d="M 62 345 C 66 302 92 286 122 278 L 166 292 L 204 280 C 228 288 242 310 248 345 Z"
+            fill="url(#hoodieGrad)" stroke="#231815" stroke-width="2" stroke-linejoin="round" />
+
+      <!-- Hoodie Hood Fold (Left & Right) -->
+      <path d="M 88 286 C 78 265 92 236 126 238 C 122 255 128 276 156 290 C 125 292 100 292 88 286 Z"
+            fill="#FF785E" stroke="#231815" stroke-width="1.8" stroke-linejoin="round" />
+      <path d="M 188 256 C 206 260 216 274 208 288 C 198 296 182 296 168 292 C 180 284 188 272 188 256 Z"
+            fill="#E04E38" stroke="#231815" stroke-width="1.8" stroke-linejoin="round" />
+
+      <!-- Hoodie Inner Fold Shadow -->
+      <path d="M 102 260 C 106 248 120 245 128 248 C 126 262 136 276 154 286 C 132 284 110 274 102 260 Z"
+            fill="#C83E2B" opacity="0.85" />
+
+      <!-- Hoodie Seam Lines & Shading -->
+      <path d="M 96 292 Q 128 308 166 294" fill="none" stroke="#231815" stroke-width="1.6" />
+      <path d="M 110 298 L 102 345" fill="none" stroke="#231815" stroke-width="1.6" />
+      <path d="M 218 296 L 230 345" fill="none" stroke="#231815" stroke-width="1.6" />
+      <path d="M 168 294 L 174 345" fill="none" stroke="#B63320" stroke-width="2" />
+
+      <!-- White Hoodie Drawstrings -->
+      <path d="M 157 293 Q 161 320 163 345" fill="none" stroke="#231815" stroke-width="5.5" stroke-linecap="round" />
+      <path d="M 157 293 Q 161 320 163 345" fill="none" stroke="#FFF6F2" stroke-width="3" stroke-linecap="round" />
+
+      <path d="M 192 290 Q 198 318 202 345" fill="none" stroke="#231815" stroke-width="5.5" stroke-linecap="round" />
+      <path d="M 192 290 Q 198 318 202 345" fill="none" stroke="#FFF6F2" stroke-width="3" stroke-linecap="round" />
+
+      <!-- Character Head / Face (3/4 Profile Looking Right) -->
+      <path d="M 136 176
+               L 204 176
+               C 208 190 212 204 209 216
+               C 207 228 202 242 195 251
+               C 190 257 182 258 174 255
+               C 159 249 146 238 139 226
+               Z"
+            fill="url(#skinGrad)" stroke="#231815" stroke-width="1.8" stroke-linejoin="round" />
+
+      <!-- Cheek & Forehead Warm Shading -->
+      <path d="M 142 192 Q 155 218 148 232 L 138 224 Z" fill="#D57D50" opacity="0.55" />
+      <path d="M 188 214 Q 178 222 182 232 Q 192 230 198 222 Z" fill="#DF8859" opacity="0.45" />
+
+      <!-- Left Ear -->
+      <path d="M 140 202 C 128 196 123 212 129 224 C 133 231 141 230 143 224"
+            fill="url(#skinGrad)" stroke="#231815" stroke-width="1.8" stroke-linecap="round" />
+      <path d="M 133 208 C 130 213 132 220 137 221" fill="none" stroke="#B66239" stroke-width="1.6" stroke-linecap="round" />
+
+      <!-- Eyebrows -->
+      <path d="M 162 194 Q 178 191 190 197" fill="none" stroke="#18161B" stroke-width="3.2" stroke-linecap="round" />
+      <path d="M 198 198 Q 205 196 209 200" fill="none" stroke="#18161B" stroke-width="2.8" stroke-linecap="round" />
+
+      <!-- Nose (3/4 Angle) -->
+      <path d="M 196 208 L 203 224 C 204 227 200 229 193 228"
+            fill="none" stroke="#231815" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M 192 224 Q 197 228 201 226" fill="#C97145" opacity="0.65" />
+
+      <!-- Confident Slight Smile -->
+      <path d="M 176 235 Q 188 241 197 238" fill="none" stroke="#231815" stroke-width="1.8" stroke-linecap="round" />
+      <path d="M 183 242 Q 189 244 193 242" fill="none" stroke="#B9653D" stroke-width="1.5" stroke-linecap="round" />
+
+      <!-- Sunglasses -->
+      <g id="sunglasses">
+        <!-- Temple Arm to Ear -->
+        <path d="M 135 201 L 166 203" fill="none" stroke="#141318" stroke-width="4" stroke-linecap="round" />
+        <!-- Left Lens (Front Center) -->
+        <rect x="165" y="198" width="27" height="20" rx="5" transform="rotate(7 178 208)"
+              fill="#181920" stroke="#0E0E12" stroke-width="2.5" />
+        <!-- Right Lens (Far Right) -->
+        <rect x="196" y="201" width="21" height="19" rx="5" transform="rotate(9 206 210)"
+              fill="#181920" stroke="#0E0E12" stroke-width="2.5" />
+        <!-- Nose Bridge -->
+        <path d="M 191 205 Q 195 204 198 206" fill="none" stroke="#0E0E12" stroke-width="3" />
+        <!-- Glossy Lens Highlights -->
+        <polygon points="170,201 176,201 171,215 167,215" fill="#FFFFFF" opacity="0.22" />
+        <polygon points="201,204 205,204 201,216 198,216" fill="#FFFFFF" opacity="0.18" />
+      </g>
+
+      <!-- Spiky Messy Black Anime Hair -->
+      <g id="hair">
+        <!-- Back & Side Hair Base -->
+        <path d="M 124 220
+                 C 114 205 114 185 122 172
+                 C 112 166 116 154 128 150
+                 C 124 140 138 132 152 134
+                 C 156 122 174 116 186 116
+                 C 178 124 178 128 184 128
+                 C 198 120 214 122 224 126
+                 C 214 132 212 136 216 138
+                 C 228 138 238 144 242 150
+                 C 230 152 226 156 232 162
+                 C 224 166 220 168 228 176
+                 C 232 180 238 182 234 186
+                 C 224 188 216 186 212 194
+                 C 206 186 202 184 198 192
+                 C 192 184 186 182 182 194
+                 C 176 184 170 182 164 194
+                 C 160 186 154 186 148 198
+                 C 144 194 140 196 138 204
+                 C 132 200 128 206 128 218 Z"
+              fill="#16171F" stroke="#0D0E13" stroke-width="1.6" stroke-linejoin="round" />
+
+        <!-- Hair Sideburn in Front of Ear -->
+        <path d="M 140 192 L 138 215 L 145 202 Z" fill="#16171F" />
+        <!-- Nape Hair Behind Ear -->
+        <path d="M 125 216 L 118 232 L 130 230 L 126 238 L 136 232 Z" fill="#16171F" />
+
+        <!-- Layered Hair Highlights / Strands -->
+        <path d="M 142 156 Q 165 142 196 146 Q 172 154 150 166 Z" fill="#2C2F3E" />
+        <path d="M 155 138 Q 178 128 206 132 Q 184 138 164 146 Z" fill="#2C2F3E" />
+        <path d="M 130 172 Q 148 162 172 166 Q 150 174 136 184 Z" fill="#2C2F3E" />
+        <path d="M 172 164 Q 196 158 218 168 Q 196 170 178 178 Z" fill="#2C2F3E" />
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== GREETING HEADER ==================== -->
+  <g class="font-main">
+    <!-- "Welcome," -->
+    <text x="325" y="191" font-size="73" font-weight="800" fill="#0F141D" letter-spacing="-1.5">Welcome,</text>
+
+    <!-- "Aarav!" -->
+    <text x="325" y="271" font-size="73" font-weight="800" fill="#FF5A43" letter-spacing="-1">Aarav!</text>
+
+    <!-- 3 Yellow Accent Rays next to "Aarav!" -->
+    <line x1="608" y1="228" x2="622" y2="213" stroke="#F9B949" stroke-width="6" stroke-linecap="round" />
+    <line x1="616" y1="243" x2="641" y2="235" stroke="#F9B949" stroke-width="6" stroke-linecap="round" />
+    <line x1="617" y1="257" x2="631" y2="263" stroke="#F9B949" stroke-width="6" stroke-linecap="round" />
+  </g>
+
+  <!-- ==================== SUB-GREETING PILL BADGE ==================== -->
+  <g id="gladBadge" class="font-main">
+    <rect x="320" y="293" width="322" height="50" rx="25" fill="#FDECE3" />
+
+    <!-- Graduation Cap Icon -->
+    <g transform="translate(340, 305)">
+      <polygon points="17,2 33,10 17,18 1,10" fill="none" stroke="#181B22" stroke-width="2.2" stroke-linejoin="round" />
+      <path d="M 7 13.5 V 21.5 C 7 25 27 25 27 21.5 V 13.5" fill="none" stroke="#181B22" stroke-width="2.2" stroke-linecap="round" />
+      <line x1="32" y1="10.5" x2="32" y2="21" stroke="#E04F38" stroke-width="2" stroke-linecap="round" />
+      <circle cx="32" cy="22.5" r="2.2" fill="#E04F38" />
+    </g>
+
+    <!-- Badge Text -->
+    <text x="390" y="325" font-size="21.5" font-weight="600" fill="#181B22" letter-spacing="-0.2">Glad to have you here!</text>
+  </g>
+
+  <!-- ==================== QUOTE CARD ==================== -->
+  <g id="quoteCard" class="font-main">
+    <rect x="56" y="371" width="555" height="145" rx="26" fill="#FAF7F5" stroke="#E5DDD9" stroke-width="1.5" />
+
+    <!-- Double Quote Mark Icon (“) -->
+    <g fill="#FF5A43" transform="translate(83, 393)">
+      <path d="M 14 2 C 6 7 1 14 1 22 C 1 27 4.5 30 9 30 C 13.5 30 16.5 27 16.5 22.5 C 16.5 18 13 15.5 9.5 15.5 C 9 15.5 8.2 15.7 7.8 15.8 C 8.8 11.5 12.5 7.5 16.5 5 Z" />
+      <path d="M 34 2 C 26 7 21 14 21 22 C 21 27 24.5 30 29 30 C 33.5 30 36.5 27 36.5 22.5 C 36.5 18 33 15.5 29.5 15.5 C 29 15.5 28.2 15.7 27.8 15.8 C 28.8 11.5 32.5 7.5 36.5 5 Z" />
+    </g>
+
+    <!-- Vertical Divider Line -->
+    <line x1="141" y1="396" x2="141" y2="495" stroke="#FF5A43" stroke-width="2.2" stroke-linecap="round" />
+
+    <!-- Quote Text -->
+    <text x="164" y="418" font-size="26.5" font-weight="800" fill="#12161F" letter-spacing="-0.3">Consistency beats intensity.</text>
+    <text x="164" y="454" font-size="25" font-weight="400" fill="#464B55" letter-spacing="-0.2">A little study every day brings</text>
+    <text x="164" y="487" font-size="25" font-weight="400" fill="#464B55" letter-spacing="-0.2">big results over time.</text>
+  </g>
+
+  <!-- ==================== RIGHT ILLUSTRATION: DESK SCENE ==================== -->
+  <g id="deskIllustration">
+    <!-- Sparkles Above Plant -->
+    <!-- Teal 4-Point Star -->
+    <path d="M 827 160 Q 827 173 840 173 Q 827 173 827 186 Q 827 173 814 173 Q 827 173 827 160 Z"
+          fill="none" stroke="#6AC4A6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+    <!-- Orange 4-Point Star -->
+    <path d="M 803 188 Q 803 202 817 202 Q 803 202 803 216 Q 803 202 789 202 Q 803 202 803 188 Z"
+          fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+
+    <!-- Desk Surface -->
+    <path d="M 590 422
+             C 660 402 760 395 880 395
+             L 1182 405
+             L 1182 500
+             C 1182 516 1168 527 1150 527
+             L 590 527 Z"
+          fill="url(#deskSurface)" />
+    <!-- Soft Left Fade on Desk Surface -->
+      <!-- ==================== QUOTE CARD ==================== -->
+  <g id="quoteCard" class="font-main">
+    <rect x="56" y="371" width="555" height="145" rx="26" fill="#FAF7F5" stroke="#E5DDD9" stroke-width="1.5" />
+
+    <!-- Double Quote Mark Icon (“) -->
+    <g fill="#FF5A43" transform="translate(83, 393)">
+      <path d="M 14 2 C 6 7 1 14 1 22 C 1 27 4.5 30 9 30 C 13.5 30 16.5 27 16.5 22.5 C 16.5 18 13 15.5 9.5 15.5 C 9 15.5 8.2 15.7 7.8 15.8 C 8.8 11.5 12.5 7.5 16.5 5 Z" />
+      <path d="M 34 2 C 26 7 21 14 21 22 C 21 27 24.5 30 29 30 C 33.5 30 36.5 27 36.5 22.5 C 36.5 18 33 15.5 29.5 15.5 C 29 15.5 28.2 15.7 27.8 15.8 C 28.8 11.5 32.5 7.5 36.5 5 Z" />
+    </g>
+
+    <!-- Vertical Divider Line -->
+    <line x1="141" y1="396" x2="141" y2="495" stroke="#FF5A43" stroke-width="2.2" stroke-linecap="round" />
+
+    <!-- Quote Text -->
+    <text x="164" y="418" font-size="26.5" font-weight="800" fill="#12161F" letter-spacing="-0.3">Consistency beats intensity.</text>
+    <text x="164" y="454" font-size="25" font-weight="400" fill="#464B55" letter-spacing="-0.2">A little study every day brings</text>
+    <text x="164" y="487" font-size="25" font-weight="400" fill="#464B55" letter-spacing="-0.2">big results over time.</text>
+  </g>
+    <rect x="585" y="390" width="120" height="140" fill="url(#deskFadeLeft)" />
+
+    <!-- Warm Light Beam from Lamp -->
+    <polygon points="984,176 1120,231 995,435 735,345" fill="url(#lampGlow)" />
+
+    <!-- ==================== DESK LAMP ==================== -->
+    <g id="deskLamp">
+      <!-- Curved Lamp Arm -->
+      <path d="M 1084 114
+               C 1114 82 1142 105 1144 162
+               L 1159 385"
+            fill="none" stroke="#493F43" stroke-width="15" stroke-linecap="round" />
+      <path d="M 1086 114
+               C 1115 84 1140 107 1142 162
+               L 1157 385"
+            fill="none" stroke="#5E5257" stroke-width="4" stroke-linecap="round" opacity="0.6" />
+
+      <!-- Lamp Neck Cap -->
+      <path d="M 1056 124 L 1072 100 C 1076 95 1088 99 1096 106 C 1104 113 1106 122 1101 128 L 1086 146 Z"
+            fill="#594D52" stroke="#3F3539" stroke-width="1.5" />
+
+      <!-- Lamp Shade Dome -->
+      <path d="M 982 175
+               C 1002 108 1138 124 1122 232
+               Z"
+            fill="url(#lampShadeGrad)" stroke="#685860" stroke-width="1.5" />
+
+      <!-- Subtle Highlight on Lamp Dome -->
+      <path d="M 994 168 C 1012 124 1068 124 1088 144 C 1058 134 1018 142 994 168 Z"
+            fill="#B5A5AD" opacity="0.45" />
+
+      <!-- Lamp Shade Inner Glowing Opening -->
+      <ellipse cx="1052" cy="204" rx="74" ry="22" transform="rotate(21.5 1052 204)"
+               fill="url(#lampInnerGrad)" stroke="#E2B461" stroke-width="2" />
+
+      <!-- Glowing Bulb -->
+      <path d="M 1031 193 C 1030 208 1066 221 1073 208 C 1075 201 1062 192 1052 190 C 1041 187 1032 189 1031 193 Z"
+            fill="#FFFFFF" />
+    </g>
+
+    <!-- ==================== POTTED PLANT ==================== -->
+    <g id="pottedPlant">
+      <!-- Pot Base Shadow -->
+      <ellipse cx="806" cy="420" rx="36" ry="7" fill="#462C22" opacity="0.25" />
+
+      <!-- Leaf Behind Left (Lower) -->
+      <path d="M 762 340 C 724 342 702 368 698 394 C 724 388 748 372 762 346 Z" fill="#6AA513" />
+      <path d="M 760 344 Q 726 364 698 394" fill="none" stroke="#8BC332" stroke-width="1.5" />
+
+      <!-- Leaf Far Left Arching -->
+      <path d="M 776 312 C 728 286 688 302 688 332 C 715 318 746 314 776 318 Z" fill="#76B41A" />
+      <path d="M 774 315 Q 728 306 688 332" fill="none" stroke="#99D140" stroke-width="1.5" />
+
+      <!-- Leaf Upper Left -->
+      <path d="M 786 294 C 756 254 714 252 704 274 C 734 274 762 282 784 298 Z" fill="#82BF24" />
+      <path d="M 784 296 Q 748 268 704 274" fill="none" stroke="#A6DC4E" stroke-width="1.5" />
+
+      <!-- Leaf Top Left Crown -->
+      <path d="M 796 286 C 788 238 754 218 734 222 C 754 242 776 264 792 290 Z" fill="#7AB81D" />
+      <path d="M 794 288 Q 770 248 734 222" fill="none" stroke="#A0D648" stroke-width="1.5" />
+
+      <!-- Leaf Top Right Crown -->
+      <path d="M 808 286 C 816 244 848 232 868 244 C 846 256 826 272 812 290 Z" fill="#70AD16" />
+      <path d="M 810 288 Q 836 256 868 244" fill="none" stroke="#96CE3D" stroke-width="1.5" />
+
+      <!-- Leaf Far Right -->
+      <path d="M 822 298 C 852 272 882 280 894 298 C 868 298 842 302 824 306 Z" fill="#649E10" />
+      <path d="M 823 302 Q 858 288 894 298" fill="none" stroke="#88C130" stroke-width="1.5" />
+
+      <!-- Stems -->
+      <path d="M 786 326 Q 780 302 764 282" fill="none" stroke="#4E7E0A" stroke-width="3.5" stroke-linecap="round" />
+      <path d="M 798 328 Q 798 296 792 266" fill="none" stroke="#5A8E0E" stroke-width="4" stroke-linecap="round" />
+      <path d="M 810 328 Q 818 302 832 280" fill="none" stroke="#4E7E0A" stroke-width="3.5" stroke-linecap="round" />
+      <path d="M 822 326 Q 836 312 852 304" fill="none" stroke="#426D07" stroke-width="3.5" stroke-linecap="round" />
+
+      <!-- Pot Body -->
+      <path d="M 760 324 L 852 324 L 838 414 C 837 420 822 423 806 423 C 790 423 775 420 774 414 Z"
+            fill="url(#potGrad)" stroke="#E3C4B6" stroke-width="1" />
+
+      <!-- Pot Rim & Soil -->
+      <ellipse cx="806" cy="322" rx="51" ry="10" fill="#F4D5C8" stroke="#E0BFB1" stroke-width="1" />
+      <ellipse cx="806" cy="321" rx="45" ry="7.5" fill="#5B3926" />
+      <path d="M 755 322 C 755 328 778 333 806 333 C 834 333 857 328 857 322 L 857 330 C 857 336 834 341 806 341 C 778 341 755 336 755 330 Z"
+            fill="url(#potGrad)" />
+
+      <!-- Foreground Leaves (Overlapping Pot & Stems) -->
+      <!-- Center Left Lush Leaf -->
+      <path d="M 792 292 C 760 288 738 314 742 344 C 766 334 786 316 794 296 Z" fill="#89C629" />
+      <path d="M 792 294 Q 762 314 742 344" fill="none" stroke="#ACE254" stroke-width="1.5" />
+
+      <!-- Center Right Leaf -->
+      <path d="M 804 282 C 824 260 854 268 858 296 C 834 298 814 294 804 286 Z" fill="#84C024" />
+      <path d="M 805 284 Q 832 280 858 296" fill="none" stroke="#A8DE4E" stroke-width="1.5" />
+
+      <!-- Lower Right Leaf Hanging Over Pot Rim -->
+      <path d="M 828 312 C 850 308 866 322 864 342 C 846 338 834 326 828 316 Z" fill="#74B218" />
+    </g>
+
+    <!-- ==================== STACK OF 3 BOOKS ==================== -->
+    <g id="booksStack" class="font-main">
+      <!-- Drop Shadow Under Bottom Book -->
+      <polygon points="815,444 1044,476 1106,450 1090,442 825,436" fill="#5A392B" opacity="0.28" />
+
+      <!-- ===== 1. BOTTOM BOOK: REVISE (TEAL) ===== -->
+      <g id="bookRevise">
+        <!-- Top Visible Edge of Teal Book -->
+        <polygon points="818,392 850,379 1104,403 1042,424" fill="#6CD1B4" />
+
+        <!-- Right Pages Block -->
+        <polygon points="1038,424 1098,402 1098,447 1038,470" fill="#FDF7EF" />
+        <!-- Page Lines -->
+        <line x1="1042" y1="432" x2="1095" y2="411" stroke="#E5D8C8" stroke-width="1.5" />
+        <line x1="1042" y1="442" x2="1095" y2="421" stroke="#E5D8C8" stroke-width="1.5" />
+        <line x1="1042" y1="452" x2="1095" y2="431" stroke="#E5D8C8" stroke-width="1.5" />
+        <line x1="1042" y1="461" x2="1095" y2="440" stroke="#E5D8C8" stroke-width="1.5" />
+
+        <!-- Bottom Cover Edge on Right -->
+        <polygon points="1038,468 1102,444 1102,450 1040,474" fill="#2A856C" />
+
+        <!-- Spine Front Face -->
+        <path d="M 822 391
+                 L 1040 422
+                 C 1044 438 1044 456 1040 473
+                 L 820 442
+                 C 810 434 810 402 822 391 Z"
+              fill="url(#bookTealSpine)" />
+
+        <!-- Spine Highlights & Bottom Trim -->
+        <path d="M 822 393 L 1039 424" fill="none" stroke="#8AE2C9" stroke-width="2" opacity="0.7" />
+        <path d="M 818 440 L 1040 472" fill="none" stroke="#287F67" stroke-width="3.5" />
+
+        <!-- Icon & Text on Spine ("Revise") -->
+        <g transform="translate(874, 424) rotate(8)">
+          <!-- Circular Refresh Arrow Icon -->
+          <path d="M 12 -6 A 12 12 0 1 1 -1 -9" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" />
+          <polygon points="14,-12 15,-2 6,-5" fill="#FFFFFF" />
+          <!-- Text -->
+          <text x="32" y="8" font-size="25" font-weight="600" fill="#FFFFFF" letter-spacing="0.2">Revise</text>
+        </g>
+      </g>
+
+      <!-- ===== 2. MIDDLE BOOK: STUDY (PURPLE) ===== -->
+      <g id="bookStudy">
+        <!-- Shadow on Teal Book -->
+        <polygon points="835,392 1046,421 1106,396 1095,390" fill="#2B7A64" opacity="0.35" />
+
+        <!-- Top Visible Edge of Purple Book -->
+        <polygon points="840,342 876,328 1110,345 1044,368" fill="url(#bookPurpleTop)" />
+
+        <!-- Right Pages Block -->
+        <polygon points="1040,368 1104,344 1104,387 1040,413" fill="#FDF7EF" />
+        <!-- Page Lines -->
+        <line x1="1044" y1="376" x2="1101" y2="353" stroke="#E5D8C8" stroke-width="1.5" />
+        <line x1="1044" y1="386" x2="1101" y2="363" stroke="#E5D8C8" stroke-width="1.5" />
+        <line x1="1044" y1="396" x2="1101" y2="373" stroke="#E5D8C8" stroke-width="1.5" />
+        <line x1="1044" y1="405" x2="1101" y2="381" stroke="#E5D8C8" stroke-width="1.5" />
+
+        <!-- Top & Bottom Cover Lips on Right -->
+        <polygon points="1040,366 1108,340 1108,345 1042,370" fill="#8B70D8" />
+        <polygon points="1040,411 1108,384 1108,390 1042,416" fill="#6D52BA" />
+
+        <!-- Spine Front Face -->
+        <path d="M 842 342
+                 L 1042 366
+                 C 1045 381 1045 398 1042 415
+                 L 840 390
+                 C 831 381 831 352 842 342 Z"
+              fill="url(#bookPurpleSpine)" />
+
+        <!-- Spine Highlight & Bottom Shadow -->
+        <path d="M 842 344 L 1041 368" fill="none" stroke="#C7B6F8" stroke-width="2" opacity="0.7" />
+        <path d="M 838 389 L 1042 414" fill="none" stroke="#6B50B8" stroke-width="3" />
+
+        <!-- Icon & Text on Spine ("Study") -->
+        <g transform="translate(888, 373) rotate(6.8)">
+          <!-- Open Book Icon -->
+          <path d="M -16 -9 Q -8 -12 0 -7 L 0 11 Q -8 6 -16 9 Z" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round" />
+          <path d="M 16 -9 Q 8 -12 0 -7 L 0 11 Q 8 6 16 9 Z" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round" />
+          <!-- Text -->
+          <text x="32" y="8" font-size="25" font-weight="600" fill="#FFFFFF" letter-spacing="0.2">Study</text>
+        </g>
+      </g>
+
+      <!-- ===== 3. TOP BOOK: PLAN (CORAL RED) ===== -->
+      <g id="bookPlan">
+        <!-- Shadow on Purple Book -->
+        <polygon points="860,342 1046,363 1104,339 1094,334" fill="#644AB0" opacity="0.35" />
+
+        <!-- Top Book Cover -->
+        <polygon points="864,294 918,278 1102,292 1044,313" fill="url(#bookRedTop)" />
+
+        <!-- Right Pages Block -->
+        <polygon points="1040,313 1098,292 1098,335 1040,358" fill="#FDF7EF" />
+        <!-- Page Lines -->
+        <line x1="1044" y1="321" x2="1095" y2="301" stroke="#E5D8C8" stroke-width="1.5" />
+        <line x1="1044" y1="331" x2="1095" y2="311" stroke="#E5D8C8" stroke-width="1.5" />
+        <line x1="1044" y1="341" x2="1095" y2="321" stroke="#E5D8C8" stroke-width="1.5" />
+        <line x1="1044" y1="350" x2="1095" y2="329" stroke="#E5D8C8" stroke-width="1.5" />
+
+        <!-- Top & Bottom Cover Lips on Right -->
+        <polygon points="1040,311 1102,289 1102,294 1042,315" fill="#E3553F" />
+        <polygon points="1040,356 1102,332 1102,338 1042,361" fill="#C83E29" />
+
+        <!-- Spine Front Face -->
+        <path d="M 866 294
+                 L 1042 312
+                 C 1045 327 1045 344 1042 360
+                 L 864 340
+                 C 855 331 855 304 866 294 Z"
+              fill="url(#bookRedSpine)" />
+
+        <!-- Spine Highlight & Bottom Trim -->
+        <path d="M 866 296 L 1041 314" fill="none" stroke="#FFA391" stroke-width="2" opacity="0.7" />
+        <path d="M 862 339 L 1042 359" fill="none" stroke="#C53B26" stroke-width="3" />
+
+        <!-- Icon & Text on Spine ("Plan") -->
+        <g transform="translate(906, 324) rotate(5.8)">
+          <!-- Calendar Icon -->
+          <rect x="-14" y="-11" width="26" height="23" rx="4" fill="none" stroke="#FFFFFF" stroke-width="2.4" />
+          <line x1="-14" y1="-3" x2="12" y2="-3" stroke="#FFFFFF" stroke-width="2.2" />
+          <line x1="-7" y1="-15" x2="-7" y2="-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" />
+          <line x1="5" y1="-15" x2="5" y2="-8" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" />
+          <circle cx="-6" cy="4" r="1.6" fill="#FFFFFF" />
+          <circle cx="4" cy="4" r="1.6" fill="#FFFFFF" />
+          <!-- Text -->
+          <text x="32" y="8" font-size="25" font-weight="600" fill="#FFFFFF" letter-spacing="0.2">Plan</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- ==================== PEN HOLDER CUP (FAR RIGHT) ==================== -->
+    <g id="penHolder">
+      <!-- Shadow Under Cup -->
+      <ellipse cx="1134" cy="472" rx="38" ry="8" fill="#3B241B" opacity="0.35" />
+
+      <!-- Cup Inner Back Opening -->
+      <ellipse cx="1134" cy="366" rx="39" ry="9" fill="#E4C6B8" stroke="#F8E4DA" stroke-width="1.5" />
+
+      <!-- Left Marker Pen Inside Cup -->
+      <g transform="rotate(-11 1122 360)">
+        <rect x="1113" y="314" width="16" height="65" rx="3" fill="#25242B" />
+        <rect x="1115" y="316" width="4" height="60" fill="#3E3D46" />
+        <!-- Marker Clip -->
+        <path d="M 1129 322 L 1133 324 L 1133 348 L 1129 348" fill="none" stroke="#3A3942" stroke-width="2.5" stroke-linejoin="round" />
+      </g>
+
+      <!-- Right Stylus/Pen Inside Cup -->
+      <g transform="rotate(15 1152 355)">
+        <rect x="1144" y="295" width="14" height="80" rx="7" fill="#232228" />
+        <!-- Gold/Peach Top Cap -->
+        <path d="M 1144 306 L 1144 301 C 1144 296 1158 296 1158 301 L 1158 306 Z" fill="#F8B072" />
+        <!-- Gold Ring & Accent Stripe -->
+        <rect x="1144" y="306" width="14" height="4" fill="#F59E0B" />
+        <line x1="1148" y1="312" x2="1148" y2="370" stroke="#F59E0B" stroke-width="1.8" />
+      </g>
+
+      <!-- Cup Body Front -->
+      <path d="M 1095 366
+               C 1095 372 1112 375 1134 375
+               C 1156 375 1173 372 1173 366
+               L 1169 464
+               C 1169 472 1153 476 1134 476
+               C 1115 476 1099 472 1099 464
+               Z"
+            fill="url(#potGrad)" stroke="#E4C5B7" stroke-width="1" />
+
+      <!-- Cup Bottom Dark Rim -->
+      <path d="M 1099 463 C 1099 471 1115 476 1134 476 C 1153 476 1169 471 1169 463"
+            fill="none" stroke="#2D1D18" stroke-width="2.5" />
+      <!-- Cup Top Front Rim Highlight -->
+      <path d="M 1095 366 C 1095 372 1112 375 1134 375 C 1156 375 1173 372 1173 366"
+            fill="none" stroke="#FFF6F1" stroke-width="2" />
+    </g>
+
+    <!-- ==================== SPIRAL NOTEPAD & PEN ==================== -->
+    <g id="notepadAndPen">
+      <!-- Notepad Drop Shadow -->
+      <path d="M 648 456 L 774 428 L 892 504 L 732 534 Z" fill="#432B22" opacity="0.28" />
+
+      <!-- Dark Hardcover Backing -->
+      <path d="M 647 453
+               L 774 426
+               L 886 501
+               C 890 504 888 509 881 511
+               L 739 532
+               C 728 534 719 530 713 523
+               L 647 458 Z"
+            fill="#3D3537" />
+
+      <!-- Thick Paper Stack Edge -->
+      <path d="M 650 449
+               L 774 424
+               L 884 496
+               L 883 503
+               L 737 526
+               C 728 527 721 524 716 518
+               L 649 454 Z"
+            fill="#F3DFD5" />
+
+      <!-- Top White Sheet -->
+      <path d="M 651 446
+               L 774 422
+               L 883 494
+               L 736 518
+               C 728 519 721 516 716 510
+               L 651 446 Z"
+            fill="#FFFDFB" stroke="#E8D8D0" stroke-width="1" />
+
+      <!-- Spiral Binding Rings (6 Loops along Top Edge) -->
+      <g fill="none" stroke="#272224" stroke-width="3.4" stroke-linecap="round">
+        <!-- Hole Dots -->
+        <g fill="#4A3F42" stroke="none">
+          <circle cx="669" cy="447" r="3" />
+          <circle cx="689" cy="443" r="3" />
+          <circle cx="709" cy="439" r="3" />
+          <circle cx="729" cy="435" r="3" />
+          <circle cx="749" cy="431" r="3" />
+          <circle cx="769" cy="427" r="3" />
+        </g>
+        <!-- Spiral Loops -->
+        <path d="M 658 450 C 649 442 661 434 669 447" />
+        <path d="M 678 446 C 669 438 681 430 689 443" />
+        <path d="M 698 442 C 689 434 701 426 709 439" />
+        <path d="M 718 438 C 709 430 721 422 729 435" />
+        <path d="M 738 434 C 729 426 741 418 749 431" />
+        <path d="M 758 430 C 749 422 761 414 769 427" />
+      </g>
+
+      <!-- Checkboxes & Lines on Notepad -->
+      <!-- Row 1 (Checked) -->
+      <polygon points="698,456 713,453 724,464 709,467" fill="none" stroke="#7A6F72" stroke-width="1.8" stroke-linejoin="round" />
+      <path d="M 704 459 L 711 463 L 719 450" fill="none" stroke="#FF4B36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      <line x1="732" y1="456" x2="788" y2="445" stroke="#9B8E92" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Row 2 (Checked) -->
+      <polygon points="714,473 729,470 740,481 725,484" fill="none" stroke="#7A6F72" stroke-width="1.8" stroke-linejoin="round" />
+      <path d="M 720 476 L 727 480 L 735 467" fill="none" stroke="#FF4B36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      <line x1="748" y1="473" x2="808" y2="462" stroke="#9B8E92" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Row 3 (Unchecked) -->
+      <polygon points="730,490 745,487 756,498 741,501" fill="none" stroke="#7A6F72" stroke-width="1.8" stroke-linejoin="round" />
+      <line x1="764" y1="490" x2="802" y2="483" stroke="#9B8E92" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Black & Gold Pen Resting on Notepad -->
+      <g id="fountainPen">
+        <!-- Pen Drop Shadow -->
+        <path d="M 804 500 L 936 482 L 938 488 L 806 505 Z" fill="#3B241B" opacity="0.28" />
+
+        <!-- Gold Clip Underneath Cap -->
+        <path d="M 885 492 L 922 487 C 925 486 926 483 924 481" fill="none" stroke="#231F20" stroke-width="3.2" stroke-linecap="round" />
+        <path d="M 885 492 L 922 487 C 925 486 926 483 924 481" fill="none" stroke="#F7B742" stroke-width="1.8" stroke-linecap="round" />
+
+        <!-- Pen Body (Rotated) -->
+        <g transform="translate(872, 484) rotate(-10.5)">
+          <!-- Main Barrel -->
+          <path d="M -52 -6 L 56 -8 C 61 -8 64 -4 64 0 C 64 4 61 8 56 8 L -52 6 Z" fill="#232228" />
+          <!-- Barrel Gloss Highlight -->
+          <line x1="-48" y1="-2" x2="54" y2="-3.5" stroke="#4F4D59" stroke-width="2" stroke-linecap="round" />
+
+          <!-- Tapered Nose Cone -->
+          <polygon points="-52,-6 -68,-1.5 -68,1.5 -52,6" fill="#2B2A30" />
+
+          <!-- Gold Nib Tip -->
+          <path d="M -68 -1.5 L -74 0 L -68 1.5 Z" fill="#F7B742" />
+
+          <!-- Center Gold Band -->
+          <rect x="-12" y="-6.8" width="4.5" height="13.6" rx="1" fill="#F7B742" />
+
+          <!-- End Cap Gold Band -->
+          <rect x="52" y="-7.8" width="4.5" height="15.6" rx="1" fill="#F7B742" />
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== BOTTOM 4 ACTION CARDS ==================== -->
+  <g id="bottomCards" class="font-main">
+
+    <!-- 1. Set Goals -->
+    <g id="cardSetGoals">
+      <rect x="55" y="551" width="252" height="78" rx="20" fill="#EFF7F3" stroke="#D5EADF" stroke-width="1.5" />
+      <!-- Target Bullseye Icon -->
+      <g transform="translate(120, 590)">
+        <circle cx="0" cy="0" r="20" fill="none" stroke="#08996F" stroke-width="3.6" />
+        <circle cx="0" cy="0" r="12" fill="none" stroke="#08996F" stroke-width="3.4" />
+        <circle cx="0" cy="0" r="4.5" fill="#08996F" />
+        <!-- Arrow Hitting Bullseye -->
+        <line x1="2" y1="-2" x2="19" y2="-19" stroke="#067A58" stroke-width="3.2" stroke-linecap="round" />
+        <polygon points="-1,1 2,-7 8,-1" fill="#067A58" />
+        <path d="M 14 -20 L 20 -20 L 20 -14" fill="none" stroke="#08996F" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <text x="165" y="597" font-size="21" font-weight="600" fill="#141821" letter-spacing="-0.2">Set Goals</text>
+    </g>
+
+    <!-- 2. Stay Consistent -->
+    <g id="cardStayConsistent">
+      <rect x="317" y="551" width="283" height="78" rx="20" fill="#FDF1EB" stroke="#F6DDD0" stroke-width="1.5" />
+      <!-- Coral Calendar Icon -->
+      <g transform="translate(355, 570)">
+        <rect x="0" y="4" width="38" height="34" rx="7" fill="none" stroke="#F0563E" stroke-width="3.2" />
+        <line x1="0" y1="15" x2="38" y2="15" stroke="#F0563E" stroke-width="3" />
+        <line x1="11" y1="-1" x2="11" y2="8" stroke="#F0563E" stroke-width="3.4" stroke-linecap="round" />
+        <line x1="27" y1="-1" x2="27" y2="8" stroke="#F0563E" stroke-width="3.4" stroke-linecap="round" />
+        <circle cx="11" cy="27" r="2.6" fill="#F0563E" />
+      </g>
+      <text x="414" y="597" font-size="21" font-weight="600" fill="#141821" letter-spacing="-0.2">Stay Consistent</text>
+    </g>
+
+    <!-- 3. Track Progress -->
+    <g id="cardTrackProgress">
+      <rect x="610" y="551" width="271" height="78" rx="20" fill="#F3EEFD" stroke="#E2D6FA" stroke-width="1.5" />
+      <!-- Purple Bar Chart Icon -->
+      <g transform="translate(645, 570)">
+        <rect x="0" y="22" width="10" height="16" rx="3" fill="#9B72FA" />
+        <rect x="15" y="13" width="10" height="25" rx="3" fill="#9B72FA" />
+        <rect x="30" y="0" width="10" height="38" rx="3" fill="#8B5CF6" />
+      </g>
+      <text x="705" y="597" font-size="21" font-weight="600" fill="#141821" letter-spacing="-0.2">Track Progress</text>
+    </g>
+
+    <!-- 4. Achieve More -->
+    <g id="cardAchieveMore">
+      <rect x="891" y="551" width="263" height="78" rx="20" fill="#FDF2EB" stroke="#F5DFD1" stroke-width="1.5" />
+      <!-- Soft Peach Circle Badge Behind Trophy -->
+      <circle cx="943" cy="590" r="34" fill="#FDE7D4" opacity="0.7" />
+      <!-- Golden Trophy Icon -->
+      <g transform="translate(943, 590)">
+        <!-- Left & Right Handles -->
+        <path d="M -12 -14 H -18 C -21 -14 -22 -9 -20 -4 C -18 1 -14 3 -10 3" fill="none" stroke="#F59E0B" stroke-width="3.4" stroke-linecap="round" />
+        <path d="M 12 -14 H 18 C 21 -14 22 -9 20 -4 C 18 1 14 3 10 3" fill="none" stroke="#F59E0B" stroke-width="3.4" stroke-linecap="round" />
+        <!-- Trophy Cup Body -->
+        <path d="M -13 -18 H 13 V -4 C 13 5 7 10 0 10 C -7 10 -13 5 -13 -4 Z" fill="#F59E0B" />
+        <!-- White Star on Trophy -->
+        <polygon points="0,-12 2,-7 7,-7 3,-4 4.5,1 0,-2 -4.5,1 -3,-4 -7,-7 -2,-7" fill="#FFFDFB" />
+        <!-- Stem & Base -->
+        <rect x="-3" y="9" width="6" height="8" fill="#F59E0B" />
+        <rect x="-10" y="16" width="20" height="4.5" rx="2.2" fill="#F59E0B" />
+      </g>
+      <text x="990" y="597" font-size="21" font-weight="600" fill="#141821" letter-spacing="-0.2">Achieve More</text>
+    </g>
+
+  </g>
+</svg>

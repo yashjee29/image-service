@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
+import { bufferToDataUri } from './image-injector.js';
 
 export function resolveLeaderboardDirectory(): string {
   const candidates = [
@@ -75,7 +76,7 @@ export class LeaderboardAssetCache {
             .png({ compressionLevel: 8 })
             .toBuffer();
 
-          const dataUri = `data:image/png;base64,${resizedBuffer.toString('base64')}`;
+          const dataUri = bufferToDataUri(resizedBuffer);
           this.medalDataUris.set(`${rank}_${size}`, dataUri);
           this.medalDataUris.set(`${rank}`, dataUri);
         } catch (err) {

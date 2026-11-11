@@ -1,0 +1,45 @@
+export const welcomeImageConfig = {
+  id: 'welcome-image',
+  version: '1.0.0',
+  description: 'Cash Mod high-performance welcome banner image card with avatar and responsive username',
+  dimensions: {
+    width: 1320,
+    height: 570,
+  },
+  avatar: {
+    cx: 175,
+    cy: 226,
+    r: 115,
+    x: 60,
+    y: 111,
+    width: 230,
+    height: 230,
+    processWidth: 460,
+    processHeight: 460,
+  },
+  username: {
+    startX: 325,
+    startY: 271,
+    maxWidth: 295,
+    fontSize: 73,
+    fontSizes: [73],
+    minFontSize: 73,
+    maxCharLimit: 15,
+  },
+  accentRays: {
+    originalAnchorX: 608,
+    originalAnchorY: 238,
+    width: 33,
+    minScale: 0.6,
+    maxScale: 1.0,
+    padding: 20, // Equal visual gap between name edge and sparkles
+  },
+  defaults: {
+    username: 'User',
+    greeting: 'Welcome,',
+    badgeText: 'Glad to have you here!',
+    quoteTitle: 'Consistency beats intensity.',
+    quoteLine1: 'A little study every day brings',
+    quoteLine2: 'big results over time.',
+  },
+};

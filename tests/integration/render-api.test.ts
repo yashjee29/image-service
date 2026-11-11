@@ -142,11 +142,15 @@ describe('HTTP API Integration Tests', () => {
       expect(res.statusCode).toBe(200);
       const json = JSON.parse(res.body);
       expect(json.success).toBe(true);
-      expect(json.modules).toHaveLength(2);
+      expect(json.modules).toHaveLength(3);
 
       const profileModule = json.modules.find((m: { id: string }) => m.id === 'voice-profile');
       expect(profileModule).toBeDefined();
       expect(profileModule.defaultDimensions).toEqual({ width: 1200, height: 835 });
+
+      const welcomeModule = json.modules.find((m: { id: string }) => m.id === 'welcome-image');
+      expect(welcomeModule).toBeDefined();
+      expect(welcomeModule.defaultDimensions).toEqual({ width: 1320, height: 570 });
     });
   });
 
@@ -303,6 +307,74 @@ describe('HTTP API Integration Tests', () => {
       expect(meta.width).toBe(1200);
       expect(meta.height).toBe(835);
       expect(meta.format).toBe('png');
+    });
+  });
+
+  describe('POST /api/v1/render/welcome-image', () => {
+    it('renders welcome image PNG from payload via module route with cache MISS then HIT', async () => {
+      const payload = {
+        username: 'Aarav',
+        badgeText: 'Glad to have you here!',
+      };
+
+      const resMiss = await app.inject({
+        method: 'POST',
+        url: '/api/v1/render/welcome-image',
+        payload,
+      });
+
+      expect(resMiss.statusCode).toBe(200);
+      expect(resMiss.headers['content-type']).toBe('image/png');
+      expect(resMiss.headers['x-cache']).toBe('MISS');
+
+      const meta = await sharp(resMiss.rawPayload).metadata();
+      expect(meta.width).toBe(1320);
+      expect(meta.height).toBe(570);
+      expect(meta.format).toBe('png');
+
+      const resHit = await app.inject({
+        method: 'POST',
+        url: '/api/v1/render/welcome-image',
+        payload,
+      });
+
+      expect(resHit.statusCode).toBe(200);
+      expect(resHit.headers['x-cache']).toBe('HIT');
+    });
+
+    it('renders welcome image via welcome alias and truncates extra long usernames', async () => {
+      const res = await app.inject({
+        method: 'POST',
+        url: '/api/v1/render/welcome',
+        payload: {
+          username: 'Supercalifragilisticexpialidocious',
+        },
+      });
+
+      expect(res.statusCode).toBe(200);
+      expect(res.headers['content-type']).toBe('image/png');
+      const meta = await sharp(res.rawPayload).metadata();
+      expect(meta.width).toBe(1320);
+      expect(meta.height).toBe(570);
+    });
+
+    it('renders welcome image via unified /api/v1/render endpoint with templateId', async () => {
+      const res = await app.inject({
+        method: 'POST',
+        url: '/api/v1/render',
+        payload: {
+          render: {
+            templateId: 'welcome-image',
+          },
+          username: 'Alexandre',
+        },
+      });
+
+      expect(res.statusCode).toBe(200);
+      expect(res.headers['content-type']).toBe('image/png');
+      const meta = await sharp(res.rawPayload).metadata();
+      expect(meta.width).toBe(1320);
+      expect(meta.height).toBe(570);
     });
   });
 

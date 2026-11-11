@@ -1,6 +1,7 @@
 import { escapeXmlText, sanitizeDisplayText } from '../../core/svg/svg-escaping.js';
 import { rankAssetCache } from '../../core/images/rank-asset-cache.js';
 import { leaderboardAssetCache } from '../../core/images/leaderboard-asset-cache.js';
+import { buildSvgImageTag } from '../../core/images/image-injector.js';
 import { getRankTheme, isHighTierRank, REQUESTER_HIGHLIGHT_THEME } from './config.js';
 import type { VoiceLeaderboardInput, LeaderboardEntry } from './schema.js';
 
@@ -454,7 +455,7 @@ export function mapStudyLeaderboardData(
     if (medalUri) {
       const coord = medalCoords[rank]!;
       const medalImgTag = `<g id="podium-medal-${rank}">
-        <image href="${medalUri}" x="${coord.x}" y="${coord.y}" width="${coord.size}" height="${coord.size}" preserveAspectRatio="xMidYMid meet" />
+        ${buildSvgImageTag({ dataUri: medalUri, x: coord.x, y: coord.y, width: coord.size, height: coord.size, preserveAspectRatio: 'xMidYMid meet' })}
       </g>`;
       output = output.replace(
         new RegExp(`<g id="podium-medal-${rank}">[\\s\\S]*?<\\/g>`),
@@ -540,7 +541,7 @@ export function mapStudyLeaderboardData(
 
     const rankPillSvg = `<g id="podium-rank-pill-${rank}">
       <rect x="${pillX}" y="457" width="${pillW}" height="45" rx="22.5" fill="${rankTheme.pillBg}" stroke="${rankTheme.pillBorder}" stroke-width="1" />
-      ${rankIconUri ? `<image href="${rankIconUri}" x="${iconX}" y="${iconY}" width="${iconSize}" height="${iconSize}" preserveAspectRatio="xMidYMid meet" />` : ''}
+      ${rankIconUri ? buildSvgImageTag({ dataUri: rankIconUri, x: iconX, y: iconY, width: iconSize, height: iconSize, preserveAspectRatio: 'xMidYMid meet' }) : ''}
       <text x="${textX}" y="486.5" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="21" font-weight="500" fill="${rankTheme.pillTextColor}" text-anchor="start">${escapeXmlText(rankName)}</text>
     </g>`;
 
@@ -554,7 +555,7 @@ export function mapStudyLeaderboardData(
     if (avatarUri) {
       const avatarSvg = `<g id="${conf.slug}">
         <clipPath id="podium-avatar-clip-${rank}"><circle cx="${conf.cx}" cy="319" r="80" /></clipPath>
-        <image href="${avatarUri}" x="${conf.cx - 80}" y="${319 - 80}" width="160" height="160" clip-path="url(#podium-avatar-clip-${rank})" preserveAspectRatio="xMidYMid slice" />
+        ${buildSvgImageTag({ dataUri: avatarUri, x: conf.cx - 80, y: 319 - 80, width: 160, height: 160, clipPathUrl: `url(#podium-avatar-clip-${rank})`, preserveAspectRatio: 'xMidYMid slice' })}
       </g>`;
 
       output = output.replace(
@@ -720,7 +721,7 @@ export function mapStudyLeaderboardData(
     // 4d. Rank Pill
     const rankPillSvg = `<g id="study-rank-pill-${slotRank}">
       <rect x="${pillX}" y="${pillY}" width="${pillW}" height="42" rx="21" fill="${rankTheme.pillBg}" stroke="${rankTheme.pillBorder}" stroke-width="1" />
-      ${rankIconUri ? `<image href="${rankIconUri}" x="${iconX}" y="${iconY}" width="${iconSize}" height="${iconSize}" preserveAspectRatio="xMidYMid meet" />` : ''}
+      ${rankIconUri ? buildSvgImageTag({ dataUri: rankIconUri, x: iconX, y: iconY, width: iconSize, height: iconSize, preserveAspectRatio: 'xMidYMid meet' }) : ''}
       <text x="${textX}" y="${pillY + 27}" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="${rankTheme.pillTextColor}" text-anchor="start">${escapeXmlText(rankName)}</text>
     </g>`;
 
@@ -737,7 +738,7 @@ export function mapStudyLeaderboardData(
       const avatarCy = rowY + 27;
       const avatarSvg = `<g id="${avatarSlug}">
         <clipPath id="study-avatar-clip-${slotRank}"><circle cx="${avatarCx}" cy="${avatarCy}" r="36" /></clipPath>
-        <image href="${avatarUri}" x="${avatarCx - 36}" y="${avatarCy - 36}" width="72" height="72" clip-path="url(#study-avatar-clip-${slotRank})" preserveAspectRatio="xMidYMid slice" />
+        ${buildSvgImageTag({ dataUri: avatarUri, x: avatarCx - 36, y: avatarCy - 36, width: 72, height: 72, clipPathUrl: `url(#study-avatar-clip-${slotRank})`, preserveAspectRatio: 'xMidYMid slice' })}
       </g>`;
 
       output = output.replace(
@@ -1008,7 +1009,7 @@ export function mapExtendedStudyLeaderboardData(
 
     const rankPillSvg = `<g id="study-ext-rank-pill-${slotRank}">
       <rect x="${pillX}" y="${pillY}" width="${pillW}" height="42" rx="21" fill="${rankTheme.pillBg}" stroke="${rankTheme.pillBorder}" stroke-width="1" />
-      ${rankIconUri ? `<image href="${rankIconUri}" x="${iconX}" y="${iconY}" width="${iconSize}" height="${iconSize}" preserveAspectRatio="xMidYMid meet" />` : ''}
+      ${rankIconUri ? buildSvgImageTag({ dataUri: rankIconUri, x: iconX, y: iconY, width: iconSize, height: iconSize, preserveAspectRatio: 'xMidYMid meet' }) : ''}
       <text x="${textX}" y="${pillY + 27}" font-family="Nunito Sans, Nunito, Arial, sans-serif" font-size="16" font-weight="500" fill="${rankTheme.pillTextColor}" text-anchor="start">${escapeXmlText(rankName)}</text>
     </g>`;
 
@@ -1025,7 +1026,7 @@ export function mapExtendedStudyLeaderboardData(
       const avatarCy = conf.avatarCy;
       const avatarSvg = `<g id="${avatarSlug}">
         <clipPath id="study-ext-clip-${slotRank}"><circle cx="${avatarCx}" cy="${avatarCy}" r="38" /></clipPath>
-        <image href="${avatarUri}" x="${avatarCx - 38}" y="${avatarCy - 38}" width="76" height="76" clip-path="url(#study-ext-clip-${slotRank})" preserveAspectRatio="xMidYMid slice" />
+        ${buildSvgImageTag({ dataUri: avatarUri, x: avatarCx - 38, y: avatarCy - 38, width: 76, height: 76, clipPathUrl: `url(#study-ext-clip-${slotRank})`, preserveAspectRatio: 'xMidYMid slice' })}
         <circle cx="${avatarCx}" cy="${avatarCy}" r="38" fill="none" stroke="#ffffff" stroke-width="2" />
         <circle cx="${avatarCx}" cy="${avatarCy}" r="38" fill="none" stroke="#e4d9cf" stroke-width="0.8" />
       </g>`;
@@ -1130,7 +1131,7 @@ export function mapVoiceLeaderboardData(
       const cy = rank === 1 ? 95 : 90;
       const avatarGroup = `<g id="podium-avatar-${rank}">
         <clipPath id="podium-clip-${rank}"><circle cx="170" cy="${cy}" r="${radius}" /></clipPath>
-        <image href="${avatarDataUri}" x="${170 - radius}" y="${cy - radius}" width="${radius * 2}" height="${radius * 2}" clip-path="url(#podium-clip-${rank})" preserveAspectRatio="xMidYMid slice" />
+        ${buildSvgImageTag({ dataUri: avatarDataUri, x: 170 - radius, y: cy - radius, width: radius * 2, height: radius * 2, clipPathUrl: `url(#podium-clip-${rank})`, preserveAspectRatio: 'xMidYMid slice' })}
       </g>`;
 
       const regex = new RegExp(`<g id="podium-avatar-${rank}">[\\s\\S]*?<\\/g>`);
@@ -1167,7 +1168,7 @@ export function mapVoiceLeaderboardData(
     let avatarTag = '';
     if (avatarUri) {
       avatarTag = `<clipPath id="row-clip-${entry.rank}"><circle cx="${colX + 58}" cy="${rowY + 28}" r="18" /></clipPath>
-      <image href="${avatarUri}" x="${colX + 40}" y="${rowY + 10}" width="36" height="36" clip-path="url(#row-clip-${entry.rank})" preserveAspectRatio="xMidYMid slice" />`;
+      ${buildSvgImageTag({ dataUri: avatarUri, x: colX + 40, y: rowY + 10, width: 36, height: 36, clipPathUrl: `url(#row-clip-${entry.rank})`, preserveAspectRatio: 'xMidYMid slice' })}`;
     } else {
       const initial = escapedName.charAt(0).toUpperCase();
       avatarTag = `<circle cx="${colX + 58}" cy="${rowY + 28}" r="18" fill="#E9ECEF" />

@@ -1,5 +1,6 @@
 import sharp from 'sharp';
 import { fetchRemoteImage } from './image-fetcher.js';
+import { bufferToDataUri } from './image-injector.js';
 
 // Optimize libvips memory: disable 50MB internal caching & limit concurrency
 // to prevent multi-threaded glibc memory arena fragmentation on Linux.
@@ -117,7 +118,7 @@ export class AvatarCache {
       .png({ compressionLevel: 4, effort: 1 })
       .toBuffer();
 
-    const dataUri = `data:image/png;base64,${resized.toString('base64')}`;
+    const dataUri = bufferToDataUri(resized);
     const entryBytes = Buffer.byteLength(dataUri, 'utf8') + Buffer.byteLength(key, 'utf8');
 
     // Enforce cache byte limit: evict LRU entries until space is available

@@ -1,5 +1,6 @@
 import { escapeXmlText, sanitizeDisplayText } from '../../core/svg/svg-escaping.js';
 import { rankAssetCache } from '../../core/images/rank-asset-cache.js';
+import { buildSvgImageTag } from '../../core/images/image-injector.js';
 import { voiceProfileConfig } from './config.js';
 import type { VoiceProfileInput } from './schema.js';
 
@@ -489,7 +490,7 @@ export function mapVoiceProfileData(
     const { x, y, width, height } = voiceProfileConfig.avatar;
     const avatarMarkup = `<!-- Custom User Avatar inside Avatar Clip -->
     <g clip-path="url(#avatar-clip)">
-      <image href="${avatarDataUri}" x="${x}" y="${y}" width="${width}" height="${height}" preserveAspectRatio="xMidYMid slice" />
+      ${buildSvgImageTag({ dataUri: avatarDataUri, x, y, width, height, preserveAspectRatio: 'xMidYMid slice' })}
     </g>
 
     `;
@@ -514,7 +515,7 @@ export function mapVoiceProfileData(
   if (currentRankDataUri) {
     const rankTag = `<!-- Rank icon (${escapeXmlText(currentRankId)}) -->
     <g transform="translate(${rankX}, 123)">
-      <image href="${currentRankDataUri}" x="-30" y="-30" width="60" height="60" preserveAspectRatio="xMidYMid meet" />
+      ${buildSvgImageTag({ dataUri: currentRankDataUri, x: -30, y: -30, width: 60, height: 60, preserveAspectRatio: 'xMidYMid meet' })}
     </g>`;
     output = output.replace(rankRegex, rankTag);
   } else {
@@ -687,7 +688,7 @@ export function mapVoiceProfileData(
 
     const progressionSvg = `<!-- Current Rank Badge -->
         <g transform="translate(30, 63)">
-          <image href="${finalCurBadge}" x="-20" y="-20" width="40" height="40" preserveAspectRatio="xMidYMid meet" />
+          ${buildSvgImageTag({ dataUri: finalCurBadge, x: -20, y: -20, width: 40, height: 40, preserveAspectRatio: 'xMidYMid meet' })}
         </g>
 
         <!-- Current Rank Text -->
@@ -700,7 +701,7 @@ export function mapVoiceProfileData(
 
         <!-- Next Rank Badge -->
         <g transform="translate(${layout.nextBadgeX}, 63)">
-          <image href="${finalNxtBadge}" x="-20" y="-20" width="40" height="40" preserveAspectRatio="xMidYMid meet" />
+          ${buildSvgImageTag({ dataUri: finalNxtBadge, x: -20, y: -20, width: 40, height: 40, preserveAspectRatio: 'xMidYMid meet' })}
         </g>
 
         <!-- Next Rank Text -->

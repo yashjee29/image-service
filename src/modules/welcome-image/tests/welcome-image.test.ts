@@ -30,36 +30,35 @@ describe('WelcomeImageModule', () => {
       expect(res.isTruncated).toBe(false);
     });
 
-    it('keeps text font equal (73) and truncates with "..." when username is too long', () => {
+    it('shrinks a wide single-line name without truncating it', () => {
       const res = fitWelcomeUsername('Christopher');
-      expect(res.displayName.endsWith('...')).toBe(true);
-      expect(res.fontSize).toBe(73);
-      expect(res.isTruncated).toBe(true);
-      expect(res.width).toBeLessThanOrEqual(295);
+      expect(res.displayName).toBe('Christopher');
+      expect(res.fontSize).toBeLessThan(73);
+      expect(res.isTruncated).toBe(false);
+      expect(res.width).toBeLessThanOrEqual(375);
     });
 
-    it('keeps text font equal (73) and truncates with "..." for names like Alexander', () => {
+    it('shrinks another wide name while keeping it on one line', () => {
       const res = fitWelcomeUsername('Alexander');
-      expect(res.displayName.endsWith('...')).toBe(true);
-      expect(res.fontSize).toBe(73);
-      expect(res.isTruncated).toBe(true);
-      expect(res.width).toBeLessThanOrEqual(295);
+      expect(res.displayName).toBe('Alexander');
+      expect(res.fontSize).toBeLessThan(73);
+      expect(res.isTruncated).toBe(false);
+      expect(res.width).toBeLessThanOrEqual(375);
     });
 
-    it('keeps text font equal (73) and truncates with "..." when username is too much long', () => {
+    it('wraps a long name into at most three lines before truncating', () => {
       const res = fitWelcomeUsername('AlexanderTheGreatestWarrior');
-      expect(res.displayName.endsWith('...')).toBe(true);
-      expect(res.isTruncated).toBe(true);
-      expect(res.fontSize).toBe(73);
-      expect(res.width).toBeLessThanOrEqual(295);
+      expect(res.lines.length).toBeLessThanOrEqual(3);
+      expect(res.isTruncated).toBe(false);
+      expect(res.fontSize).toBeLessThan(73);
+      expect(res.width).toBeLessThanOrEqual(375);
     });
 
-    it('truncates very long usernames with many wide characters keeping font equal (73)', () => {
+    it('keeps wide usernames within three lines', () => {
       const res = fitWelcomeUsername('WWWWWWWWWWWWWWWWWWWW');
-      expect(res.displayName.endsWith('...')).toBe(true);
-      expect(res.isTruncated).toBe(true);
-      expect(res.fontSize).toBe(73);
-      expect(res.width).toBeLessThanOrEqual(295);
+      expect(res.lines.length).toBeLessThanOrEqual(3);
+      expect(res.isTruncated).toBe(false);
+      expect(res.width).toBeLessThanOrEqual(375);
     });
 
     it('sanitizes and strips dangerous emojis or unsupported glyphs', () => {
@@ -98,11 +97,10 @@ describe('WelcomeImageModule', () => {
       expect(mapped).toContain('avatarSky');
     });
 
-    it('positions accent rays dynamically on both X and Y axis for very long names', () => {
+    it('hides accent rays when the username wraps to multiple lines', () => {
       const template = templateRegistry.get('welcome-image')!.content;
       const mapped = mapWelcomeImageData(template, { username: 'VeryVeryLongUsernameThatOverflows' });
-      expect(mapped).toContain('id="accentRays" transform="translate(');
-      expect(mapped).toContain('scale(');
+      expect(mapped).toContain('3 Yellow Accent Rays omitted');
     });
 
     it('omits accent rays only when explicitly disabled via showAccentRays: false', () => {

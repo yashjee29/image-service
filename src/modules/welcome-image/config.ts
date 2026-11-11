@@ -20,11 +20,14 @@ export const welcomeImageConfig = {
   username: {
     startX: 325,
     startY: 271,
-    maxWidth: 295,
+    maxWidth: 375,
     fontSize: 73,
     fontSizes: [73],
-    minFontSize: 73,
-    maxCharLimit: 15,
+    minFontSize: 38,
+    maxCharLimit: 120,
+    wrappedStartY: 210,
+    wrappedLineHeight: 45,
+    wrappedBadgeOffset: 20,
   },
   accentRays: {
     originalAnchorX: 608,

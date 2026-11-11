@@ -45,16 +45,76 @@ export function estimateNameWidth(text: string, fontSize: number): number {
 
 export interface UsernameFittingResult {
   displayName: string;
+  lines: string[];
   fontSize: number;
   width: number;
   isTruncated: boolean;
   letterSpacing: string;
 }
 
+function wrapUsername(text: string, fontSize: number, maxWidth: number, maxLines: number) {
+  const lines: string[] = [];
+  let current = '';
+  let overflowed = false;
+  const segments = text.trim().split(/(?<=[a-z0-9])(?=[A-Z])|(?<=\s)/);
+
+  for (const segment of segments) {
+    let remaining = segment;
+    if (estimateNameWidth(`${current}${remaining}`, fontSize) <= maxWidth) {
+      current += remaining;
+      continue;
+    }
+    if (current.trim()) lines.push(current.trimEnd());
+    current = '';
+
+    while (remaining && estimateNameWidth(remaining, fontSize) > maxWidth) {
+      let end = 0;
+      for (let index = 1; index <= remaining.length; index++) {
+        if (estimateNameWidth(remaining.slice(0, index), fontSize) > maxWidth) break;
+        end = index;
+      }
+      if (end === 0) end = 1;
+      lines.push(remaining.slice(0, end).trimEnd());
+      remaining = remaining.slice(end).trimStart();
+      if (lines.length >= maxLines && remaining) {
+        overflowed = true;
+        break;
+      }
+    }
+    current = remaining;
+    if (overflowed) break;
+  }
+
+  if (!overflowed && current.trim()) lines.push(current.trimEnd());
+  if (lines.length > maxLines) {
+    lines.length = maxLines;
+    overflowed = true;
+  }
+
+  if (overflowed && lines.length) {
+    let lastLine = lines[lines.length - 1];
+    while (lastLine && estimateNameWidth(`${lastLine}...`, fontSize) > maxWidth) {
+      lastLine = lastLine.slice(0, -1).trimEnd();
+    }
+    lines[lines.length - 1] = `${lastLine}...`;
+  }
+
+  return { lines, overflowed };
+}
+
+function appendEllipsis(lines: string[], fontSize: number, maxWidth: number): string[] {
+  const result = [...lines];
+  let lastLine = result[result.length - 1] ?? '';
+  while (lastLine && estimateNameWidth(`${lastLine}...`, fontSize) > maxWidth) {
+    lastLine = lastLine.slice(0, -1).trimEnd();
+  }
+  result[result.length - 1] = `${lastLine}...`;
+  return result;
+}
+
 /**
- * Fits username within available greeting area:
- * Keeps the text font equal (73px). If the username is too much long to fit within
- * maxWidth, it is truncated character-by-character from the end and replaced with "...".
+ * Keeps short names large and wraps long names to at most three lines. Shrinking
+ * starts only when a single line no longer fits; ellipses are reserved for overflow.
  */
 export function fitWelcomeUsername(
   rawName: string,
@@ -71,6 +131,7 @@ export function fitWelcomeUsername(
   if (w <= maxWidth && !wasCharLimited) {
     return {
       displayName: cleanName,
+      lines: [cleanName],
       fontSize,
       width: w,
       isTruncated: false,
@@ -78,27 +139,52 @@ export function fitWelcomeUsername(
     };
   }
 
-  // If it's too much long, truncate character-by-character and append "..."
-  for (let len = charLimitedName.length; len >= 1; len--) {
-    const candidate = charLimitedName.substring(0, len).trimEnd() + '...';
-    const candidateWidth = estimateNameWidth(candidate, fontSize);
-    if (candidateWidth <= maxWidth) {
-      return {
-        displayName: candidate,
-        fontSize,
-        width: candidateWidth,
-        isTruncated: true,
-        letterSpacing: fontSize >= 50 ? '-1' : '-0.5',
-      };
+  let bestThreeLineFit: { lines: string[]; fontSize: number; width: number } | undefined;
+  for (let candidateSize = Math.min(fontSize, 50); candidateSize >= welcomeImageConfig.username.minFontSize; candidateSize -= 2) {
+    const wrapped = wrapUsername(charLimitedName, candidateSize, maxWidth, 3);
+    const lines = wasCharLimited && !wrapped.overflowed
+      ? appendEllipsis(wrapped.lines, candidateSize, maxWidth)
+      : wrapped.lines;
+    if (!wrapped.overflowed) {
+      const width = Math.max(...lines.map((line) => estimateNameWidth(line, candidateSize)));
+      if (!bestThreeLineFit) bestThreeLineFit = { lines, fontSize: candidateSize, width };
+      if (lines.length <= 2) {
+        return {
+          displayName: lines.join('\n'),
+          lines,
+          fontSize: candidateSize,
+          width,
+          isTruncated: wasCharLimited,
+          letterSpacing: candidateSize >= 50 ? '-1' : '-0.5',
+        };
+      }
     }
   }
 
+  if (bestThreeLineFit) {
+    return {
+      displayName: bestThreeLineFit.lines.join('\n'),
+      lines: bestThreeLineFit.lines,
+      fontSize: bestThreeLineFit.fontSize,
+      width: bestThreeLineFit.width,
+      isTruncated: wasCharLimited,
+      letterSpacing: bestThreeLineFit.fontSize >= 50 ? '-1' : '-0.5',
+    };
+  }
+
+  const minFontSize = welcomeImageConfig.username.minFontSize;
+  const wrapped = wrapUsername(charLimitedName, minFontSize, maxWidth, 3);
+  const lines = wasCharLimited && !wrapped.overflowed
+    ? appendEllipsis(wrapped.lines, minFontSize, maxWidth)
+    : wrapped.lines;
+  const width = Math.max(...lines.map((line) => estimateNameWidth(line, minFontSize)));
   return {
-    displayName: '...',
-    fontSize,
-    width: estimateNameWidth('...', fontSize),
+    displayName: lines.join('\n'),
+    lines,
+    fontSize: minFontSize,
+    width,
     isTruncated: true,
-    letterSpacing: fontSize >= 50 ? '-1' : '-0.5',
+    letterSpacing: minFontSize >= 50 ? '-1' : '-0.5',
   };
 }
 
@@ -124,10 +210,6 @@ export function mapWelcomeImageData(
   // 2. Greeting Header
   const rawGreeting = data.greeting ?? welcomeImageConfig.defaults.greeting;
   const escapedGreeting = escapeXmlText(rawGreeting);
-  output = output.replace(
-    /<text id="welcomeGreeting" [^>]*>[^<]*<\/text>|<text x="325" y="191" [^>]*>[^<]*<\/text>/,
-    `<text id="welcomeGreeting" x="325" y="191" font-size="73" font-weight="800" fill="#0F141D" letter-spacing="-1.5">${escapedGreeting}</text>`
-  );
 
   // 3. Username Replacement with dynamic sizing / truncation
   const rawUsername =
@@ -146,15 +228,32 @@ export function mapWelcomeImageData(
     welcomeImageConfig.username.fontSize,
     maxCharLimit
   );
-  const escapedDisplayName = escapeXmlText(usernameFitting.displayName);
+  const multiline = usernameFitting.lines.length > 1;
+  const greetingY = multiline ? 160 : 191;
+  output = output.replace(
+    /<text id="welcomeGreeting" [^>]*>[^<]*<\/text>|<text x="325" y="191" [^>]*>[^<]*<\/text>/,
+    `<text id="welcomeGreeting" x="325" y="${greetingY}" font-size="73" font-weight="800" fill="#0F141D" letter-spacing="-1.5">${escapedGreeting}</text>`
+  );
+
+  const usernameY = multiline ? welcomeImageConfig.username.wrappedStartY : welcomeImageConfig.username.startY;
+  const lineMarkup = usernameFitting.lines
+    .map((line, index) => `<tspan x="325"${index === 0 ? '' : ` dy="${welcomeImageConfig.username.wrappedLineHeight}"`}>${escapeXmlText(line)}</tspan>`)
+    .join('');
 
   output = output.replace(
     /<text id="welcomeUsername" [^>]*>[^<]*<\/text>|<text x="325" y="271" [^>]*>[^<]*<\/text>/,
-    `<text id="welcomeUsername" x="325" y="271" font-size="${usernameFitting.fontSize}" font-weight="800" fill="#FF5A43" letter-spacing="${usernameFitting.letterSpacing}">${escapedDisplayName}</text>`
+    `<text id="welcomeUsername" x="325" y="${usernameY}" font-size="${usernameFitting.fontSize}" font-weight="800" fill="#FF5A43" letter-spacing="${usernameFitting.letterSpacing}">${lineMarkup}</text>`
   );
 
+  if (multiline) {
+    output = output.replace(
+      '<g id="gladBadge" class="font-main">',
+      `<g id="gladBadge" class="font-main" transform="translate(0 ${welcomeImageConfig.username.wrappedBadgeOffset})">`
+    );
+  }
+
   // 4. Accent Rays Dynamic Positioning on both X and Y axis (appears for all types of names)
-  const showAccentRays = data.showAccentRays !== false;
+  const showAccentRays = data.showAccentRays !== false && !multiline;
   const raysRegex = /<!-- 3 Yellow Accent Rays.*?-->[\s\S]*?<g id="accentRays"[^>]*>[\s\S]*?<\/g>|<g id="accentRays"[^>]*>[\s\S]*?<\/g>|<!-- 3 Yellow Accent Rays next to "Aarav!" -->\s*<line x1="608"[\s\S]*?<line x1="617"[^>]*\/>/;
 
   if (showAccentRays) {
